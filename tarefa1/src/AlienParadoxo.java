@@ -19,8 +19,8 @@ class AlienParadoxo extends Monstro {
         // habilidade especial
         if (Math.random() < 0.3) {
             System.out.printf("%s ativa o espelho temporal!\n", nome);
-            System.out.printf("O próximo ataque de %s será refletido!\n", nome);
+            System.out.printf("O próximo ataque de %s será refletido!\n", alvo.nome);
         }
-        
+
     }
 }
