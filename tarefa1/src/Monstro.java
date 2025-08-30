@@ -16,4 +16,7 @@ public abstract class Monstro extends Personagem {
         System.out.println("Força: " + this.forca);
         System.out.println("Experiência concedida: " + this.xpConcedido);
     }
+
+    public abstract void usarHabilidadeEspecial(Personagem alvo);
+
 }
