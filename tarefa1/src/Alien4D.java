@@ -1,3 +1,5 @@
+package tarefa1.src;
+
 class Alien4D extends Monstro {
 
     public Alien4D(String nome, int pontosDeVida, int forca, double xpConcedido) {

@@ -1,3 +1,5 @@
+package tarefa1.src;
+
 class AlienSlime extends Monstro {
 
     public AlienSlime(String nome, int pontosDeVida, int forca, double xpConcedido) {
