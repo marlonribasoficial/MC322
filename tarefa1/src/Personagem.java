@@ -1,5 +1,3 @@
-package tarefa1.src;
-
 public abstract class Personagem {
     String nome;
     int pontosDeVida; // podemos mudar o tipo de acordo com o que a gente for fazer

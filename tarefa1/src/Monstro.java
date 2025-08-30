@@ -1,5 +1,3 @@
-package tarefa1.src;
-
 public abstract class Monstro extends Personagem {
     double xpConcedido; // Experiência que o monstro concede ao ser derrotado.
 

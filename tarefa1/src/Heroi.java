@@ -1,5 +1,3 @@
-package tarefa1.src;
-
 public abstract class Heroi extends Personagem {
     int nivel;
     double exp;

@@ -1,6 +1,4 @@
-package tarefa1.src;
-
-class AlienParadoxo extends Monstro {
+public class AlienParadoxo extends Monstro {
 
     public AlienParadoxo(String nome, int pontosDeVida, int forca, double xpConcedido) {
         super(nome, pontosDeVida, forca, xpConcedido);
