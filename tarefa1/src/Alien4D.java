@@ -4,12 +4,15 @@ Atributos do Alien Slime:
 	- Pontos de vida
 	- Força
     - Experiência concedida
+    - Aprisionado
 */
 
 public class Alien4D extends Monstro {
+    boolean aprisionado;
 
-    public Alien4D(String nome, int pontosDeVida, int forca, double xpConcedido) {
+    public Alien4D(String nome, int pontosDeVida, int forca, double xpConcedido, boolean aprisionado) {
         super(nome, pontosDeVida, forca, xpConcedido);
+        this.aprisionado = aprisionado;
     }
 
     @Override
@@ -27,7 +30,7 @@ public class Alien4D extends Monstro {
         if (Math.random() < 0.4) {
             System.out.println("Ah não! A " + alvo.nome + " foi aprisionado entre dimensões!");
             System.out.println(alvo.nome + " perde o próximo turno.");
-            // aqui você aplicaria a lógica para pular o turno do herói
+            this.aprisionado = true;
         }
     }
 }

@@ -9,9 +9,7 @@ public abstract class Monstro extends Personagem {
     // Imprime as informações do personagem
     @Override
     public void exibirStatus() {
-        System.out.println("Nome: " + this.nome);
-        System.out.println("Pontos de Vida: " + this.pontosDeVida);
-        System.out.println("Força: " + this.forca);
+        super.exibirStatus();
         System.out.println("Experiência concedida: " + this.xpConcedido);
     }
 

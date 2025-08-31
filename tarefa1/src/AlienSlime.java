@@ -4,12 +4,15 @@ Atributos do Alien Slime:
 	- Pontos de vida
 	- Força
     - Experiência concedida
+    - Astronauta contaminado
 */
 
 public class AlienSlime extends Monstro {
+    boolean astronautaContaminado;
 
-    public AlienSlime(String nome, int pontosDeVida, int forca, double xpConcedido) {
+    public AlienSlime(String nome, int pontosDeVida, int forca, double xpConcedido, boolean astronautaContaminado) {
         super(nome, pontosDeVida, forca, xpConcedido);
+        this.astronautaContaminado = astronautaContaminado;
     }
 
     @Override
@@ -20,16 +23,17 @@ public class AlienSlime extends Monstro {
 
         if (Math.random() < 0.8) {
             System.out.println("A " + alvo.nome + " é contaminado pela radioatividade e começará a enfraquecer... Perde " + (int)(forca / 5) + " de vida no próximo turno.");
-
+            this.astronautaContaminado = true;
         }
-        // aplicar dano no herói na main
     }
 
     @Override
     public void usarHabilidadeEspecial(Personagem alvo) {
-        if (Math.random() < 0.3) {
+        if (Math.random() < 0.6) {
             System.out.println("Com um movimento grotesco, o " + this.nome + " se fragmenta em duas massas e recupera 25% de sua vida!");
             pontosDeVida = (int)(pontosDeVida + pontosDeVida / 4);
+
+            if (this.pontosDeVida > 70) this.pontosDeVida = 70;
         }
     }
 }

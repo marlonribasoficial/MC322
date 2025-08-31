@@ -27,7 +27,7 @@ public class Astronauta extends Heroi {
         System.out.println("A " + this.nome + " ataca o " + alvo.nome + " com força " + this.forca + "!");
         alvo.receberDano(alvo, this.forca);
 
-        if (Math.random() < 0.2) soproCriogenico(alvo);
+        if (Math.random() < 0.3) soproCriogenico(alvo);
 
     }
 
@@ -46,7 +46,7 @@ public class Astronauta extends Heroi {
 
     @Override
     public void usarHabilidadeEspecial(Personagem alvo) {
-        if (Math.random() < 0.3) {
+        if (Math.random() < 0.4) {
             // Super defesa com o traje espacial
             if (trajeEspacial > 50) {
                 System.out.println(this.nome + " ativa o modo de defesa máxima do traje espacial!");
@@ -58,7 +58,7 @@ public class Astronauta extends Heroi {
                 if (this.oxigenio < 0) this.oxigenio = 0;
 
                 // definir o maximo de pontos de vida que vai ter
-                if (this.pontosDeVida > 100) this.pontosDeVida = 100;
+                if (this.pontosDeVida > 120) this.pontosDeVida = 120;
 
             } else {
                 System.out.println("A " + this.nome + " não tem energia suficiente para usar a habilidade especial de traje espacial!");
@@ -68,7 +68,7 @@ public class Astronauta extends Heroi {
 
     // Pegar item
     public void pegarItem(Item item) {
-        if (Math.random() < 0.2) {
+        if (Math.random() < 0.4) {
             inventario.add(item);
             System.out.println(this.nome + " pegou um " + item.getNome() + "!");
         }
@@ -76,12 +76,12 @@ public class Astronauta extends Heroi {
 
     // Usar tubo de oxigênio (se existir no inventário)
     public void usarTuboOxigenio() {
-        for (Item item : inventario) {
-            if (item.getNome().equals("Tubo de Oxigênio")) {
-                oxigenio += 60;
-                if (oxigenio > 100) oxigenio = 100; // limite
+        for (int i = 0; i < inventario.size(); i++) {
+            if (inventario.get(i).getNome().equals("Tubo de Oxigênio")) {
+                oxigenio += 40;
+                if (oxigenio > 100) oxigenio = 100;
 
-                inventario.remove(item);
+                inventario.remove(i);
                 System.out.println(this.nome + " usou um Tubo de Oxigênio! Oxigênio agora em " + oxigenio + "%");
                 return;
             }
@@ -93,6 +93,6 @@ public class Astronauta extends Heroi {
     public void exibirStatus() {
         super.exibirStatus();
         System.out.println("Oxigênio: " + this.oxigenio + "%");
-        System.out.println("Energia do Traje Espacial: " + this.oxigenio + "%");
+        System.out.println("Energia do Traje Espacial: " + this.trajeEspacial + "%");
     }
 }
