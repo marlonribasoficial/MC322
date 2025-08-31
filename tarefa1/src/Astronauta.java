@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 /* 
-
 Atributos do Astronauta:
     - Nome
 	- Pontos de vida
@@ -13,11 +12,11 @@ Atributos do Astronauta:
 */
 
 public class Astronauta extends Heroi {
-    double trajeEspacial;
-    double oxigenio;
+    int trajeEspacial;
+    int oxigenio;
     ArrayList<Item> inventario = new ArrayList<>();
 
-    public Astronauta(String nome, int pontosDeVida, int forca, int nivel, double exp, double trajeEspacial, double oxigenio) {
+    public Astronauta(String nome, int pontosDeVida, int forca, int nivel, double exp, int trajeEspacial, int oxigenio) {
         super(nome, pontosDeVida, forca, nivel, exp);
         this.trajeEspacial = trajeEspacial;
         this.oxigenio = oxigenio;
@@ -25,7 +24,7 @@ public class Astronauta extends Heroi {
 
     @Override
     public void atacar(Personagem alvo) {
-        System.out.println(this.nome + " ataca o " + alvo.nome + " com força " + this.forca + "!");
+        System.out.println("A " + this.nome + " ataca o " + alvo.nome + " com força " + this.forca + "!");
         alvo.receberDano(alvo, this.forca);
 
         if (Math.random() < 0.2) soproCriogenico(alvo);
@@ -35,7 +34,7 @@ public class Astronauta extends Heroi {
     // Ataca usando um supro criogênico
     public void soproCriogenico(Personagem alvo) {
         if (this.oxigenio >= 40) {
-                System.out.println("O QUE FOI ISSO? O astronauta " + this.nome + " acaba de atacar o "
+                System.out.println("O QUE FOI ISSO? A astronauta " + this.nome + " acaba de atacar o "
                 + alvo.nome + " com seu mega potente sopro criogênico de força " + this.forca * 3 + "!!!");
                 alvo.receberDano(alvo, this.forca * 3);
                 this.oxigenio -= 40;
@@ -62,7 +61,7 @@ public class Astronauta extends Heroi {
                 if (this.pontosDeVida > 100) this.pontosDeVida = 100;
 
             } else {
-                System.out.println(this.nome + " não tem energia suficiente para usar a habilidade especial de traje espacial!");
+                System.out.println("A " + this.nome + " não tem energia suficiente para usar a habilidade especial de traje espacial!");
             }
         }
     }

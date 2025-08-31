@@ -1,3 +1,11 @@
+/* 
+Atributos do Alien Slime:
+    - Nome
+	- Pontos de vida
+	- Força
+    - Experiência concedida
+*/
+
 public class Alien4D extends Monstro {
 
     public Alien4D(String nome, int pontosDeVida, int forca, double xpConcedido) {
@@ -6,7 +14,7 @@ public class Alien4D extends Monstro {
 
     @Override
     public void atacar(Personagem alvo) {
-        System.out.printf("%s ataca!\n", nome);
+        System.out.println(this.nome + " atravessa dimensões e ataca " + alvo.nome + ", causando " + this.forca + " de dano!");
         alvo.receberDano(alvo, forca); 
 
         if (pontosDeVida < 35) {
@@ -17,9 +25,9 @@ public class Alien4D extends Monstro {
     @Override
     public void usarHabilidadeEspecial(Personagem alvo) {
         if (Math.random() < 0.4) {
-            System.out.printf("Ah não! %s está preso entre dimensões.\n", alvo.nome);
-            System.out.printf("%s perde o turno.\n", alvo.nome);
-            // pula a vez do herói
+            System.out.println("Ah não! A " + alvo.nome + " foi aprisionado entre dimensões!");
+            System.out.println(alvo.nome + " perde o próximo turno.");
+            // aqui você aplicaria a lógica para pular o turno do herói
         }
     }
 }

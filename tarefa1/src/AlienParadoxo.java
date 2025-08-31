@@ -1,3 +1,11 @@
+/* 
+Atributos do Alien Paradoxo:
+    - Nome
+	- Pontos de vida
+	- Força
+    - Experiência concedida
+*/
+
 public class AlienParadoxo extends Monstro {
 
     public AlienParadoxo(String nome, int pontosDeVida, int forca, double xpConcedido) {
@@ -8,11 +16,11 @@ public class AlienParadoxo extends Monstro {
     public void atacar(Personagem alvo){
         // 50% de chance de atacar, 50% de chance de curar
         if (Math.random() < 0.5) {
-            System.out.printf("%s causa um dano caótico!\n", nome);
+            System.out.println(this.nome + " desfere um ataque caótico contra a " + alvo.nome + ", causando " + this.forca + " de dano!");
             alvo.receberDano(alvo, forca);
 
         } else {
-            System.out.printf("Ops! %s inesperadamente cura %s.\n", nome, alvo.nome);
+            System.out.println("Ops! Em um paradoxo estranho, " + this.nome + " cura " + alvo.nome + " em 15 pontos de vida!");
             alvo.pontosDeVida = alvo.pontosDeVida + 15;
         }
     }
@@ -20,8 +28,9 @@ public class AlienParadoxo extends Monstro {
     @Override
     public void usarHabilidadeEspecial(Personagem alvo) {
         if (Math.random() < 0.4) {
-            System.out.printf("%s ativa o espelho temporal!\n", nome);
-            System.out.printf("O próximo ataque de %s será refletido!\n", alvo.nome);
+            System.out.println(this.nome + " ativa o espelho temporal!");
+            System.out.println("O próximo ataque da " + alvo.nome + " será refletido contra ele mesmo!");
+            // tratar isso na main
         }
     }
 }
