@@ -27,7 +27,11 @@ public class Astronauta extends Heroi {
         System.out.println("A " + this.nome + " ataca o " + alvo.nome + " com força " + this.forca + "!");
         alvo.receberDano(alvo, this.forca);
 
-        if (Math.random() < 0.3) soproCriogenico(alvo);
+        if (Math.random() < 0.2) {
+            soproCriogenico(alvo);
+        } else {
+            usarHabilidadeEspecial(alvo);
+        }
 
     }
 
@@ -35,7 +39,7 @@ public class Astronauta extends Heroi {
     public void soproCriogenico(Personagem alvo) {
         if (this.oxigenio >= 40) {
                 System.out.println("O QUE FOI ISSO? A astronauta " + this.nome + " acaba de atacar o "
-                + alvo.nome + " com seu mega potente sopro criogênico de força " + this.forca * 3 + "!!!");
+                + alvo.nome + " com seu mega potente sopro criogênico de força " + this.forca * 2 + "!!!");
                 alvo.receberDano(alvo, this.forca * 3);
                 this.oxigenio -= 40;
 
@@ -46,9 +50,9 @@ public class Astronauta extends Heroi {
 
     @Override
     public void usarHabilidadeEspecial(Personagem alvo) {
-        if (Math.random() < 0.4) {
+        if (Math.random() < 0.3) {
             // Super defesa com o traje espacial
-            if (trajeEspacial > 50) {
+            if (trajeEspacial >= 40) {
                 System.out.println(this.nome + " ativa o modo de defesa máxima do traje espacial!");
                 this.pontosDeVida += 30;
                 this.trajeEspacial -= 30; // gasta energia do traje

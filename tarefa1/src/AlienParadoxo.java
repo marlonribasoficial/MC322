@@ -31,7 +31,7 @@ public class AlienParadoxo extends Monstro {
 
     @Override
     public void usarHabilidadeEspecial(Personagem alvo) {
-        if (Math.random() < 0.2) {
+        if (Math.random() < 0.3) {
             System.out.println(this.nome + " ativa o espelho temporal!");
             System.out.println("O próximo ataque da " + alvo.nome + " será refletido contra ela mesmo!");
             this.refletido = true;

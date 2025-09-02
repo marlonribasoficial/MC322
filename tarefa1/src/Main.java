@@ -1,14 +1,14 @@
 public class Main {
     public static void main(String[] args) {
-        Astronauta astronauta = new Astronauta("Capitã Fernanda", 120, 25, 0, 0, 100, 100);
+        Astronauta astronauta = new Astronauta("Capitã Fernanda", 120, 30, 0, 0, 100, 100);
 
-        AlienSlime alienSlime = new AlienSlime("Alien Slime", 80, 25, 0, false);
-        AlienParadoxo alienParadoxo = new AlienParadoxo("Alien Paradoxo", 80, 20, 0, false);
-        Alien4D alien4D = new Alien4D("Alien 4D", 90, 30, 0.0, false);
+        AlienSlime alienSlime = new AlienSlime("Alien Slime", 90, 25, 0, false);
+        AlienParadoxo alienParadoxo = new AlienParadoxo("Alien Paradoxo", 100, 20, 0, false);
+        Alien4D alien4D = new Alien4D("Alien 4D", 100, 30, 0.0, false);
 
         Item tuboOxigenio = new Item("Tubo de Oxigênio");
 
-        long tempo = 4000;
+        long tempo = 500;
 
         // adicionar um atributo de maxima vida em todos os personagens, apenas nos concretos
 
@@ -48,7 +48,6 @@ public class Main {
                 }
 
                 astronauta.atacar(alienSlime);
-                astronauta.usarHabilidadeEspecial(alienSlime);
 
                 try {
                     Thread.sleep(tempo); // pausa de 1,5 segundos
@@ -118,7 +117,6 @@ public class Main {
                     alienParadoxo.refletido = false;
                 } else {
                     astronauta.atacar(alienParadoxo);
-                    astronauta.usarHabilidadeEspecial(alienParadoxo);
                 }
 
                 try {
@@ -184,7 +182,6 @@ public class Main {
 
                 if (!alien4D.aprisionado) {
                     astronauta.atacar(alien4D);
-                    astronauta.usarHabilidadeEspecial(alien4D);
                 } else {
                     alien4D.aprisionado = false;
                 }
@@ -227,7 +224,7 @@ public class Main {
             System.out.println("========================================");
             alien4D.exibirStatus();
 
-            if (!jogoAtivo) break;
+            break;
         }
 
         if (astronauta.pontosDeVida <= 0) {
