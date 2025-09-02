@@ -19,11 +19,11 @@ public class AlienParadoxo extends Monstro {
     public void atacar(Personagem alvo){
         // 50% de chance de atacar, 50% de chance de curar
         if (Math.random() < 0.5) {
-            System.out.println(this.nome + " desfere um ataque caótico contra a " + alvo.nome + ", causando " + this.forca + " de dano!");
+            System.out.println(this.nome + " desfere um ataque caótico contra a " + alvo.nome + ", causando " + this.forca + " de dano!\n");
             alvo.receberDano(alvo, forca);
 
         } else {
-            System.out.println("Ops! Em um paradoxo estranho, " + this.nome + " cura " + alvo.nome + " em 15 pontos de vida!");
+            System.out.println("Ops! Em um paradoxo estranho, " + this.nome + " cura " + alvo.nome + " em 15 pontos de vida!\n");
             alvo.pontosDeVida = alvo.pontosDeVida + 15;
             if (alvo.pontosDeVida > 120) alvo.pontosDeVida = 120;
         }
@@ -33,7 +33,7 @@ public class AlienParadoxo extends Monstro {
     public void usarHabilidadeEspecial(Personagem alvo) {
         if (Math.random() < 0.3) {
             System.out.println(this.nome + " ativa o espelho temporal!");
-            System.out.println("O próximo ataque da " + alvo.nome + " será refletido contra ela mesmo!");
+            System.out.println("O próximo ataque da " + alvo.nome + " será refletido contra ela mesma!\n");
             this.refletido = true;
         }
     }
