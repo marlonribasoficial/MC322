@@ -10,7 +10,7 @@ Atributos do Alien Slime:
 public class Alien4D extends Monstro {
     boolean aprisionado;
 
-    public Alien4D(String nome, int pontosDeVida, int forca, double xpConcedido, boolean aprisionado) {
+    public Alien4D(String nome, int pontosDeVida, int forca, int xpConcedido, boolean aprisionado) {
         super(nome, pontosDeVida, forca, xpConcedido);
         this.aprisionado = aprisionado;
     }

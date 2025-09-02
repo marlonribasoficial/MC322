@@ -14,6 +14,7 @@ Atributos do Astronauta:
 public class Astronauta extends Heroi {
     int trajeEspacial;
     int oxigenio;
+    boolean soproUsado;
     ArrayList<Item> inventario = new ArrayList<>();
 
     public Astronauta(String nome, int pontosDeVida, int forca, int nivel, double exp, int trajeEspacial, int oxigenio) {
@@ -45,6 +46,8 @@ public class Astronauta extends Heroi {
 
                 // Caso se estourar o limite
                 if (this.oxigenio < 0) this.oxigenio = 0;
+
+                this.soproUsado = true;
         }
     }
 

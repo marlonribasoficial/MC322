@@ -8,8 +8,8 @@ public abstract class Heroi extends Personagem {
         this.exp = exp;
     }
 
-    public void ganharExperiencia() {
-
+    public void ganharExperiencia(int ataque) {
+        this.exp = (int)ataque/2;
     }
 
     // Imprime as informações do personagem

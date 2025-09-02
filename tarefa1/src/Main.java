@@ -2,18 +2,35 @@ public class Main {
     public static void main(String[] args) {
         Astronauta astronauta = new Astronauta("Capitã Fernanda", 120, 30, 0, 0, 100, 100);
 
-        AlienSlime alienSlime = new AlienSlime("Alien Slime", 90, 25, 0, false);
-        AlienParadoxo alienParadoxo = new AlienParadoxo("Alien Paradoxo", 100, 20, 0, false);
-        Alien4D alien4D = new Alien4D("Alien 4D", 100, 30, 0.0, false);
+        AlienSlime alienSlime = new AlienSlime("Alien Slime", 90, 25, 50, false);
+        AlienParadoxo alienParadoxo = new AlienParadoxo("Alien Paradoxo", 100, 20, 40, false);
+        Alien4D alien4D = new Alien4D("Alien 4D", 100, 30, 60, false);
 
         Item tuboOxigenio = new Item("Tubo de Oxigênio");
 
-        long tempo = 500;
+        Experiencia exp = new Experiencia(astronauta);
+
+        long tempo = 3000;
 
         // adicionar um atributo de maxima vida em todos os personagens, apenas nos concretos
 
         // imprimir uma introducao da historia
         // exibir o status do astronauta de uma maneira elegante
+
+        // para subir para o nivel 1: 50 xp
+        //      - ganha 10 de vida
+        //      - ganha 15 de oxigenio
+        //      - ganha 15 de traje espacial
+
+        // para subir para o nivel 2: 80 xp
+        //      - ganha 20 de vida
+        //      - ganha 15 de oxigenio
+        //      - ganha 15 de traje espacial
+
+        // para subir para o nivel 3: 120 xp
+        //      - ganha 30 de vida
+        //      - ganha 15 de oxigenio
+        //      - ganha 15 de traje espacial
 
         // Flag para controle do jogo
         boolean jogoAtivo = true;
@@ -35,6 +52,8 @@ public class Main {
                 // astronauta ataca
                 // monstro ataca
 
+                exp.alterarNivel(astronauta);
+
                 if (alienSlime.astronautaContaminado) {
                     astronauta.receberDano(astronauta, (int)(alienSlime.forca / 5));
                     System.out.println("- " + (int)(alienSlime.forca / 5) + " pela radiação.");
@@ -48,6 +67,11 @@ public class Main {
                 }
 
                 astronauta.atacar(alienSlime);
+                if (astronauta.soproUsado) {
+                    astronauta.ganharExperiencia(astronauta.forca * 3);
+                } else {
+                    astronauta.ganharExperiencia(astronauta.forca);
+                }
 
                 try {
                     Thread.sleep(tempo); // pausa de 1,5 segundos
@@ -82,6 +106,14 @@ public class Main {
                     astronauta.usarTuboOxigenio();
                 }
             }
+
+            if (astronauta.pontosDeVida > 0) {
+                astronauta.ganharExperiencia(alienSlime.xpConcedido);
+                System.out.println("****************");
+                System.out.println("A " + astronauta.nome + " acaba de ganhar " + alienSlime.xpConcedido + " de experiência apos derrotar o " + alienSlime.nome + ".");
+                System.out.println("****************");
+            }
+
             // exibir o status do astronauta e do alien
             System.out.println("========================================");
             astronauta.exibirStatus();
@@ -111,12 +143,19 @@ public class Main {
                 // astronauta ataca
                 // monstro ataca
 
+                exp.alterarNivel(astronauta);
+
                 if (alienParadoxo.refletido) {
                     astronauta.atacar(astronauta);
                     System.out.println("O ataque da " + astronauta.nome + " foi refletido contra ela mesma!");
                     alienParadoxo.refletido = false;
                 } else {
                     astronauta.atacar(alienParadoxo);
+                    if (astronauta.soproUsado) {
+                        astronauta.ganharExperiencia(astronauta.forca * 3);
+                    } else {
+                        astronauta.ganharExperiencia(astronauta.forca);
+                    }
                 }
 
                 try {
@@ -151,6 +190,14 @@ public class Main {
                     astronauta.usarTuboOxigenio();
                 }
             }
+            
+            if (astronauta.pontosDeVida > 0) {
+                astronauta.ganharExperiencia(alienParadoxo.xpConcedido);
+                System.out.println("****************");
+                System.out.println("A " + astronauta.nome + " acaba de ganhar " + alienParadoxo.xpConcedido + " de experiência apos derrotar o " + alienParadoxo.nome + ".");
+                System.out.println("****************");
+            }
+
             // exibir o status do astronauta e do alien
             System.out.println("========================================");
             astronauta.exibirStatus();
@@ -180,8 +227,15 @@ public class Main {
                 // astronauta ataca
                 // monstro ataca
 
+                exp.alterarNivel(astronauta);
+
                 if (!alien4D.aprisionado) {
                     astronauta.atacar(alien4D);
+                    if (astronauta.soproUsado) {
+                        astronauta.ganharExperiencia(astronauta.forca * 3);
+                    } else {
+                        astronauta.ganharExperiencia(astronauta.forca);
+                    }
                 } else {
                     alien4D.aprisionado = false;
                 }
@@ -218,6 +272,13 @@ public class Main {
                     astronauta.usarTuboOxigenio();
                 }
             }
+            if (astronauta.pontosDeVida > 0) {
+                astronauta.ganharExperiencia(alien4D.xpConcedido);
+                System.out.println("****************");
+                System.out.println("A " + astronauta.nome + " acaba de ganhar " + alien4D.xpConcedido + " de experiência apos derrotar o " + alien4D.nome + ".");
+                System.out.println("****************");
+            }
+
             // exibir o status do astronauta e do alien
             System.out.println("========================================");
             astronauta.exibirStatus();

@@ -10,7 +10,7 @@ Atributos do Alien Slime:
 public class AlienSlime extends Monstro {
     boolean astronautaContaminado;
 
-    public AlienSlime(String nome, int pontosDeVida, int forca, double xpConcedido, boolean astronautaContaminado) {
+    public AlienSlime(String nome, int pontosDeVida, int forca, int xpConcedido, boolean astronautaContaminado) {
         super(nome, pontosDeVida, forca, xpConcedido);
         this.astronautaContaminado = astronautaContaminado;
     }

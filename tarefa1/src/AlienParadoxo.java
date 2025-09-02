@@ -10,7 +10,7 @@ Atributos do Alien Paradoxo:
 public class AlienParadoxo extends Monstro {
     boolean refletido;
 
-    public AlienParadoxo(String nome, int pontosDeVida, int forca, double xpConcedido, boolean refletido) {
+    public AlienParadoxo(String nome, int pontosDeVida, int forca, int xpConcedido, boolean refletido) {
         super(nome, pontosDeVida, forca, xpConcedido);
         this.refletido = refletido;
     }
