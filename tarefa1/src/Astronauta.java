@@ -24,7 +24,7 @@ public class Astronauta extends Heroi {
 
     @Override
     public void atacar(Personagem alvo) {
-        System.out.println("A " + this.nome + " ataca o " + alvo.nome + " com força " + this.forca + "!");
+        System.out.println("A " + this.nome + " ataca o " + alvo.nome + " com força " + this.forca + "!\n");
         alvo.receberDano(alvo, this.forca);
 
         if (Math.random() < 0.2) {
@@ -39,7 +39,7 @@ public class Astronauta extends Heroi {
     public void soproCriogenico(Personagem alvo) {
         if (this.oxigenio >= 40) {
                 System.out.println("O QUE FOI ISSO? A astronauta " + this.nome + " acaba de atacar o "
-                + alvo.nome + " com seu mega potente sopro criogênico de força " + this.forca * 2 + "!!!");
+                + alvo.nome + " com seu mega potente sopro criogênico de força " + this.forca * 2 + "!!!\n");
                 alvo.receberDano(alvo, this.forca * 3);
                 this.oxigenio -= 40;
 
@@ -53,7 +53,7 @@ public class Astronauta extends Heroi {
         if (Math.random() < 0.3) {
             // Super defesa com o traje espacial
             if (trajeEspacial >= 40) {
-                System.out.println(this.nome + " ativa o modo de defesa máxima do traje espacial!");
+                System.out.println(this.nome + " ativa o modo de defesa máxima do traje espacial!\n");
                 this.pontosDeVida += 30;
                 this.trajeEspacial -= 30; // gasta energia do traje
                 this.oxigenio -= 10; // gasta oxigênio
@@ -65,7 +65,7 @@ public class Astronauta extends Heroi {
                 if (this.pontosDeVida > 120) this.pontosDeVida = 120;
 
             } else {
-                System.out.println("A " + this.nome + " não tem energia suficiente para usar a habilidade especial de traje espacial!");
+                System.out.println("A " + this.nome + " não tem energia suficiente para usar a habilidade especial de traje espacial!\n");
             }
         }
     }
@@ -74,7 +74,7 @@ public class Astronauta extends Heroi {
     public void pegarItem(Item item) {
         if (Math.random() < 0.4) {
             inventario.add(item);
-            System.out.println(this.nome + " pegou um " + item.getNome() + "!");
+            System.out.println(this.nome + " pegou um " + item.getNome() + "!\n");
         }
     }
 
@@ -86,11 +86,11 @@ public class Astronauta extends Heroi {
                 if (oxigenio > 100) oxigenio = 100;
 
                 inventario.remove(i);
-                System.out.println(this.nome + " usou um Tubo de Oxigênio! Oxigênio agora em " + oxigenio + "%");
+                System.out.println(this.nome + " usou um Tubo de Oxigênio! Oxigênio agora em " + oxigenio + "%\n");
                 return;
             }
         }
-        System.out.println(this.nome + " não tem nenhum Tubo de Oxigênio para usar!");
+        System.out.println(this.nome + " não tem nenhum Tubo de Oxigênio para usar!\n");
     }
 
     @Override

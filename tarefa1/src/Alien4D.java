@@ -17,7 +17,7 @@ public class Alien4D extends Monstro {
 
     @Override
     public void atacar(Personagem alvo) {
-        System.out.println(this.nome + " atravessa dimensões e ataca " + alvo.nome + ", causando " + this.forca + " de dano!");
+        System.out.println(this.nome + " atravessa dimensões e ataca " + alvo.nome + ", causando " + this.forca + " de dano!\n");
         alvo.receberDano(alvo, forca); 
 
         if (pontosDeVida < 35) {
@@ -29,7 +29,7 @@ public class Alien4D extends Monstro {
     public void usarHabilidadeEspecial(Personagem alvo) {
         if (Math.random() < 0.2) {
             System.out.println("Ah não! A " + alvo.nome + " foi aprisionado entre dimensões!");
-            System.out.println(alvo.nome + " perde o próximo turno.");
+            System.out.println("[" + alvo.nome + " perde o próximo turno]\n");
             this.aprisionado = true;
         }
     }
