@@ -21,7 +21,7 @@ public class AlienSlime extends Monstro {
         Main.tempoDeTexto();
         alvo.receberDano(alvo, forca);
 
-        if (Math.random() < 0.5) { // 50% chance de contaminação
+        if (Math.random() < 0.5) {
             int danoContaminacao = (int)(forca / 2);
             System.out.printf("☣️ %s foi contaminada! Perderá %d de vida no próximo turno.\n\n", alvo.nome, danoContaminacao);
             Main.tempoDeTexto();
@@ -31,7 +31,7 @@ public class AlienSlime extends Monstro {
 
     @Override
     public void usarHabilidadeEspecial(Personagem alvo) {
-        if (Math.random() < 0.4) { // 40% chance de fragmentação
+        if (Math.random() < 0.4) {
             System.out.printf("💀 %s se fragmenta em duas massas e recupera 25%% da sua vida!\n\n", this.nome);
             Main.tempoDeTexto();
             pontosDeVida += pontosDeVida / 4;

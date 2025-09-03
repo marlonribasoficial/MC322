@@ -22,14 +22,14 @@ public class Alien4D extends Monstro {
         alvo.receberDano(alvo, forca);
 
         // Só tenta aprisionar se estiver com pouca vida
-        if (pontosDeVida < 35) {
+        if (pontosDeVida < 40) {
             usarHabilidadeEspecial(alvo);
         }
     }
 
     @Override
     public void usarHabilidadeEspecial(Personagem alvo) {
-        if (Math.random() < 0.3) { // aumentada de 0.2 para 0.3
+        if (Math.random() < 0.25) {
             System.out.printf("🌀 %s aprisiona %s no vácuo dimensional!\n", this.nome, alvo.nome);
             Main.tempoDeTexto();
             System.out.printf("[%s perde o próximo turno]\n\n", alvo.nome);

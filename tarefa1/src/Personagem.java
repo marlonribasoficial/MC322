@@ -1,7 +1,7 @@
 public abstract class Personagem {
     String nome;
-    int pontosDeVida; // podemos mudar o tipo de acordo com o que a gente for fazer
-    int forca; // podemos mudar o tipo de acordo com o que a gente for fazer
+    int pontosDeVida;
+    int forca;
 
     // Construtor
     public Personagem(String nome, int pontosDeVida, int forca) {

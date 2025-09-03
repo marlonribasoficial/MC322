@@ -29,7 +29,7 @@ public class Astronauta extends Heroi {
         Main.tempoDeTexto();
         alvo.receberDano(alvo, this.forca);
 
-        if (Math.random() < 0.2) { // 20% chance de sopro criogênico
+        if (Math.random() < 0.2) {
             soproCriogenico(alvo);
         } else {
             usarHabilidadeEspecial(alvo);
@@ -50,7 +50,7 @@ public class Astronauta extends Heroi {
 
     @Override
     public void usarHabilidadeEspecial(Personagem alvo) {
-        if (Math.random() < 0.3) { // 30% chance
+        if (Math.random() < 0.3) {
             if (trajeEspacial >= 40) {
                 System.out.printf("🛡️ %s ativa o modo de defesa máxima do traje espacial!\n\n", this.nome);
                 Main.tempoDeTexto();
@@ -68,7 +68,7 @@ public class Astronauta extends Heroi {
     }
 
     public void pegarItem(Item item) {
-        if (Math.random() < 0.4) { // 40% chance
+        if (Math.random() < 0.4) {
             inventario.add(item);
             System.out.printf("🎁 %s pegou um %s!\n\n", this.nome, item.getNome());
             Main.tempoDeTexto();

@@ -1,5 +1,5 @@
 public abstract class Monstro extends Personagem {
-    int xpConcedido; // Experiência que o monstro concede ao ser derrotado.
+    int xpConcedido;
 
     public Monstro(String nome, int pontosDeVida, int forca, int xpConcedido) {
         super(nome, pontosDeVida, forca);

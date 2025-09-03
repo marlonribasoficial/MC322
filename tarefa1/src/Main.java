@@ -19,18 +19,53 @@ public class Main {
         };
 
         // Introdução
-        printComDelay.accept("========================================");
-        printComDelay.accept("      UMA AVENTURA ESPACIAL COMEÇA!\n");
-        printComDelay.accept("Astronauta " + astronauta.nome + " se prepara para enfrentar alienígenas perigosos.\n");
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
+
+        System.out.println("  __  __ _                                _       _           ");
+        System.out.println(" |  \\/  (_)                         /\\   | |     | |          ");
+        System.out.println(" | \\  / |_ ___ ___  __ _  ___      /  \\  | |_ __ | |__   __ _ ");
+        System.out.println(" | |\\/| | / __/ __|/ _` |/ _ \\    / /\\ \\ | | '_ \\| '_ \\ / _` |");
+        System.out.println(" | |  | | \\__ \\__ \\ (_| | (_) |  / ____ \\| | |_) | | | | (_| |");
+        System.out.println(" |_|  |_|_|___/___/\\__,_|\\___/  /_/    \\_\\_| .__/|_| |_|\\__,_|");
+        System.out.println("                                           | |                ");
+        System.out.println("                                           |_|                ");
+
+        System.out.println(" ");
+        System.out.println(" ");
+
+        printComDelay.accept("         U M A   A V E N T U R A   E S P A C I A L\n");
+        System.out.println(" ");
+        printComDelay.accept("A bordo da nave Zênite, a corajosa " + astronauta.nome + " da AEB (Agência Espacial Brasileira) é lançada para uma galáxia desconhecida após uma colisão inesperada com um buraco de minhoca.\n");
+        printComDelay.accept("Ao emergirem, a tripulação se depara com um buraco negro supermassivo, cuja gravidade é capaz de dilacerar qualquer nave em instantes.\n");
+        printComDelay.accept("Mas não estão sozinhos: seres alienígenas de forças inimagináveis começam a surgir, distorcendo o espaço e o tempo ao redor.\n");
+        printComDelay.accept(astronauta.nome + " precisará de toda sua coragem e habilidades para derrotá-los e escapar da ameaça do buraco negro.\n");
+        tempoDeTexto();
+
         astronauta.exibirStatus();
-        tempoDeTexto(); // pausa maior para a introdução
+        tempoDeTexto();
 
         while (jogoAtivo) {
 
             // ===== ROUND 1 =====
-            printComDelay.accept("\n========================================");
-            printComDelay.accept("        ---- PRIMEIRO ROUND ----");
-            printComDelay.accept("        O " + alienSlime.nome + " apareceu!\n\n");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ___ ___ _ __ __ ___ _ ___  __    ___  __  _  _ __  _ __  ");
+            System.out.println("| _,\\ _ \\ |  V  | __| | _ \\/__\\  | _ \\/__\\| || |  \\| | _\\ ");
+            System.out.println("| v_/ v / | \\_/ | _|| | v / \\/ | | v / \\/ | \\/ | | ' | v |");
+            System.out.println("|_| |_|_\\_|_| |_|___|_|_|_\\\\__/  |_|_\\\\__/ \\__/|_|\\__|__/ ");
+            System.out.println(" ");
+            System.out.println(" ");
+
+            // Chegada Alien Slime
+            printComDelay.accept("Alerta! Uma massa amorfa e translúcida emerge das sombras do espaço: " + alienSlime.nome + "!\n");
+            printComDelay.accept("Seus tentáculos viscosos se movem rapidamente, prontos para contaminar tudo com radiação alienígena.\n");
+            printComDelay.accept("Prepare-se, " + astronauta.nome + ", a batalha pela sobrevivência começa!\n");
+
+            System.out.println(" ");
+            System.out.println(" ");
+
 
             while (alienSlime.pontosDeVida > 0 && astronauta.pontosDeVida > 0) {
                 exp.alterarNivel(astronauta);
@@ -70,23 +105,39 @@ public class Main {
             if (astronauta.pontosDeVida > 0) {
                 astronauta.ganharExperiencia(alienSlime.xpConcedido);
 
-                String bloco = 
-                    "**************************************************************************\n" +
-                    astronauta.nome + " ganhou " + alienSlime.xpConcedido + 
-                    " de experiência após derrotar o " + alienSlime.nome + "!\n" +
-                    "**************************************************************************";
+                String bloco =
+                    "\n═══════════════════════════════════════════════════════════════\n" +
+                    " 🛰️ Vitória! " + astronauta.nome + " reduziu o " + alienSlime.nome + " a uma poça viscosa.\n" +
+                    " ▸ A gosma borbulhou e se dissolveu no chão metálico da nave,\n" +
+                    "   deixando apenas o silêncio do espaço como testemunha.\n" +
+                    " ➤ Experiência obtida: +" + alienSlime.xpConcedido + "\n" +
+                    "═══════════════════════════════════════════════════════════════\n";
 
                 printComDelay.accept(bloco);
             }
+
 
             imprimirStatus(astronauta, alienSlime);
 
             if (!jogoAtivo) break;
 
             // ===== ROUND 2 =====
-            printComDelay.accept("\n========================================");
-            printComDelay.accept("        ---- SEGUNDO ROUND ----");
-            printComDelay.accept("       O " + alienParadoxo.nome + " apareceu!\n");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println("  __  ___ __ _  _ __  _ __   __    ___  __  _  _ __  _ __  ");
+            System.out.println("/' _/| __/ _] || |  \\| | _\\ /__\\  | _ \\/__\\| || |  \\| | _\\ ");
+            System.out.println("`._`.| _| [/\\ \\/ | | ' | v | \\/ | | v / \\/ | \\/ | | ' | v |");
+            System.out.println("|___/|___\\__/\\__/|_|\\__|__/ \\__/  |_|_\\\\__/ \\__/|_|\\__|__/ ");
+            System.out.println(" ");
+            System.out.println(" ");
+
+            // Chegada Alien Paradoxo
+            printComDelay.accept("O espaço se distorce em padrões impossíveis! Surge o " + alienParadoxo.nome + ", um ser que desafia a lógica e reflete seus ataques contra você!\n");
+            printComDelay.accept("O ambiente parece dobrar-se sobre si mesmo, dificultando qualquer movimento.\n");
+            printComDelay.accept(astronauta.nome + ", cada ação deve ser calculada com precisão: um erro pode ser fatal!\n");
+
+            System.out.println(" ");
+            System.out.println(" ");
 
             while (alienParadoxo.pontosDeVida > 0 && astronauta.pontosDeVida > 0) {
                 exp.alterarNivel(astronauta);
@@ -125,19 +176,40 @@ public class Main {
 
             if (astronauta.pontosDeVida > 0) {
                 astronauta.ganharExperiencia(alienParadoxo.xpConcedido);
-                printComDelay.accept("**************************************************************************");
-                printComDelay.accept(astronauta.nome + " ganhou " + alienParadoxo.xpConcedido + " de experiência após derrotar o " + alienParadoxo.nome + "!");
-                printComDelay.accept("**************************************************************************");
+
+                String bloco =
+                    "\n═══════════════════════════════════════════════════════════════\n" +
+                    " ⏳ O paradoxo foi vencido! " + astronauta.nome + " resistiu ao colapso do impossível.\n" +
+                    " ▸ As fendas no espaço-tempo começaram a se fechar lentamente,\n" +
+                    "   e o eco distorcido da criatura desapareceu no vazio.\n" +
+                    " ➤ Experiência obtida: +" + alienParadoxo.xpConcedido + "\n" +
+                    "═══════════════════════════════════════════════════════════════\n";
+
+                printComDelay.accept(bloco);
             }
+
 
             imprimirStatus(astronauta, alienParadoxo);
 
             if (!jogoAtivo) break;
 
             // ===== ROUND 3 =====
-            printComDelay.accept("\n========================================");
-            printComDelay.accept("        ---- TERCEIRO ROUND ----");
-            printComDelay.accept("          O " + alien4D.nome + " apareceu!\n");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" _____ ___ ___  ______ _ ___  __    ___  __  _  _ __  _ __  ");
+            System.out.println("|_   _| __| _ \\/ _/ __| | _ \\/__\\  | _ \\/__\\| || |  \\| | _\\ ");
+            System.out.println("  | | | _|| v / \\_| _|| | v / \\/ | | v / \\/ | \\/ | | ' | v |");
+            System.out.println("  |_| |___|_|_\\\\__/___|_|_|_\\\\__/  |_|_\\\\__/ \\__/|_|\\__|__/ ");
+            System.out.println(" ");
+            System.out.println(" ");
+            // Chegada Alien 4D
+            printComDelay.accept("Uma presença indescritível atravessa dimensões: " + alien4D.nome + "!\n");
+            printComDelay.accept("Sua forma se move em direções que a mente humana não consegue compreender, torcendo o espaço-tempo ao redor da nave.\n");
+            printComDelay.accept("Ele tenta puxar " + astronauta.nome + " para o buraco negro, drenando sua energia vital.\n");
+            printComDelay.accept("Esta é a batalha final, " + astronauta.nome + ". Derrote-o ou será engolida pelo abismo do buraco negro!\n");
+
+            System.out.println(" ");
+            System.out.println(" ");
 
             while (alien4D.pontosDeVida > 0 && astronauta.pontosDeVida > 0) {
                 exp.alterarNivel(astronauta);
@@ -172,34 +244,58 @@ public class Main {
                 }
             }
 
-            if (astronauta.pontosDeVida > 0) {
-                astronauta.ganharExperiencia(alien4D.xpConcedido);
-                printComDelay.accept("**************************************************************************");
-                printComDelay.accept(astronauta.nome + " ganhou " + alien4D.xpConcedido + " de experiência após derrotar o " + alien4D.nome + "!");
-                printComDelay.accept("**************************************************************************\n");
-            }
-
-            imprimirStatus(astronauta, alien4D);
-
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
             break;
         }
 
-        String blocoFinal;
-
         if (astronauta.pontosDeVida <= 0) {
-            blocoFinal =
-                "\n===================================================\n" +
-                "GAME OVER! O astronauta não resistiu...\n" +
-                "===================================================\n";
+            // Derrota
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println("  ____                         ___                    ");
+            System.out.println(" / ___| __ _ _ __ ___   ___   / _ \\__   _____ _ __    ");
+            System.out.println("| |  _ / _` | '_ ` _ \\ / _ \\ | | | \\ \\ / / _ \\ '__|   ");
+            System.out.println("| |_| | (_| | | | | | |  __/ | |_| |\\ V /  __/ |_ _ _ ");
+            System.out.println(" \\____|\\__,_|_| |_| |_|\\___|  \\___/  \\_/ \\___|_(_|_|_)");
+            System.out.println(" ");
+            System.out.println(astronauta.nome + " não resistiu aos poderes dos Aliens...\n");
+            System.out.println("A nave Zênite foi engolida pelo buraco negro, e a galáxia desconhecida permanece inexplorada.\n");
         } else {
-            blocoFinal =
-                "\n===================================================\n" +
-                "PARABÉNS! O astronauta venceu todos os alienígenas!\n" +
-                "===================================================\n";
+            // Vitória
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ____                 _                    ");
+            System.out.println("|  _ \\ __ _ _ __ __ _| |__   ___ _ __  ___ ");
+            System.out.println("| |_) / _` | '__/ _` | '_ \\ / _ \\ '_ \\/ __|");
+            System.out.println("|  __/ (_| | | | (_| | |_) |  __/ | | \\__ \\");
+            System.out.println("|_|   \\__,_|_|  \\__,_|_.__/ \\___|_| |_|___/");
+            System.out.println(" ");
+            System.out.println(astronauta.nome + " derrotou todos os alienígenas e escapou do buraco negro!\n");
+            System.out.println("A galáxia desconhecida agora está segura graças à coragem da nossa heroína.\n");
         }
-
-        printComDelay.accept(blocoFinal);
-
+        
+        System.out.println(" ");
+        System.out.println(" ");
+        imprimirStatus(astronauta, alien4D);
     }
 
     public static void tempoDeTexto() {
@@ -211,9 +307,7 @@ public class Main {
     }
 
     public static void imprimirStatus(Astronauta astronauta, Personagem alien) {
-        System.out.println("\n========================================");
         System.out.println("              STATUS ATUAL");
-        System.out.println("========================================");
         astronauta.exibirStatus();
         alien.exibirStatus();
         tempoDeTexto();
