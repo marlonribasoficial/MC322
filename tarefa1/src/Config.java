@@ -1,4 +1,4 @@
 public class Config {
-    public static final long VELOCIDADE_TEXTO = 1200;
+    public static final long VELOCIDADE_TEXTO = 100;
 }
 

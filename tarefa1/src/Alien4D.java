@@ -17,7 +17,7 @@ public class Alien4D extends Monstro {
 
     @Override
     public void atacar(Personagem alvo) {
-        System.out.printf("🌀 %s atravessa dimensões e ataca %s causando %d de dano!\n", this.nome, alvo.nome, this.forca);
+        System.out.printf("🌀 %s atravessa dimensões e ataca %s causando %d de dano!\n\n", this.nome, alvo.nome, this.forca);
         Main.tempoDeTexto();
         alvo.receberDano(alvo, forca);
 
@@ -32,7 +32,7 @@ public class Alien4D extends Monstro {
         if (Math.random() < 0.3) { // aumentada de 0.2 para 0.3
             System.out.printf("🌀 %s aprisiona %s no vácuo dimensional!\n", this.nome, alvo.nome);
             Main.tempoDeTexto();
-            System.out.printf("❌ %s perde o próximo turno!\n", alvo.nome);
+            System.out.printf("[%s perde o próximo turno]\n\n", alvo.nome);
             Main.tempoDeTexto();
             this.aprisionado = true;
         }

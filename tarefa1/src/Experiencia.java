@@ -23,7 +23,7 @@ public class Experiencia {
         alvo.trajeEspacial = Math.min(alvo.trajeEspacial + trajeGanho, 100);
 
         String linha = "========================================";
-        String titulo = "✨✨✨ NÍVEL UP! ✨✨✨";
+        String titulo = "         ✨✨✨ LEVEL UP! ✨✨✨";
 
         System.out.println("\n" + linha);
         System.out.printf("%-36s\n", titulo);

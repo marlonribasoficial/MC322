@@ -20,7 +20,7 @@ public class Main {
 
         // Introdução
         printComDelay.accept("========================================");
-        printComDelay.accept("UMA AVENTURA ESPACIAL COMEÇA!\n");
+        printComDelay.accept("      UMA AVENTURA ESPACIAL COMEÇA!\n");
         printComDelay.accept("Astronauta " + astronauta.nome + " se prepara para enfrentar alienígenas perigosos.\n");
         astronauta.exibirStatus();
         tempoDeTexto(); // pausa maior para a introdução
@@ -29,8 +29,8 @@ public class Main {
 
             // ===== ROUND 1 =====
             printComDelay.accept("\n========================================");
-            printComDelay.accept("---- PRIMEIRO ROUND ----\n");
-            printComDelay.accept("O " + alienSlime.nome + " apareceu!\n");
+            printComDelay.accept("        ---- PRIMEIRO ROUND ----");
+            printComDelay.accept("        O " + alienSlime.nome + " apareceu!\n\n");
 
             while (alienSlime.pontosDeVida > 0 && astronauta.pontosDeVida > 0) {
                 exp.alterarNivel(astronauta);
@@ -69,9 +69,9 @@ public class Main {
 
             if (astronauta.pontosDeVida > 0) {
                 astronauta.ganharExperiencia(alienSlime.xpConcedido);
-                printComDelay.accept("****************************************************************");
+                printComDelay.accept("**************************************************************************");
                 printComDelay.accept(astronauta.nome + " ganhou " + alienSlime.xpConcedido + " de experiência após derrotar o " + alienSlime.nome + "!");
-                printComDelay.accept("****************************************************************\n");
+                printComDelay.accept("**************************************************************************");
             }
 
             imprimirStatus(astronauta, alienSlime);
@@ -80,15 +80,15 @@ public class Main {
 
             // ===== ROUND 2 =====
             printComDelay.accept("\n========================================");
-            printComDelay.accept("---- SEGUNDO ROUND ----\n");
-            printComDelay.accept("O " + alienParadoxo.nome + " apareceu!\n");
+            printComDelay.accept("        ---- SEGUNDO ROUND ----");
+            printComDelay.accept("       O " + alienParadoxo.nome + " apareceu!\n");
 
             while (alienParadoxo.pontosDeVida > 0 && astronauta.pontosDeVida > 0) {
                 exp.alterarNivel(astronauta);
 
                 if (alienParadoxo.refletido) {
                     astronauta.atacar(astronauta);
-                    printComDelay.accept("O ataque da " + astronauta.nome + " foi refletido contra ela mesma!\n");
+                    printComDelay.accept("[O ataque da " + astronauta.nome + " foi refletido contra ela mesma]\n");
                     alienParadoxo.refletido = false;
                 } else {
                     astronauta.atacar(alienParadoxo);
@@ -120,9 +120,9 @@ public class Main {
 
             if (astronauta.pontosDeVida > 0) {
                 astronauta.ganharExperiencia(alienParadoxo.xpConcedido);
-                printComDelay.accept("****************************************************************");
+                printComDelay.accept("**************************************************************************");
                 printComDelay.accept(astronauta.nome + " ganhou " + alienParadoxo.xpConcedido + " de experiência após derrotar o " + alienParadoxo.nome + "!");
-                printComDelay.accept("****************************************************************\n");
+                printComDelay.accept("**************************************************************************");
             }
 
             imprimirStatus(astronauta, alienParadoxo);
@@ -131,8 +131,8 @@ public class Main {
 
             // ===== ROUND 3 =====
             printComDelay.accept("\n========================================");
-            printComDelay.accept("---- TERCEIRO ROUND ----\n");
-            printComDelay.accept("O " + alien4D.nome + " apareceu!\n");
+            printComDelay.accept("        ---- TERCEIRO ROUND ----");
+            printComDelay.accept("          O " + alien4D.nome + " apareceu!\n");
 
             while (alien4D.pontosDeVida > 0 && astronauta.pontosDeVida > 0) {
                 exp.alterarNivel(astronauta);
@@ -169,9 +169,9 @@ public class Main {
 
             if (astronauta.pontosDeVida > 0) {
                 astronauta.ganharExperiencia(alien4D.xpConcedido);
-                printComDelay.accept("****************************************************************");
+                printComDelay.accept("**************************************************************************");
                 printComDelay.accept(astronauta.nome + " ganhou " + alien4D.xpConcedido + " de experiência após derrotar o " + alien4D.nome + "!");
-                printComDelay.accept("****************************************************************\n");
+                printComDelay.accept("**************************************************************************\n");
             }
 
             imprimirStatus(astronauta, alien4D);
@@ -179,13 +179,13 @@ public class Main {
             break;
         }
 
-        printComDelay.accept("\n========================================");
+        printComDelay.accept("\n===================================================");
         if (astronauta.pontosDeVida <= 0) {
             printComDelay.accept("GAME OVER! O astronauta não resistiu...");
         } else {
             printComDelay.accept("PARABÉNS! O astronauta venceu todos os alienígenas!");
         }
-        printComDelay.accept("========================================\n");
+        printComDelay.accept("===================================================\n");
     }
 
     public static void tempoDeTexto() {
@@ -198,7 +198,8 @@ public class Main {
 
     public static void imprimirStatus(Astronauta astronauta, Personagem alien) {
         System.out.println("\n========================================");
-        System.out.println("Status atual:");
+        System.out.println("              STATUS ATUAL");
+        System.out.println("========================================");
         astronauta.exibirStatus();
         alien.exibirStatus();
         tempoDeTexto();

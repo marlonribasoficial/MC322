@@ -25,7 +25,7 @@ public class Astronauta extends Heroi {
 
     @Override
     public void atacar(Personagem alvo) {
-        System.out.printf("🚀 %s ataca %s com força %d!\n", this.nome, alvo.nome, this.forca);
+        System.out.printf("🚀 %s ataca %s com força %d!\n\n", this.nome, alvo.nome, this.forca);
         Main.tempoDeTexto();
         alvo.receberDano(alvo, this.forca);
 
@@ -38,7 +38,7 @@ public class Astronauta extends Heroi {
 
     public void soproCriogenico(Personagem alvo) {
         if (this.oxigenio >= 40) {
-            System.out.printf("❄️ O QUE FOI ISSO? %s usa o sopro criogênico em %s causando %d de dano!\n",
+            System.out.printf("❄️ O QUE FOI ISSO? %s usa o sopro criogênico em %s causando %d de dano!\n\n",
                     this.nome, alvo.nome, this.forca * 3);
             Main.tempoDeTexto();
             alvo.receberDano(alvo, this.forca * 3);
@@ -52,7 +52,7 @@ public class Astronauta extends Heroi {
     public void usarHabilidadeEspecial(Personagem alvo) {
         if (Math.random() < 0.3) { // 30% chance
             if (trajeEspacial >= 40) {
-                System.out.printf("🛡️ %s ativa o modo de defesa máxima do traje espacial!\n", this.nome);
+                System.out.printf("🛡️ %s ativa o modo de defesa máxima do traje espacial!\n\n", this.nome);
                 Main.tempoDeTexto();
                 this.pontosDeVida += 30;
                 if (this.pontosDeVida > 120) this.pontosDeVida = 120;
@@ -61,7 +61,7 @@ public class Astronauta extends Heroi {
                 this.oxigenio -= 10;
                 if (this.oxigenio < 0) this.oxigenio = 0;
             } else {
-                System.out.printf("⚠️ %s não tem energia suficiente para usar a habilidade especial do traje!\n", this.nome);
+                System.out.printf("⚠️ %s não tem energia suficiente para usar a habilidade especial do traje!\n\n", this.nome);
                 Main.tempoDeTexto();
             }
         }
@@ -70,7 +70,7 @@ public class Astronauta extends Heroi {
     public void pegarItem(Item item) {
         if (Math.random() < 0.4) { // 40% chance
             inventario.add(item);
-            System.out.printf("🎁 %s pegou um %s!\n", this.nome, item.getNome());
+            System.out.printf("🎁 %s pegou um %s!\n\n", this.nome, item.getNome());
             Main.tempoDeTexto();
         }
     }
@@ -82,12 +82,12 @@ public class Astronauta extends Heroi {
                 if (oxigenio > 100) oxigenio = 100;
 
                 inventario.remove(i);
-                System.out.printf("💨 %s usou um Tubo de Oxigênio! Oxigênio agora em %d%%\n", this.nome, oxigenio);
+                System.out.printf("💨 %s usou um Tubo de Oxigênio! [Oxigênio agora em %d%%]\n\n", this.nome, oxigenio);
                 Main.tempoDeTexto();
                 return;
             }
         }
-        System.out.printf("⚠️ %s não tem nenhum Tubo de Oxigênio para usar!\n", this.nome);
+        System.out.printf("⚠️ %s não tem nenhum Tubo de Oxigênio para usar!\n\n", this.nome);
         Main.tempoDeTexto();
     }
 
