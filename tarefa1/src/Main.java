@@ -69,9 +69,14 @@ public class Main {
 
             if (astronauta.pontosDeVida > 0) {
                 astronauta.ganharExperiencia(alienSlime.xpConcedido);
-                printComDelay.accept("**************************************************************************");
-                printComDelay.accept(astronauta.nome + " ganhou " + alienSlime.xpConcedido + " de experiência após derrotar o " + alienSlime.nome + "!");
-                printComDelay.accept("**************************************************************************");
+
+                String bloco = 
+                    "**************************************************************************\n" +
+                    astronauta.nome + " ganhou " + alienSlime.xpConcedido + 
+                    " de experiência após derrotar o " + alienSlime.nome + "!\n" +
+                    "**************************************************************************";
+
+                printComDelay.accept(bloco);
             }
 
             imprimirStatus(astronauta, alienSlime);
@@ -179,13 +184,22 @@ public class Main {
             break;
         }
 
-        printComDelay.accept("\n===================================================");
+        String blocoFinal;
+
         if (astronauta.pontosDeVida <= 0) {
-            printComDelay.accept("GAME OVER! O astronauta não resistiu...");
+            blocoFinal =
+                "\n===================================================\n" +
+                "GAME OVER! O astronauta não resistiu...\n" +
+                "===================================================\n";
         } else {
-            printComDelay.accept("PARABÉNS! O astronauta venceu todos os alienígenas!");
+            blocoFinal =
+                "\n===================================================\n" +
+                "PARABÉNS! O astronauta venceu todos os alienígenas!\n" +
+                "===================================================\n";
         }
-        printComDelay.accept("===================================================\n");
+
+        printComDelay.accept(blocoFinal);
+
     }
 
     public static void tempoDeTexto() {
