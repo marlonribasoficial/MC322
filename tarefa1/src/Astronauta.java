@@ -25,63 +25,56 @@ public class Astronauta extends Heroi {
 
     @Override
     public void atacar(Personagem alvo) {
-        System.out.println("A " + this.nome + " ataca o " + alvo.nome + " com força " + this.forca + "!\n");
+        System.out.printf("🚀 %s ataca %s com força %d!\n", this.nome, alvo.nome, this.forca);
+        Main.tempoDeTexto();
         alvo.receberDano(alvo, this.forca);
 
-        if (Math.random() < 0.2) {
+        if (Math.random() < 0.2) { // 20% chance de sopro criogênico
             soproCriogenico(alvo);
         } else {
             usarHabilidadeEspecial(alvo);
         }
-
     }
 
-    // Ataca usando um supro criogênico
     public void soproCriogenico(Personagem alvo) {
         if (this.oxigenio >= 40) {
-                System.out.println("O QUE FOI ISSO? A astronauta " + this.nome + " acaba de atacar o "
-                + alvo.nome + " com seu mega potente sopro criogênico de força " + this.forca * 2 + "!!!\n");
-                alvo.receberDano(alvo, this.forca * 3);
-                this.oxigenio -= 40;
-
-                // Caso se estourar o limite
-                if (this.oxigenio < 0) this.oxigenio = 0;
-
-                this.soproUsado = true;
+            System.out.printf("❄️ O QUE FOI ISSO? %s usa o sopro criogênico em %s causando %d de dano!\n",
+                    this.nome, alvo.nome, this.forca * 3);
+            Main.tempoDeTexto();
+            alvo.receberDano(alvo, this.forca * 3);
+            this.oxigenio -= 40;
+            if (this.oxigenio < 0) this.oxigenio = 0;
+            this.soproUsado = true;
         }
     }
 
     @Override
     public void usarHabilidadeEspecial(Personagem alvo) {
-        if (Math.random() < 0.3) {
-            // Super defesa com o traje espacial
+        if (Math.random() < 0.3) { // 30% chance
             if (trajeEspacial >= 40) {
-                System.out.println(this.nome + " ativa o modo de defesa máxima do traje espacial!\n");
+                System.out.printf("🛡️ %s ativa o modo de defesa máxima do traje espacial!\n", this.nome);
+                Main.tempoDeTexto();
                 this.pontosDeVida += 30;
-                this.trajeEspacial -= 30; // gasta energia do traje
-                this.oxigenio -= 10; // gasta oxigênio
-
-                // Casos se estoura o limite
-                if (this.oxigenio < 0) this.oxigenio = 0;
-
-                // definir o maximo de pontos de vida que vai ter
                 if (this.pontosDeVida > 120) this.pontosDeVida = 120;
 
+                this.trajeEspacial -= 30;
+                this.oxigenio -= 10;
+                if (this.oxigenio < 0) this.oxigenio = 0;
             } else {
-                System.out.println("A " + this.nome + " não tem energia suficiente para usar a habilidade especial de traje espacial!\n");
+                System.out.printf("⚠️ %s não tem energia suficiente para usar a habilidade especial do traje!\n", this.nome);
+                Main.tempoDeTexto();
             }
         }
     }
 
-    // Pegar item
     public void pegarItem(Item item) {
-        if (Math.random() < 0.4) {
+        if (Math.random() < 0.4) { // 40% chance
             inventario.add(item);
-            System.out.println(this.nome + " pegou um " + item.getNome() + "!\n");
+            System.out.printf("🎁 %s pegou um %s!\n", this.nome, item.getNome());
+            Main.tempoDeTexto();
         }
     }
 
-    // Usar tubo de oxigênio (se existir no inventário)
     public void usarTuboOxigenio() {
         for (int i = 0; i < inventario.size(); i++) {
             if (inventario.get(i).getNome().equals("Tubo de Oxigênio")) {
@@ -89,17 +82,27 @@ public class Astronauta extends Heroi {
                 if (oxigenio > 100) oxigenio = 100;
 
                 inventario.remove(i);
-                System.out.println(this.nome + " usou um Tubo de Oxigênio! Oxigênio agora em " + oxigenio + "%\n");
+                System.out.printf("💨 %s usou um Tubo de Oxigênio! Oxigênio agora em %d%%\n", this.nome, oxigenio);
+                Main.tempoDeTexto();
                 return;
             }
         }
-        System.out.println(this.nome + " não tem nenhum Tubo de Oxigênio para usar!\n");
+        System.out.printf("⚠️ %s não tem nenhum Tubo de Oxigênio para usar!\n", this.nome);
+        Main.tempoDeTexto();
     }
 
     @Override
     public void exibirStatus() {
-        super.exibirStatus();
-        System.out.println("Oxigênio: " + this.oxigenio + "%");
-        System.out.println("Energia do Traje Espacial: " + this.trajeEspacial + "%");
+        String linha = "========================================";
+        System.out.println("\n" + linha);
+        System.out.printf("| 🚀 Nome: %-32s\n", this.nome);
+        System.out.printf("| 💖 Pontos de Vida: %-11s %3d\n", Main.gerarBarra(this.pontosDeVida, 120, 10), this.pontosDeVida);
+        System.out.printf("| ⚔️ Força: %-28d\n", this.forca);
+        System.out.printf("| 🆙 Nível: %-29d\n", this.nivel);
+        System.out.printf("| ⭐ Experiência: %-24.1f\n", this.exp);
+        System.out.printf("| 🫁 Oxigênio: %-18s %3d%%\n", Main.gerarBarra(this.oxigenio, 100, 10), this.oxigenio);
+        System.out.printf("| 🛰️ Traje Espacial: %-13s %3d%%\n", Main.gerarBarra(this.trajeEspacial, 100, 10), this.trajeEspacial);
+        System.out.println(linha + "\n");
+        Main.tempoDeTexto();
     }
 }

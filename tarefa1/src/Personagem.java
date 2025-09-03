@@ -16,11 +16,7 @@ public abstract class Personagem {
     }
 
     // Imprime as informações do personagem (nome, vida, etc.)
-    public void exibirStatus() {
-        System.out.println("Nome: " + this.nome);
-        System.out.println("Pontos de Vida: " + this.pontosDeVida);
-        System.out.println("Força: " + this.forca);
-    }
+    public abstract void exibirStatus();
 
     // Método abstrato
     public abstract void atacar(Personagem alvo);

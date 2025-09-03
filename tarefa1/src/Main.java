@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        Astronauta astronauta = new Astronauta("Capitã Fernanda", 120, 30, 0, 0, 100, 100);
+        Astronauta astronauta = new Astronauta("Capitã Fernanda", 120, 25, 0, 0, 100, 100);
 
         AlienSlime alienSlime = new AlienSlime("Alien Slime", 90, 25, 50, false);
         AlienParadoxo alienParadoxo = new AlienParadoxo("Alien Paradoxo", 100, 20, 40, false);
@@ -10,54 +10,36 @@ public class Main {
 
         Experiencia exp = new Experiencia(astronauta);
 
-        long tempo = 3000;
-
-        // adicionar um atributo de maxima vida em todos os personagens, apenas nos concretos
-
-        // imprimir uma introducao da historia
-        // exibir o status do astronauta de uma maneira elegante
-
-        // para subir para o nivel 1: 50 xp
-        //      - ganha 10 de vida
-        //      - ganha 15 de oxigenio
-        //      - ganha 15 de traje espacial
-
-        // para subir para o nivel 2: 80 xp
-        //      - ganha 20 de vida
-        //      - ganha 15 de oxigenio
-        //      - ganha 15 de traje espacial
-
-        // para subir para o nivel 3: 120 xp
-        //      - ganha 30 de vida
-        //      - ganha 15 de oxigenio
-        //      - ganha 15 de traje espacial
-
-        // Flag para controle do jogo
         boolean jogoAtivo = true;
 
-        while (jogoAtivo) { 
+        // Função para imprimir com delay
+        java.util.function.Consumer<String> printComDelay = texto -> {
+            System.out.println(texto);
+            tempoDeTexto();
+        };
 
-            System.out.println("========================================\n");
-            System.out.println("---- PRIMEIRO ROUND ----\n");
-            
-            // anunciar a chegada do monstro
-            System.out.println("O " + alienSlime.nome + " apareceu!\n");
+        // Introdução
+        printComDelay.accept("========================================");
+        printComDelay.accept("UMA AVENTURA ESPACIAL COMEÇA!\n");
+        printComDelay.accept("Astronauta " + astronauta.nome + " se prepara para enfrentar alienígenas perigosos.\n");
+        astronauta.exibirStatus();
+        tempoDeTexto(); // pausa maior para a introdução
 
-            Main.tempoDeTexto(tempo);
+        while (jogoAtivo) {
+
+            // ===== ROUND 1 =====
+            printComDelay.accept("\n========================================");
+            printComDelay.accept("---- PRIMEIRO ROUND ----\n");
+            printComDelay.accept("O " + alienSlime.nome + " apareceu!\n");
 
             while (alienSlime.pontosDeVida > 0 && astronauta.pontosDeVida > 0) {
-                // astronauta ataca
-                // monstro ataca
-
                 exp.alterarNivel(astronauta);
 
                 if (alienSlime.astronautaContaminado) {
                     astronauta.receberDano(astronauta, (int)(alienSlime.forca / 2));
-                    System.out.println("[-" + (int)(alienSlime.forca / 2) + " de pontos de vida da " + astronauta.nome + " pela radiação]\n");
+                    printComDelay.accept("[-" + (int)(alienSlime.forca / 2) + " de vida da " + astronauta.nome + " pela radiação]\n");
                     alienSlime.astronautaContaminado = false;
                 }
-
-                Main.tempoDeTexto(tempo);
 
                 astronauta.atacar(alienSlime);
                 if (astronauta.soproUsado) {
@@ -66,26 +48,20 @@ public class Main {
                     astronauta.ganharExperiencia(astronauta.forca);
                 }
 
-                Main.tempoDeTexto(tempo);
-
                 if (alienSlime.pontosDeVida > 0) {
                     alienSlime.atacar(astronauta);
                     alienSlime.usarHabilidadeEspecial(astronauta);
                 }
-
-                Main.tempoDeTexto(tempo);
 
                 if (astronauta.pontosDeVida <= 0) {
                     jogoAtivo = false;
                     break;
                 }
 
-                // Pegar um tubo de oxigênio
                 if (Math.random() < 0.1) {
                     astronauta.pegarItem(tuboOxigenio);
                 }
 
-                // Usar tubo de oxigênio (se tiver)
                 if (!astronauta.inventario.isEmpty()) {
                     astronauta.usarTuboOxigenio();
                 }
@@ -93,42 +69,26 @@ public class Main {
 
             if (astronauta.pontosDeVida > 0) {
                 astronauta.ganharExperiencia(alienSlime.xpConcedido);
-                System.out.println("****************");
-                System.out.println("A " + astronauta.nome + " acaba de ganhar " + alienSlime.xpConcedido + " de experiência apos derrotar o " + alienSlime.nome + ".");
-                System.out.println("****************");
+                printComDelay.accept("****************************************************************");
+                printComDelay.accept(astronauta.nome + " ganhou " + alienSlime.xpConcedido + " de experiência após derrotar o " + alienSlime.nome + "!");
+                printComDelay.accept("****************************************************************\n");
             }
 
-            // exibir o status do astronauta e do alien
-            System.out.println("========================================");
-            astronauta.exibirStatus();
-            System.out.println("========================================");
-            alienSlime.exibirStatus();
+            imprimirStatus(astronauta, alienSlime);
 
             if (!jogoAtivo) break;
 
-
-
-
-
-
-
-            System.out.println("========================================\n");
-            System.out.println("---- SEGUNDO ROUND ----\n");
-
-            // anunciar a chegada do monstro
-            System.out.println("O " + alienParadoxo.nome + " apareceu!\n");
-
-            Main.tempoDeTexto(tempo);
+            // ===== ROUND 2 =====
+            printComDelay.accept("\n========================================");
+            printComDelay.accept("---- SEGUNDO ROUND ----\n");
+            printComDelay.accept("O " + alienParadoxo.nome + " apareceu!\n");
 
             while (alienParadoxo.pontosDeVida > 0 && astronauta.pontosDeVida > 0) {
-                // astronauta ataca
-                // monstro ataca
-
                 exp.alterarNivel(astronauta);
 
                 if (alienParadoxo.refletido) {
                     astronauta.atacar(astronauta);
-                    System.out.println("O ataque da " + astronauta.nome + " foi refletido contra ela mesma!\n");
+                    printComDelay.accept("O ataque da " + astronauta.nome + " foi refletido contra ela mesma!\n");
                     alienParadoxo.refletido = false;
                 } else {
                     astronauta.atacar(alienParadoxo);
@@ -139,64 +99,42 @@ public class Main {
                     }
                 }
 
-                Main.tempoDeTexto(tempo);
-
                 if (alienParadoxo.pontosDeVida > 0) {
                     alienParadoxo.atacar(astronauta);
                     alienParadoxo.usarHabilidadeEspecial(astronauta);
                 }
-
-                Main.tempoDeTexto(tempo);
 
                 if (astronauta.pontosDeVida <= 0) {
                     jogoAtivo = false;
                     break;
                 }
 
-                // Pegar um tubo de oxigênio
                 if (Math.random() < 0.15) {
                     astronauta.pegarItem(tuboOxigenio);
                 }
 
-                // Usar tubo de oxigênio (se tiver)
                 if (!astronauta.inventario.isEmpty()) {
                     astronauta.usarTuboOxigenio();
                 }
             }
-            
+
             if (astronauta.pontosDeVida > 0) {
                 astronauta.ganharExperiencia(alienParadoxo.xpConcedido);
-                System.out.println("****************");
-                System.out.println("A " + astronauta.nome + " acaba de ganhar " + alienParadoxo.xpConcedido + " de experiência apos derrotar o " + alienParadoxo.nome + ".");
-                System.out.println("****************");
+                printComDelay.accept("****************************************************************");
+                printComDelay.accept(astronauta.nome + " ganhou " + alienParadoxo.xpConcedido + " de experiência após derrotar o " + alienParadoxo.nome + "!");
+                printComDelay.accept("****************************************************************\n");
             }
 
-            // exibir o status do astronauta e do alien
-            System.out.println("========================================");
-            astronauta.exibirStatus();
-            System.out.println("========================================");
-            alienParadoxo.exibirStatus();
+            imprimirStatus(astronauta, alienParadoxo);
 
             if (!jogoAtivo) break;
 
-
-
-
-
-
-            
-            System.out.println("========================================\n");
-            System.out.println("---- TERCEIRO ROUND ----\n");
-
-            // anunciar a chegada do monstro
-            System.out.println("O " + alien4D.nome + " apareceu!\n");
-
-            Main.tempoDeTexto(tempo);
+            // ===== ROUND 3 =====
+            printComDelay.accept("\n========================================");
+            printComDelay.accept("---- TERCEIRO ROUND ----\n");
+            printComDelay.accept("O " + alien4D.nome + " apareceu!\n");
 
             while (alien4D.pontosDeVida > 0 && astronauta.pontosDeVida > 0) {
-                // astronauta ataca
-                // monstro ataca
-
                 exp.alterarNivel(astronauta);
 
                 if (!alien4D.aprisionado) {
@@ -210,60 +148,73 @@ public class Main {
                     alien4D.aprisionado = false;
                 }
 
-                Main.tempoDeTexto(tempo);
-
                 if (alien4D.pontosDeVida > 0) {
                     alien4D.atacar(astronauta);
                     alien4D.usarHabilidadeEspecial(astronauta);
                 }
-
-                Main.tempoDeTexto(tempo);
 
                 if (astronauta.pontosDeVida <= 0) {
                     jogoAtivo = false;
                     break;
                 }
 
-                // Pegar um tubo de oxigênio
                 if (Math.random() < 0.2) {
                     astronauta.pegarItem(tuboOxigenio);
                 }
 
-                // Usar tubo de oxigênio (se tiver)
                 if (!astronauta.inventario.isEmpty()) {
                     astronauta.usarTuboOxigenio();
                 }
             }
+
             if (astronauta.pontosDeVida > 0) {
                 astronauta.ganharExperiencia(alien4D.xpConcedido);
-                System.out.println("****************");
-                System.out.println("A " + astronauta.nome + " acaba de ganhar " + alien4D.xpConcedido + " de experiência apos derrotar o " + alien4D.nome + ".");
-                System.out.println("****************");
+                printComDelay.accept("****************************************************************");
+                printComDelay.accept(astronauta.nome + " ganhou " + alien4D.xpConcedido + " de experiência após derrotar o " + alien4D.nome + "!");
+                printComDelay.accept("****************************************************************\n");
             }
 
-            // exibir o status do astronauta e do alien
-            System.out.println("========================================");
-            astronauta.exibirStatus();
-            System.out.println("========================================");
-            alien4D.exibirStatus();
-            
+            imprimirStatus(astronauta, alien4D);
 
             break;
         }
 
-        System.out.println("========================================");
+        printComDelay.accept("\n========================================");
         if (astronauta.pontosDeVida <= 0) {
-            System.out.println("\nGAME OVER! O astronauta não resistiu...");
+            printComDelay.accept("GAME OVER! O astronauta não resistiu...");
         } else {
-            System.out.println("\nPARABÉNS! O astronauta venceu todos os alienígenas!");
+            printComDelay.accept("PARABÉNS! O astronauta venceu todos os alienígenas!");
         }
+        printComDelay.accept("========================================\n");
     }
 
-    private static void tempoDeTexto(long tempo) {
+    public static void tempoDeTexto() {
         try {
-            Thread.sleep(tempo); // pausa de 1,5 segundos
+            Thread.sleep(Config.VELOCIDADE_TEXTO);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void imprimirStatus(Astronauta astronauta, Personagem alien) {
+        System.out.println("\n========================================");
+        System.out.println("Status atual:");
+        astronauta.exibirStatus();
+        alien.exibirStatus();
+        tempoDeTexto();
+    }
+
+    // Função auxiliar para gerar barras
+    public static String gerarBarra(int valor, int maximo, int tamanho) {
+        int preenchidos = (int) ((double) valor / maximo * tamanho);
+        StringBuilder barra = new StringBuilder();
+        for (int i = 0; i < tamanho; i++) {
+            if (i < preenchidos) {
+                barra.append("█"); // cheio
+            } else {
+                barra.append("░"); // vazio
+            }
+        }
+        return barra.toString();
     }
 }

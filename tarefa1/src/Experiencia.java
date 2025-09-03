@@ -1,73 +1,33 @@
 public class Experiencia {
     Astronauta alvo;
 
-    // para subir para o nivel 1: 60 xp
-        //      - ganha 10 de vida
-        //      - ganha 15 de oxigenio
-        //      - ganha 15 de traje espacial
-
-        // para subir para o nivel 2: 120 xp
-        //      - ganha 20 de vida
-        //      - ganha 15 de oxigenio
-        //      - ganha 15 de traje espacial
-
-        // para subir para o nivel 3: 180 xp
-        //      - ganha 30 de vida
-        //      - ganha 15 de oxigenio
-        //      - ganha 15 de traje espacial
-
     // Construtor
     public Experiencia(Astronauta alvo) {
         this.alvo = alvo;
     }
 
     public void alterarNivel(Astronauta alvo) {
-        if (alvo.exp >= 60 && alvo.exp < 120) {
-            alvo.nivel = 1;
-
-            alvo.pontosDeVida += 10;
-            if (alvo.pontosDeVida > 120) alvo.pontosDeVida = 120;
-
-            alvo.oxigenio += 15;
-            if (alvo.oxigenio > 100) alvo.oxigenio = 100;
-
-            alvo.trajeEspacial += 15;
-            if (alvo.trajeEspacial > 100) alvo.trajeEspacial = 100;
-
-            System.out.println("****************");
-            System.out.println("A " + alvo.nome + " acaba de chegar ao nível " + alvo.nivel + " com " + alvo.exp + " de experiência");
-            System.out.println("****************");
-
-        } else if (alvo.exp >= 120 && alvo.exp < 180) {
-            alvo.nivel = 2;
-
-            alvo.pontosDeVida += 20;
-            if (alvo.pontosDeVida > 120) alvo.pontosDeVida = 120;
-
-            alvo.oxigenio += 15;
-            if (alvo.oxigenio > 100) alvo.oxigenio = 100;
-
-            alvo.trajeEspacial += 15;
-            if (alvo.trajeEspacial > 100) alvo.trajeEspacial = 100;
-
-            System.out.println("****************");
-            System.out.println("A " + alvo.nome + " acaba de chegar ao nível " + alvo.nivel + " com " + alvo.exp + " de experiência");
-            System.out.println("****************");
-        } else if (alvo.exp >= 180) {
-            alvo.nivel = 3;
-
-            alvo.pontosDeVida += 30;
-            if (alvo.pontosDeVida > 120) alvo.pontosDeVida = 120;
-
-            alvo.oxigenio += 15;
-            if (alvo.oxigenio > 100) alvo.oxigenio = 100;
-
-            alvo.trajeEspacial += 15;
-            if (alvo.trajeEspacial > 100) alvo.trajeEspacial = 100;
-
-            System.out.println("****************");
-            System.out.println("A " + alvo.nome + " acaba de chegar ao nível " + alvo.nivel + " com " + alvo.exp + " de experiência");
-            System.out.println("****************");
+        if (alvo.exp >= 80 && alvo.nivel < 1) {
+            subirNivel(alvo, 1, 10, 15, 15);
+        } else if (alvo.exp >= 160 && alvo.nivel < 2) {
+            subirNivel(alvo, 2, 20, 15, 15);
+        } else if (alvo.exp >= 240 && alvo.nivel < 3) {
+            subirNivel(alvo, 3, 30, 15, 15);
         }
+    }
+
+    private void subirNivel(Astronauta alvo, int novoNivel, int vidaGanha, int oxigenioGanho, int trajeGanho) {
+        alvo.nivel = novoNivel;
+        alvo.pontosDeVida = Math.min(alvo.pontosDeVida + vidaGanha, 120);
+        alvo.oxigenio = Math.min(alvo.oxigenio + oxigenioGanho, 100);
+        alvo.trajeEspacial = Math.min(alvo.trajeEspacial + trajeGanho, 100);
+
+        String linha = "========================================";
+        String titulo = "✨✨✨ NÍVEL UP! ✨✨✨";
+
+        System.out.println("\n" + linha);
+        System.out.printf("%-36s\n", titulo);
+        System.out.println(linha + "\n");
+        Main.tempoDeTexto();
     }
 }
