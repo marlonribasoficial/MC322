@@ -1,5 +1,7 @@
 public class Main {
     public static void main(String[] args) {
+
+        // Istanciando os objetos a serem trabalhados
         Astronauta astronauta = new Astronauta("Capitã Fernanda", 120, 25, 0, 0, 100, 100);
 
         AlienSlime alienSlime = new AlienSlime("Alien Slime", 90, 25, 50, false);
@@ -10,6 +12,7 @@ public class Main {
 
         Experiencia exp = new Experiencia(astronauta);
 
+        // Flag para controlar o jogo
         boolean jogoAtivo = true;
 
         // Função para imprimir com delay
@@ -68,14 +71,18 @@ public class Main {
 
 
             while (alienSlime.pontosDeVida > 0 && astronauta.pontosDeVida > 0) {
+
+                // Atualiza o nível da astronauta conforme a experiência acumulada
                 exp.alterarNivel(astronauta);
 
+                // Ataque especial do Alien Slime que contamina a astronauta
                 if (alienSlime.astronautaContaminado) {
                     astronauta.receberDano(astronauta, (int)(alienSlime.forca / 2));
                     printComDelay.accept("[-" + (int)(alienSlime.forca / 2) + " de vida da " + astronauta.nome + " pela radiação]\n");
                     alienSlime.astronautaContaminado = false;
                 }
 
+                // Ataque da astronauta
                 astronauta.atacar(alienSlime);
                 if (astronauta.soproUsado) {
                     astronauta.ganharExperiencia(astronauta.forca * 3);
@@ -83,6 +90,7 @@ public class Main {
                     astronauta.ganharExperiencia(astronauta.forca);
                 }
 
+                // Se o Alien Slime tá vivo, ele ataca
                 if (alienSlime.pontosDeVida > 0) {
                     alienSlime.atacar(astronauta);
                     alienSlime.usarHabilidadeEspecial(astronauta);
@@ -93,15 +101,18 @@ public class Main {
                     break;
                 }
 
+                // Ação de pegar um tubo de oxigênio
                 if (Math.random() < 0.1) {
                     astronauta.pegarItem(tuboOxigenio);
                 }
 
+                // Usar um tubo de oxigênio, se a astronauta tiver
                 if (!astronauta.inventario.isEmpty()) {
                     astronauta.usarTuboOxigenio();
                 }
             }
 
+            // Caso para quando a astronauta derrota o Alien Slime
             if (astronauta.pontosDeVida > 0) {
                 astronauta.ganharExperiencia(alienSlime.xpConcedido);
 
@@ -139,8 +150,12 @@ public class Main {
             System.out.println(" ");
 
             while (alienParadoxo.pontosDeVida > 0 && astronauta.pontosDeVida > 0) {
+
+                // Atualiza o nível da astronauta conforme a experiência acumulada
                 exp.alterarNivel(astronauta);
 
+                // Se o ataque for refletido, a astronauta sofre dano de si mesma
+                // Caso contrário, ela ataca normalmente o inimigo
                 if (alienParadoxo.refletido) {
                     astronauta.atacar(astronauta);
                     printComDelay.accept("[O ataque da " + astronauta.nome + " foi refletido contra ela mesma]\n");
@@ -154,6 +169,7 @@ public class Main {
                     }
                 }
 
+                // Se o Alien Paradoxo tá vivo, ele ataca
                 if (alienParadoxo.pontosDeVida > 0) {
                     alienParadoxo.atacar(astronauta);
                     alienParadoxo.usarHabilidadeEspecial(astronauta);
@@ -164,15 +180,18 @@ public class Main {
                     break;
                 }
 
-                if (Math.random() < 0.15) {
+                // Ação de pegar um tubo de oxigênio
+                if (Math.random() < 0.2) {
                     astronauta.pegarItem(tuboOxigenio);
                 }
 
+                // Usar um tubo de oxigênio, se a astronauta tiver
                 if (!astronauta.inventario.isEmpty()) {
                     astronauta.usarTuboOxigenio();
                 }
             }
 
+            // Caso para quando a astronauta derrota o Alien Paradoxo
             if (astronauta.pontosDeVida > 0) {
                 astronauta.ganharExperiencia(alienParadoxo.xpConcedido);
 
@@ -209,8 +228,12 @@ public class Main {
             System.out.println(" ");
 
             while (alien4D.pontosDeVida > 0 && astronauta.pontosDeVida > 0) {
+
+                // Atualiza o nível da astronauta conforme a experiência acumulada
                 exp.alterarNivel(astronauta);
 
+                // Se o Alien 4D não estiver aprisionando, a astronauta ataca normalmente
+                // Caso contrário, o turno é perdido e o estado de aprisionamento é removido
                 if (!alien4D.aprisionado) {
                     astronauta.atacar(alien4D);
                     if (astronauta.soproUsado) {
@@ -222,6 +245,7 @@ public class Main {
                     alien4D.aprisionado = false;
                 }
 
+                // Se o Alien Paradoxo tá vivo, ele ataca
                 if (alien4D.pontosDeVida > 0) {
                     alien4D.atacar(astronauta);
                     alien4D.usarHabilidadeEspecial(astronauta);
@@ -232,10 +256,12 @@ public class Main {
                     break;
                 }
 
-                if (Math.random() < 0.2) {
+                // Ação de pegar um tubo de oxigênio
+                if (Math.random() < 0.3) {
                     astronauta.pegarItem(tuboOxigenio);
                 }
 
+                // Usar um tubo de oxigênio, se a astronauta tiver
                 if (!astronauta.inventario.isEmpty()) {
                     astronauta.usarTuboOxigenio();
                 }
@@ -278,6 +304,7 @@ public class Main {
         }
     }
 
+    // Função auxiliar para manejar o tempo do print
     public static void tempoDeTexto() {
         try {
             Thread.sleep(Config.VELOCIDADE_TEXTO);
@@ -286,6 +313,7 @@ public class Main {
         }
     }
 
+    // Função auxiliar para imprimir os status
     public static void imprimirStatus(Astronauta astronauta, Personagem alien) {
         System.out.println(" ");
         System.out.println("              STATUS ATUAL");
