@@ -108,8 +108,7 @@ public class Main {
                 String bloco =
                     "\n═══════════════════════════════════════════════════════════════\n" +
                     " 🛰️ Vitória! " + astronauta.nome + " reduziu o " + alienSlime.nome + " a uma poça viscosa.\n" +
-                    " ▸ A gosma borbulhou e se dissolveu no chão metálico da nave,\n" +
-                    "   deixando apenas o silêncio do espaço como testemunha.\n" +
+                    " ▸ A gosma borbulhou e se dissolveu no chão metálico da nave, deixando apenas o silêncio do espaço como testemunha.\n" +
                     " ➤ Experiência obtida: +" + alienSlime.xpConcedido + "\n" +
                     "═══════════════════════════════════════════════════════════════\n";
 
@@ -180,14 +179,12 @@ public class Main {
                 String bloco =
                     "\n═══════════════════════════════════════════════════════════════\n" +
                     " ⏳ O paradoxo foi vencido! " + astronauta.nome + " resistiu ao colapso do impossível.\n" +
-                    " ▸ As fendas no espaço-tempo começaram a se fechar lentamente,\n" +
-                    "   e o eco distorcido da criatura desapareceu no vazio.\n" +
+                    " ▸ As fendas no espaço-tempo começaram a se fechar lentamente, e o eco distorcido da criatura desapareceu no vazio.\n" +
                     " ➤ Experiência obtida: +" + alienParadoxo.xpConcedido + "\n" +
                     "═══════════════════════════════════════════════════════════════\n";
 
                 printComDelay.accept(bloco);
             }
-
 
             imprimirStatus(astronauta, alienParadoxo);
 
@@ -244,26 +241,7 @@ public class Main {
                 }
             }
 
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
+            printComDelay.accept("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             break;
         }
 
@@ -295,7 +273,9 @@ public class Main {
         
         System.out.println(" ");
         System.out.println(" ");
-        imprimirStatus(astronauta, alien4D);
+        if (astronauta.pontosDeVida >= 0) {
+            imprimirStatus(astronauta, alien4D);
+        }
     }
 
     public static void tempoDeTexto() {
@@ -307,6 +287,7 @@ public class Main {
     }
 
     public static void imprimirStatus(Astronauta astronauta, Personagem alien) {
+        System.out.println(" ");
         System.out.println("              STATUS ATUAL");
         astronauta.exibirStatus();
         alien.exibirStatus();
