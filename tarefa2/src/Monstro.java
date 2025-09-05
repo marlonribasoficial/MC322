@@ -1,9 +1,13 @@
+import java.util.List;
+
 public abstract class Monstro extends Personagem {
     int xpConcedido;
+    List<Arma> listaDeArmasParaLargar;
 
-    public Monstro(String nome, int pontosDeVida, int forca, int xpConcedido) {
-        super(nome, pontosDeVida, forca);
+    public Monstro(String nome, int pontosDeVida, int forca, int xpConcedido, Arma arma, List<Arma> listaDeArmasParaLargar) {
+        super(nome, pontosDeVida, forca, arma);
         this.xpConcedido = xpConcedido;
+        this.listaDeArmasParaLargar = listaDeArmasParaLargar;
     }
 
     // Imprime as informações do personagem
@@ -17,6 +21,10 @@ public abstract class Monstro extends Personagem {
         System.out.printf("| ⭐ XP concedida: %-20d\n", this.xpConcedido);
         System.out.println(linha + "\n");
         Main.tempoDeTexto();
+    }
+
+    public Arma largaArma(List<Arma> listaDeArmasParaLargar) {
+        
     }
 
     public abstract void usarHabilidadeEspecial(Personagem alvo);

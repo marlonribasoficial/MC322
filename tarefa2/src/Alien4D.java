@@ -7,11 +7,13 @@ Atributos do Alien Slime:
     - Aprisionado
 */
 
+import java.util.List;
+
 public class Alien4D extends Monstro {
     boolean aprisionado;
 
-    public Alien4D(String nome, int pontosDeVida, int forca, int xpConcedido, boolean aprisionado) {
-        super(nome, pontosDeVida, forca, xpConcedido);
+    public Alien4D(String nome, int pontosDeVida, int forca, int xpConcedido, boolean aprisionado, Arma arma, List<Arma> listaDeArmasParaLargar) {
+        super(nome, pontosDeVida, forca, xpConcedido, arma, listaDeArmasParaLargar);
         this.aprisionado = aprisionado;
     }
 

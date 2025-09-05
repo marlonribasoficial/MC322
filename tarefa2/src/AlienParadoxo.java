@@ -7,11 +7,13 @@ Atributos do Alien Paradoxo:
     - Refletido
 */
 
+import java.util.List;
+
 public class AlienParadoxo extends Monstro {
     boolean refletido;
 
-    public AlienParadoxo(String nome, int pontosDeVida, int forca, int xpConcedido, boolean refletido) {
-        super(nome, pontosDeVida, forca, xpConcedido);
+    public AlienParadoxo(String nome, int pontosDeVida, int forca, int xpConcedido, boolean refletido, Arma arma, List<Arma> listaDeArmasParaLargar) {
+        super(nome, pontosDeVida, forca, xpConcedido, arma, listaDeArmasParaLargar);
         this.refletido = refletido;
     }
 

@@ -7,11 +7,13 @@ Atributos do Alien Slime:
     - Astronauta contaminado
 */
 
+import java.util.List;
+
 public class AlienSlime extends Monstro {
     boolean astronautaContaminado;
 
-    public AlienSlime(String nome, int pontosDeVida, int forca, int xpConcedido, boolean astronautaContaminado) {
-        super(nome, pontosDeVida, forca, xpConcedido);
+    public AlienSlime(String nome, int pontosDeVida, int forca, int xpConcedido, boolean astronautaContaminado, Arma arma, List<Arma> listaDeArmasParaLargar) {
+        super(nome, pontosDeVida, forca, xpConcedido, arma, listaDeArmasParaLargar);
         this.astronautaContaminado = astronautaContaminado;
     }
 

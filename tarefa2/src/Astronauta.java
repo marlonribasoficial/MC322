@@ -17,8 +17,8 @@ public class Astronauta extends Heroi {
     boolean soproUsado;
     ArrayList<Item> inventario = new ArrayList<>();
 
-    public Astronauta(String nome, int pontosDeVida, int forca, int nivel, double exp, int trajeEspacial, int oxigenio) {
-        super(nome, pontosDeVida, forca, nivel, exp);
+    public Astronauta(String nome, int pontosDeVida, int forca, int nivel, double exp, int trajeEspacial, int oxigenio, Arma arma, double expProximoNivel, int sorte) {
+        super(nome, pontosDeVida, forca, nivel, exp, arma, expProximoNivel, sorte);
         this.trajeEspacial = trajeEspacial;
         this.oxigenio = oxigenio;
     }
