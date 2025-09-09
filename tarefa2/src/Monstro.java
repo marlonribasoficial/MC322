@@ -1,13 +1,23 @@
 import java.util.List;
 
 public abstract class Monstro extends Personagem {
-    int xpConcedido;
-    List<Arma> listaDeArmasParaLargar;
+    protected int xpConcedido;
+    protected List<Arma> listaDeArmasParaLargar; // as arma que ele vai largar pode ser aleatoria
 
     public Monstro(String nome, int pontosDeVida, int forca, int xpConcedido, Arma arma, List<Arma> listaDeArmasParaLargar) {
         super(nome, pontosDeVida, forca, arma);
         this.xpConcedido = xpConcedido;
         this.listaDeArmasParaLargar = listaDeArmasParaLargar;
+    }
+
+    // Funções Getters
+    // Depois conferir se está sendo útil
+    public int getXpConcedido() {
+        return xpConcedido;
+    }
+
+    public List<Arma> getlistaDeArmasParaLargar() {
+        return listaDeArmasParaLargar;
     }
 
     // Imprime as informações do personagem
@@ -23,8 +33,8 @@ public abstract class Monstro extends Personagem {
         Main.tempoDeTexto();
     }
 
-    public Arma largaArma(List<Arma> listaDeArmasParaLargar) {
-        
+    public Arma largaArma() {
+        return listaDeArmasParaLargar.get(0); // aqui retornaria uma arma aleátoria
     }
 
     public abstract void usarHabilidadeEspecial(Personagem alvo);
