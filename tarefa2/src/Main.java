@@ -8,6 +8,23 @@ public class Main {
         AlienParadoxo alienParadoxo = new AlienParadoxo("Alien Paradoxo", 100, 20, 40, false);
         Alien4D alien4D = new Alien4D("Alien 4D", 100, 30, 60, false);
 
+        ArmaEstelar estelar = new ArmaEstelar("Arma Estelar", 20, 3);
+        ArmaGeométrica geometrica = new ArmaGeométrica("Arma Geométrica", 18, 4);
+        ArmaGosmaX gosmaX = new ArmaGosmaX("Arma GosmaX", 15, 1);
+        ArmaIlusão ilusao = new ArmaIlusão("Arma Ilusão", 12, 2);
+        ArmaLuzNegra luzNegra = new ArmaLuzNegra("Arma Luz Negra", 22, 5);
+        ArmaVacuosa vacuosa = new ArmaVacuosa("Arma Vacuosa", 17, 3);
+
+        // Distribuindo armas para os monstros
+        alienSlime.listaDeArmasParaLargar.add(gosmaX);
+        alienSlime.listaDeArmasParaLargar.add(estelar);
+
+        alienParadoxo.listaDeArmasParaLargar.add(vacuosa);
+        alienParadoxo.listaDeArmasParaLargar.add(ilusao);
+
+        alien4D.listaDeArmasParaLargar.add(luzNegra);
+        alien4D.listaDeArmasParaLargar.add(geometrica);
+
         Item tuboOxigenio = new Item("Tubo de Oxigênio");
 
         Experiencia exp = new Experiencia(astronauta);
