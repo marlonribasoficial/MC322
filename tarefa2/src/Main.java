@@ -2,7 +2,17 @@ public class Main {
     public static void main(String[] args) {
 
         // Istanciando os objetos a serem trabalhados
-        Astronauta astronauta = new Astronauta("Capitã Fernanda", 120, 25, 0, 0, 100, 100);
+        Astronauta astronauta = new Astronauta("Capitã Fernanda",
+                                                120,
+                                                25,
+                                                0,
+                                                0,
+                                                100,
+                                                120,
+                                                100,
+                                                null,
+                                                0,
+                                                0);
 
         AlienSlime alienSlime = new AlienSlime("Alien Slime", 90, 25, 50, false);
         AlienParadoxo alienParadoxo = new AlienParadoxo("Alien Paradoxo", 100, 20, 40, false);

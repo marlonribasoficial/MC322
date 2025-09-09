@@ -1,8 +1,10 @@
 public abstract class Personagem {
-    String nome;
-    int pontosDeVida;
-    int forca;
-    Arma arma;
+    protected  String nome;
+    protected  int pontosDeVida;
+    protected  int forca;
+    protected  Arma arma;
+
+    // protected para poder ser acessada pelas subclasses
 
     // Construtor
     public Personagem(String nome, int pontosDeVida, int forca, Arma arma) {
@@ -10,7 +12,25 @@ public abstract class Personagem {
         this.pontosDeVida = pontosDeVida;
         this.forca = forca;
         this.arma = arma;
-    }   
+    }
+
+    // Funções Getters
+    // Depois conferir se está sendo útil
+    public String getNome() {
+        return nome;
+    }
+
+    public int getVida() {
+        return pontosDeVida;
+    }
+
+    public int getForca() {
+        return forca;
+    }
+
+    public Arma getArma() {
+        return arma;
+    }
 
     // Reduz os pontos de vida com base no dano recebido
     public void receberDano(Personagem alvo, int dano) {
@@ -22,5 +42,4 @@ public abstract class Personagem {
 
     // Método abstrato
     public abstract void atacar(Personagem alvo);
-
 }

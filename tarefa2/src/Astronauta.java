@@ -12,16 +12,91 @@ Atributos do Astronauta:
 */
 
 public class Astronauta extends Heroi {
-    int trajeEspacial;
-    int oxigenio;
-    boolean soproUsado;
+    protected int pontosDeVidaMaximo;
+    protected int trajeEspacial;
+    protected int oxigenio;
+    protected boolean soproUsado;
     ArrayList<Item> inventario = new ArrayList<>();
+    private static final int[] EXP_POR_NIVEL = {60, 120, 200, 280, 360};
 
-    public Astronauta(String nome, int pontosDeVida, int forca, int nivel, double exp, int trajeEspacial, int oxigenio, Arma arma, double expProximoNivel, int sorte) {
+    public Astronauta(String nome,
+                    int pontosDeVida,
+                    int forca,
+                    int nivel,
+                    int exp,
+                    int trajeEspacial,
+                    int pontosDeVidaMaximo,
+                    int oxigenio,
+                    Arma arma,
+                    int expProximoNivel,
+                    int sorte) {
         super(nome, pontosDeVida, forca, nivel, exp, arma, expProximoNivel, sorte);
+        this.pontosDeVidaMaximo = pontosDeVidaMaximo;
         this.trajeEspacial = trajeEspacial;
         this.oxigenio = oxigenio;
     }
+
+    // GETTERS
+
+    public int getTrajeEspacial() {
+        return trajeEspacial;
+    }
+
+    public double getOxigenio() {
+        return oxigenio;
+    }
+
+    // EXPERIÊNCIA
+
+    public void ganharExperiencia(int ataque) {
+        this.exp += ataque / 2; 
+        atualizarExpProximoNivel();
+        subirDeNivel();
+    }
+
+    private void atualizarExpProximoNivel() {
+        if (nivelAtual < EXP_POR_NIVEL.length) {
+            expProximoNivel = Math.max(0, EXP_POR_NIVEL[nivelAtual] - exp);
+        } else {
+            expProximoNivel = 0; // nível máximo
+        }
+    }
+
+    private void subirDeNivel() {
+        if (exp >= 60 && nivelAtual < 1) {
+            ganharAtributos(1, 20, 10, 10);
+        } else if (exp >= 120 && nivelAtual < 2) {
+            ganharAtributos(2, 25, 10, 10);
+        } else if (exp >= 200 && nivelAtual < 3) {
+            ganharAtributos(3, 35, 15, 15);
+        } else if (exp >= 280 && nivelAtual < 4) {
+            ganharAtributos(4, 50, 25, 25);
+
+        } else if (exp >= 360 && nivelAtual < 5) {
+            ganharAtributos(5, 65, 30, 30);
+        }
+    }
+
+    private void ganharAtributos(int novoNivel, int vidaGanha, int oxigenioGanho, int trajeGanho) {
+        int nivelAntigo = nivelAtual;
+        nivelAtual = novoNivel;
+        pontosDeVida = Math.min(pontosDeVida + vidaGanha, pontosDeVidaMaximo);
+        oxigenio = Math.min(oxigenio + oxigenioGanho, 100);
+        trajeEspacial = Math.min(trajeEspacial + trajeGanho, 100);
+        printLevelUp(nivelAntigo);
+    }
+
+    private void printLevelUp(int nivelAntigo) {
+        String linha = "========================================";
+        String titulo = "         ✨✨✨ LEVEL UP! ✨✨✨";
+        System.out.println("\n" + linha);
+        System.out.printf("%-36s\n", titulo);
+        System.out.println("\n" + nome + " subiu do nível " + nivelAntigo + " para o nível " + nivelAtual + "!");
+        System.out.println(linha + "\n");
+        Main.tempoDeTexto();
+    }
+
+    // ATAQUES E HABILIDADES
 
     @Override
     public void atacar(Personagem alvo) {
@@ -44,7 +119,7 @@ public class Astronauta extends Heroi {
             alvo.receberDano(alvo, this.forca * 3);
             this.oxigenio -= 40;
             if (this.oxigenio < 0) this.oxigenio = 0;
-            this.soproUsado = true;
+            this.soproUsado = true; // ve onde usa isso
         }
     }
 
@@ -98,7 +173,7 @@ public class Astronauta extends Heroi {
         System.out.printf("| 🚀 Nome: %-32s\n", this.nome);
         System.out.printf("| 💖 Pontos de Vida: %-11s %3d\n", Main.gerarBarra(this.pontosDeVida, 120, 10), this.pontosDeVida);
         System.out.printf("| ⚔️ Força: %-28d\n", this.forca);
-        System.out.printf("| 🆙 Nível: %-29d\n", this.nivel);
+        System.out.printf("| 🆙 Nível: %-29d\n", this.nivelAtual);
         System.out.printf("| ⭐ Experiência: %-24.1f\n", this.exp);
         System.out.printf("| 🫁 Oxigênio: %-18s %3d%%\n", Main.gerarBarra(this.oxigenio, 100, 10), this.oxigenio);
         System.out.printf("| 🛰️ Traje Espacial: %-13s %3d%%\n", Main.gerarBarra(this.trajeEspacial, 100, 10), this.trajeEspacial);
