@@ -29,7 +29,6 @@ public abstract class Personagem {
     // Cura a vida
     public abstract void curar(int quantidade);
 
-
     // Imprime as informações do personagem
     public abstract void exibirStatus();
 

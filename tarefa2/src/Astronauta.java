@@ -89,9 +89,15 @@ public class Astronauta extends Heroi {
     // Ataques e Habilidades
     @Override
     public void atacar(Personagem alvo) {
-        System.out.printf("🚀 %s ataca %s com força %d!\n\n", this.nome, alvo.nome, this.forca);
-        Main.tempoDeTexto();
-        alvo.receberDano(this.forca);
+        if (arma != null && Math.random() < 0.5) {
+            System.out.printf("🚀 %s ataca %s com força %d!\n\n", nome, alvo.nome, forca);
+            Main.tempoDeTexto();
+            alvo.receberDano(forca);
+        } else {
+            System.out.printf("🚀 %s ataca %s com força %d!\n\n", nome, alvo.nome, forca);
+            Main.tempoDeTexto();
+            alvo.receberDano(forca);
+        }
 
         // chance de usar habilidade dependendo da sorte
         if (Math.random() < this.sorte) {
