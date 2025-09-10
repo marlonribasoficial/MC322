@@ -77,8 +77,8 @@ public class Astronauta extends Heroi {
     }
 
     private void printLevelUp(int nivelAntigo) {
-        String linha = "========================================";
-        String titulo = "         ✨✨✨ LEVEL UP! ✨✨✨";
+        String linha = "==================================================";
+        String titulo = "           ✨✨✨ LEVEL UP! ✨✨✨";
         System.out.println("\n" + linha);
         System.out.printf("%-36s\n", titulo);
         System.out.println("\n" + nome + " subiu do nível " + nivelAntigo + " para o nível " + nivelAtual + "!");

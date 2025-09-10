@@ -22,6 +22,7 @@ public class ConstrutorDeCenario {
             List<Arma> armasSlime = new ArrayList<>();
             armasSlime.add(new ArmaGosmaX("Arma GosmaX", 5, 1));
             armasSlime.add(new ArmaEstelar("Arma Estelar", 10 + i, 1));
+            Arma gosmaX = new ArmaGosmaX("GosmaX", 12 + i, 0);
 
             monstros.add(new AlienSlime(
                     "Slime Mutante Lvl" + i,
@@ -30,7 +31,7 @@ public class ConstrutorDeCenario {
                     20 + (i * 5),        // XP concedida
                     40 + (i * 10),       // Vida máxima
                     false,
-                    null,                // sem arma inicial
+                    gosmaX,                // sem arma inicial
                     armasSlime    // lista de armas que pode largar
             ));
 
@@ -38,6 +39,7 @@ public class ConstrutorDeCenario {
             List<Arma> armasParadoxo = new ArrayList<>();
             armasParadoxo.add(new ArmaVacuosa("Arma Vacuosa", 20 + i * 2, 2));
             armasParadoxo.add(new ArmaIlusao("Arma Ilusão", 14 + i, 2));
+            Arma ilusao = new ArmaIlusao("Arma da Ilusão", 18 + i, 3);
 
             monstros.add(new AlienParadoxo(
                     "Alien Paradoxo Lvl" + i,
@@ -46,7 +48,7 @@ public class ConstrutorDeCenario {
                     25 + (i * 6),
                     50 + (i * 12),
                     false,
-                    null,
+                    ilusao,
                     armasParadoxo
             ));
 
@@ -57,6 +59,8 @@ public class ConstrutorDeCenario {
                 List<Arma> armas4D = new ArrayList<>();
                 armas4D.add(new ArmaLuzNegra("Arma Luz Negra", 25 + i * 3, 3));
                 armas4D.add(new ArmaEstelar("Arma Estelar", 17 + i, 2));
+                Arma geometrica = new ArmaGeometrica("Arma Geométrica", 15 + i, 0);
+
 
                 monstros.add(new Alien4D(
                         "Alien 4D Lvl" + i,
@@ -65,7 +69,7 @@ public class ConstrutorDeCenario {
                         30 + (i * 7),
                         60 + (i * 15),
                         false,
-                        null,
+                        geometrica,
                         armas4D
                 ));
             }

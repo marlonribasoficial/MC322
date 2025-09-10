@@ -38,5 +38,6 @@ public abstract class Monstro extends Personagem {
         return listaDeArmasParaLargar.get(index);
     }
 
+
     public abstract void usarHabilidadeEspecial(Personagem alvo);
 }

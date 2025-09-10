@@ -1,4 +1,4 @@
-public class ArmaGosmaX  extends Arma {
+public class ArmaGosmaX extends Arma {
 
     public ArmaGosmaX(String nome, int dano, int minNivel) {
         super(nome, dano, minNivel);

@@ -46,15 +46,23 @@ public class AlienParadoxo extends Monstro {
 
     @Override
     public void atacar(Personagem alvo) {
-        if (Math.random() < 0.5) { // 50% de chance de atacar
-            System.out.printf("⚡ %s desfere um ataque caótico contra %s causando %d de dano!\n\n", this.nome, alvo.getNome(), this.forca);
-            Main.tempoDeTexto();
-            alvo.receberDano(forca);
-        } else { // 50% de chance de curar o inimigo
-            int cura = 15;
-            System.out.printf("✨ %s entra em paradoxo e cura %s em %d pontos de vida!\n\n", this.nome, alvo.getNome(), cura);
-            Main.tempoDeTexto();
-            alvo.curar(cura); // limite de vida genérico
+        int danoTotal;
+
+        // Ataque com arma, se tiver
+        if (arma != null) {
+            danoTotal = arma.atacarComArma(this, alvo);
+        } else {
+            if (Math.random() < 0.5) { // 50% de chance de atacar
+                danoTotal = this.forca;
+                System.out.printf("⚡ %s desfere um ataque caótico contra %s causando %d de dano!\n\n", this.nome, alvo.getNome(), danoTotal);
+                Main.tempoDeTexto();
+                alvo.receberDano(danoTotal);
+            } else { // 50% de chance de curar
+                int cura = 15;
+                System.out.printf("✨ %s entra em paradoxo e cura %s em %d pontos de vida!\n\n", this.nome, alvo.getNome(), cura);
+                Main.tempoDeTexto();
+                alvo.curar(cura);
+            }
         }
     }
 

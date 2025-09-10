@@ -46,11 +46,22 @@ public class AlienSlime extends Monstro {
 
     @Override
     public void atacar(Personagem alvo) {
-        System.out.printf("🟢 %s arremessa uma gosma radioativa contra %s!\n\n", this.nome, alvo.getNome());
-        Main.tempoDeTexto();
-        alvo.receberDano(forca);
+        int danoTotal;
 
-        if (Math.random() < 0.5) { // 50% de chance de contaminar
+        // Ataque com arma, se tiver
+        if (arma != null) { 
+            danoTotal = arma.atacarComArma(this, alvo);
+        } else {
+            danoTotal = forca;
+            System.out.printf("🟢 %s arremessa uma gosma radioativa contra %s!\n\n", this.nome, alvo.getNome());
+            Main.tempoDeTexto();
+        }
+
+        // Aplica o dano ao alvo
+        alvo.receberDano(danoTotal);
+
+        // Chance de contaminação
+        if (Math.random() < 0.5) {
             int danoContaminacao = forca / 2;
             System.out.printf("☣️ %s foi contaminado! Perderá %d de vida no próximo turno.\n\n", alvo.getNome(), danoContaminacao);
             Main.tempoDeTexto();

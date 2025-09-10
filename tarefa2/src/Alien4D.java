@@ -46,11 +46,19 @@ public class Alien4D extends Monstro {
 
     @Override
     public void atacar(Personagem alvo) {
-        System.out.printf("🌀 %s atravessa dimensões e ataca %s causando %d de dano!\n\n", this.nome, alvo.getNome(), this.forca);
-        Main.tempoDeTexto();
-        alvo.receberDano(forca);
+        int danoTotal;
 
-        // Só tenta aprisionar se estiver com pouca vida
+        // Ataque com arma, se tiver
+        if (arma != null) {
+            danoTotal = arma.atacarComArma(this, alvo);
+        } else {
+            danoTotal = this.forca;
+            System.out.printf("🌀 %s atravessa dimensões e ataca %s causando %d de dano!\n\n", this.nome, alvo.getNome(), danoTotal);
+            Main.tempoDeTexto();
+        }
+
+        alvo.receberDano(danoTotal);
+
         if (pontosDeVida < 40) {
             usarHabilidadeEspecial(alvo);
         }
