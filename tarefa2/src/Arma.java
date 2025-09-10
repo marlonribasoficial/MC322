@@ -1,14 +1,18 @@
 public abstract class Arma {
-    String nome;
-    int dano;
-    int minNivel;
-    
+    private String nome;
+    private int dano;
+    private int minNivel;
 
     public Arma(String nome, int dano, int minNivel) {
         this.nome = nome;
         this.dano = dano;
         this.minNivel = minNivel;
     }
+
+    // Getters
+    public String getNome() { return nome; }
+    public int getDano() { return dano; }
+    public int getMinNivel() { return minNivel; }
 
     public void exibirDescricao() {
         String linha = "========================================";

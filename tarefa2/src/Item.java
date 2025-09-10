@@ -5,7 +5,6 @@ public class Item {
         this.nome = nome;
     }
 
-    public String getNome() {
-        return nome;
-    }
+    // Getter
+    public String getNome() { return nome; }
 }

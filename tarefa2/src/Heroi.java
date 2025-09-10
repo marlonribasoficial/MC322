@@ -1,18 +1,12 @@
-
 public abstract class Heroi extends Personagem {
     protected int nivelAtual;
     protected int exp;
     protected int expProximoNivel;
-    protected int sorte;
+    protected double sorte; // 0.0 a 1.0
 
-    public Heroi(String nome,
-                int pontosDeVida,
-                int forca,
-                int nivelAtual,
-                int exp,
-                Arma arma,
-                int expProximoNivel,
-                int sorte) {
+    public Heroi(String nome, int pontosDeVida, int forca,
+                 int nivelAtual, int exp, Arma arma,
+                 int expProximoNivel, double sorte) {
         super(nome, pontosDeVida, forca, arma);
         this.nivelAtual = nivelAtual;
         this.exp = exp;
@@ -20,30 +14,24 @@ public abstract class Heroi extends Personagem {
         this.sorte = sorte;
     }
 
-    // GETTERS
-    // Depois conferir se está sendo útil
+    public int getNivel() { return nivelAtual; }
+    public int getExp() { return exp; }
+    public int getExpProximoNivel() { return expProximoNivel; }
+    public double getSorte() { return sorte; }
 
-    public int getNivel() {
-        return nivelAtual;
-    }
-
-    public int getExp() {
-        return exp;
-    }
-
-    public int getExpProximoNivel() {
-        return expProximoNivel;
-    }
-
+    // Troca de arma respeitando nível mínimo
     public void equiparArma(Arma novaArma) {
-        // troca arma do heroi, respeitando o nivel minimo requerido pela arma
+        if (nivelAtual >= novaArma.getMinNivel()) {
+            this.arma = novaArma;
+            System.out.printf("🔄 %s equipou %s!\n", this.nome, novaArma.getNome());
+        } else {
+            System.out.printf("❌ %s não tem nível suficiente para usar %s!\n",
+                               this.nome, novaArma.getNome());
+        }
     }
-
-    // MÉTODOS ABSTRATOS
 
     @Override
     public abstract void exibirStatus();
 
-    public abstract void usarHabilidadeEspecial(Personagem alvo); // deve ser relacionado com a sorte do heroi 
-
+    public abstract void usarHabilidadeEspecial(Personagem alvo);
 }

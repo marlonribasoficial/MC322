@@ -2,25 +2,22 @@ import java.util.List;
 
 public abstract class Monstro extends Personagem {
     protected int xpConcedido;
-    protected List<Arma> listaDeArmasParaLargar; // as arma que ele vai largar pode ser aleatoria
+    protected List<Arma> listaDeArmasParaLargar;
 
-    public Monstro(String nome, int pontosDeVida, int forca, int xpConcedido, Arma arma, List<Arma> listaDeArmasParaLargar) {
+    public Monstro(String nome,
+                    int pontosDeVida,
+                    int forca,
+                    int xpConcedido,
+                    Arma arma,
+                    List<Arma> listaDeArmasParaLargar) {
         super(nome, pontosDeVida, forca, arma);
         this.xpConcedido = xpConcedido;
         this.listaDeArmasParaLargar = listaDeArmasParaLargar;
     }
 
-    // Funções Getters
-    // Depois conferir se está sendo útil
-    public int getXpConcedido() {
-        return xpConcedido;
-    }
+    public int getXpConcedido() { return xpConcedido; }
+    public List<Arma> getListaDeArmasParaLargar() { return listaDeArmasParaLargar; }
 
-    public List<Arma> getlistaDeArmasParaLargar() {
-        return listaDeArmasParaLargar;
-    }
-
-    // Imprime as informações do personagem
     @Override
     public void exibirStatus() {
         String linha = "========================================";
@@ -33,10 +30,12 @@ public abstract class Monstro extends Personagem {
         Main.tempoDeTexto();
     }
 
+    // Agora retorna uma arma aleatória
     public Arma largaArma() {
-        return listaDeArmasParaLargar.get(0); // aqui retornaria uma arma aleátoria
+        if (listaDeArmasParaLargar.isEmpty()) return null;
+        int index = (int)(Math.random() * listaDeArmasParaLargar.size());
+        return listaDeArmasParaLargar.get(index);
     }
 
     public abstract void usarHabilidadeEspecial(Personagem alvo);
-
 }
