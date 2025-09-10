@@ -71,20 +71,23 @@ public class Main {
             if (Math.random() < 0.2) astronauta.pegarItem(tubo);
             if (!astronauta.inventario.isEmpty()) astronauta.usarTuboOxigenio();
 
-            imprimirStatus(astronauta, inimigo);
         }
 
-        if (astronauta.getVida() <= 0) return false;
+        if (astronauta.getVida() <= 0) {
+            imprimirStatus(astronauta, inimigo);
+            return false;
+        }
 
         astronauta.ganharExperiencia(inimigo.getXpConcedido());
 
         // Drop de arma (aqui pode continuar direto ou também mover pro Narrador se quiser)
-        if (Math.random() < 0.5) {
+        if (Math.random() < astronauta.getSorte()) {
             Arma drop = inimigo.largaArma();
             System.out.printf("🎁 %s dropou a arma %s!\n", inimigo.getNome(), drop.getNome());
             astronauta.equiparArma(drop);
         }
 
+        imprimirStatus(astronauta, inimigo);
         return true;
     }
 

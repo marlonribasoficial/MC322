@@ -96,7 +96,7 @@ public class Astronauta extends Heroi {
             danoTotal = arma.atacarComArma(this, alvo);
         } else {
             danoTotal = forca;
-            System.out.printf("🚀 %s ataca %s com força %d!\n\n", nome, alvo.nome, danoTotal);
+            System.out.printf("🚀 %s ataca %s com força %d!\n\n", nome, alvo.getNome(), danoTotal);
             Main.tempoDeTexto();
         }
 

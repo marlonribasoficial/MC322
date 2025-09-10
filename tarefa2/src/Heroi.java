@@ -22,16 +22,15 @@ public abstract class Heroi extends Personagem {
     // Troca de arma respeitando nível mínimo
     public void equiparArma(Arma novaArma) {
         if (nivelAtual >= novaArma.getMinNivel()) {
+            if (this.arma == null || this.arma.getDano() <= novaArma.getDano()) {
             this.arma = novaArma;
             System.out.printf("🔄 %s equipou %s!\n", this.nome, novaArma.getNome());
+            }
         } else {
             System.out.printf("❌ %s não tem nível suficiente para usar %s!\n",
                                this.nome, novaArma.getNome());
         }
     }
-
-    @Override
-    public abstract void exibirStatus();
 
     public abstract void usarHabilidadeEspecial(Personagem alvo);
 }
