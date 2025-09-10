@@ -49,11 +49,12 @@ public class Alien4D extends Monstro {
         int danoTotal;
 
         // Ataque com arma, se tiver
-        if (arma != null) {
-            danoTotal = arma.atacarComArma(this, alvo);
-        } else {
-            danoTotal = this.forca;
-            System.out.printf("🌀 %s atravessa dimensões e ataca %s causando %d de dano!\n\n", this.nome, alvo.getNome(), danoTotal);
+        danoTotal = arma.atacarComArma(this, alvo);
+
+        // se não houve ataque com arma
+        if (danoTotal == this.forca) {
+            System.out.printf("🌀 %s atravessa dimensões e ataca %s causando %d de dano!\n\n", 
+                                this.nome, alvo.getNome(), danoTotal);
             Main.tempoDeTexto();
         }
 

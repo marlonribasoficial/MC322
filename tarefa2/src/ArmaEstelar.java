@@ -21,10 +21,8 @@ public class ArmaEstelar extends Arma {
                                 atacante.getNome(), this.getNome(), alvo.getNome(), danoTotal);
             Main.tempoDeTexto();
             return danoTotal;
-        } else {
-            System.out.printf("🚀 %s ataca %s com força %d!\n\n", atacante.getNome(), alvo.getNome(), atacante.getForca());
-            Main.tempoDeTexto();
-            return atacante.getForca(); // apenas a força normal
-        }
+        } 
+        
+        return atacante.getForca();
     }
 }  

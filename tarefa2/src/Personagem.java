@@ -34,5 +34,4 @@ public abstract class Personagem {
 
     // Método abstrato para ataque
     public abstract void atacar(Personagem alvo);
-
 }

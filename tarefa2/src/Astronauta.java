@@ -94,6 +94,13 @@ public class Astronauta extends Heroi {
         // ataque com arma
         if (arma != null) {
             danoTotal = arma.atacarComArma(this, alvo);
+
+            // se não houve ataque com arma
+            if (danoTotal == forca) {
+                System.out.printf("🚀 %s ataca %s com força %d!\n\n", nome, alvo.getNome(), danoTotal);
+                Main.tempoDeTexto();
+            }
+
         } else {
             danoTotal = forca;
             System.out.printf("🚀 %s ataca %s com força %d!\n\n", nome, alvo.getNome(), danoTotal);

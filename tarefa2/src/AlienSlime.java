@@ -48,16 +48,14 @@ public class AlienSlime extends Monstro {
     public void atacar(Personagem alvo) {
         int danoTotal;
 
-        // Ataque com arma, se tiver
-        if (arma != null) { 
-            danoTotal = arma.atacarComArma(this, alvo);
-        } else {
-            danoTotal = forca;
+        danoTotal = arma.atacarComArma(this, alvo);
+        
+        // se não houve ataque com arma
+        if (danoTotal == this.forca) {
             System.out.printf("🟢 %s arremessa uma gosma radioativa contra %s!\n\n", this.nome, alvo.getNome());
             Main.tempoDeTexto();
         }
 
-        // Aplica o dano ao alvo
         alvo.receberDano(danoTotal);
 
         // Chance de contaminação

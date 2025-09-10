@@ -22,7 +22,7 @@ public abstract class Heroi extends Personagem {
     // Troca de arma respeitando nível mínimo
     public void equiparArma(Arma novaArma) {
         if (nivelAtual >= novaArma.getMinNivel()) {
-            if (this.arma == null || this.arma.getDano() <= novaArma.getDano()) {
+            if (this.arma == null || this.arma.getDano() < novaArma.getDano()) {
             this.arma = novaArma;
             System.out.printf("🔄 %s equipou %s!\n", this.nome, novaArma.getNome());
             }
