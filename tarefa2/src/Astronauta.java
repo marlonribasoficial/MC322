@@ -26,8 +26,17 @@ public class Astronauta extends Heroi {
     }
 
     // Getters
+    public int getPontosDeVidaMaximo() { return pontosDeVidaMaximo; }
     public int getTrajeEspacial() { return trajeEspacial; }
     public int getOxigenio() { return oxigenio; }
+
+    @Override
+    public void curar(int quantidade) {
+        this.pontosDeVida += quantidade;
+        if (this.pontosDeVida > pontosDeVidaMaximo) {
+            this.pontosDeVida = pontosDeVidaMaximo;
+        }
+    }
 
     // Experiência
     public void ganharExperiencia(int xpGanho) {

@@ -6,18 +6,42 @@ Alien Slime:
 - Ataques: joga gosma radioativa, chance de contaminar
 - Habilidade Especial: se fragmenta e regenera parte da vida
 */
+
 public class AlienSlime extends Monstro {
+    private int pontosDeVidaMaximo;
     private boolean astronautaContaminado;
 
     public AlienSlime(String nome,
                     int pontosDeVida,
                     int forca,
                     int xpConcedido,
+                    int pontosDeVidaMaximo,
                     boolean astronautaContaminado,
                     Arma arma,
                     List<Arma> listaDeArmasParaLargar) {
         super(nome, pontosDeVida, forca, xpConcedido, arma, listaDeArmasParaLargar);
+        this.pontosDeVidaMaximo = pontosDeVidaMaximo;
         this.astronautaContaminado = astronautaContaminado;
+    }
+
+    // Getter
+    public int getPontosDeVidaMaximo() { return pontosDeVidaMaximo; }
+    public boolean isContaminado() { return astronautaContaminado; }
+
+    // Setter
+    public void setContaminado(boolean astronautaContaminado) {
+        this.astronautaContaminado = astronautaContaminado;
+    }
+    public void setPontosDeVidaMax(int novaVidaMax) {
+        this.pontosDeVidaMaximo = novaVidaMax;
+    }
+
+    @Override
+    public void curar(int quantidade) {
+        this.pontosDeVida += quantidade;
+        if (this.pontosDeVida > pontosDeVidaMaximo) {
+            this.pontosDeVida = pontosDeVidaMaximo;
+        }
     }
 
     @Override
@@ -40,7 +64,7 @@ public class AlienSlime extends Monstro {
             System.out.printf("💀 %s se fragmenta em duas massas e recupera 25%% da sua vida!\n\n", this.nome);
             Main.tempoDeTexto();
             pontosDeVida += pontosDeVida / 4;
-            if (pontosDeVida > 70) pontosDeVida = 70; // vida máxima para este monstro
+            if (pontosDeVida > pontosDeVidaMaximo) pontosDeVida = pontosDeVidaMaximo;
         }
     }
 }

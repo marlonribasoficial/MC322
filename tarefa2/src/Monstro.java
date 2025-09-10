@@ -14,7 +14,8 @@ public abstract class Monstro extends Personagem {
         this.xpConcedido = xpConcedido;
         this.listaDeArmasParaLargar = listaDeArmasParaLargar;
     }
-
+    
+    // Getters
     public int getXpConcedido() { return xpConcedido; }
     public List<Arma> getListaDeArmasParaLargar() { return listaDeArmasParaLargar; }
 

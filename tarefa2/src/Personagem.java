@@ -26,6 +26,10 @@ public abstract class Personagem {
         if (this.pontosDeVida < 0) this.pontosDeVida = 0;
     }
 
+    // Cura a vida
+    public abstract void curar(int quantidade);
+
+
     // Imprime as informações do personagem
     public abstract void exibirStatus();
 

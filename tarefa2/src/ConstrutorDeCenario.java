@@ -22,6 +22,7 @@ public class ConstrutorDeCenario {
                     40 + (i * 10),       // Vida escala
                     10 + (i * 3),        // Força escala
                     20 + (i * 5),        // XP concedida
+                    40 + (i * 10),       // Vida máxima
                     false,
                     null,                // sem arma inicial
                     new ArrayList<>()    // lista de armas que pode largar
@@ -32,6 +33,7 @@ public class ConstrutorDeCenario {
                     50 + (i * 12),
                     12 + (i * 4),
                     25 + (i * 6),
+                    50 + (i * 12),
                     false,
                     null,
                     new ArrayList<>()
@@ -44,6 +46,7 @@ public class ConstrutorDeCenario {
                         60 + (i * 15),
                         15 + (i * 5),
                         30 + (i * 7),
+                        60 + (i * 15),
                         false,
                         null,
                         new ArrayList<>()

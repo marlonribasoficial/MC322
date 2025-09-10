@@ -6,18 +6,42 @@ Alien Paradoxo:
 - Ataques: ataque caótico OU paradoxo que cura
 - Habilidade Especial: ativa espelho temporal (reflete próximo ataque)
 */
+
 public class AlienParadoxo extends Monstro {
+    private int pontosDeVidaMaximo;
     private boolean refletido;
 
     public AlienParadoxo(String nome,
                         int pontosDeVida,
                         int forca,
                         int xpConcedido,
+                        int pontosDeVidaMaximo,
                         boolean refletido,
                         Arma arma,
                         List<Arma> listaDeArmasParaLargar) {
         super(nome, pontosDeVida, forca, xpConcedido, arma, listaDeArmasParaLargar);
+        this.pontosDeVidaMaximo = pontosDeVidaMaximo;
         this.refletido = refletido;
+    }
+
+    // Getter
+    public int getPontosDeVidaMaximo() { return pontosDeVidaMaximo; }
+    public boolean isRefletido() { return refletido; }
+
+    // Setter
+    public void setRefletido(boolean refletido) {
+        this.refletido = refletido;
+    }
+    public void setPontosDeVidaMax(int novaVidaMax) {
+        this.pontosDeVidaMaximo = novaVidaMax;
+    }
+
+    @Override
+    public void curar(int quantidade) {
+        this.pontosDeVida += quantidade;
+        if (this.pontosDeVida > pontosDeVidaMaximo) {
+            this.pontosDeVida = pontosDeVidaMaximo;
+        }
     }
 
     @Override
@@ -30,8 +54,7 @@ public class AlienParadoxo extends Monstro {
             int cura = 15;
             System.out.printf("✨ %s entra em paradoxo e cura %s em %d pontos de vida!\n\n", this.nome, alvo.getNome(), cura);
             Main.tempoDeTexto();
-            alvo.pontosDeVida += cura;
-            if (alvo.pontosDeVida > 120) alvo.pontosDeVida = 120; // limite de vida genérico
+            alvo.curar(cura); // limite de vida genérico
         }
     }
 
@@ -44,13 +67,5 @@ public class AlienParadoxo extends Monstro {
             Main.tempoDeTexto();
             this.refletido = true;
         }
-    }
-
-    public boolean isRefletido() {
-        return refletido;
-    }
-
-    public void setRefletido(boolean refletido) {
-        this.refletido = refletido;
     }
 }
