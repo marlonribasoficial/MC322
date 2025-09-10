@@ -89,15 +89,18 @@ public class Astronauta extends Heroi {
     // Ataques e Habilidades
     @Override
     public void atacar(Personagem alvo) {
-        if (arma != null && Math.random() < 0.5) {
-            System.out.printf("🚀 %s ataca %s com força %d!\n\n", nome, alvo.nome, forca);
-            Main.tempoDeTexto();
-            alvo.receberDano(forca);
+        int danoTotal;
+
+        // ataque com arma
+        if (arma != null) {
+            danoTotal = arma.atacarComArma(this, alvo);
         } else {
-            System.out.printf("🚀 %s ataca %s com força %d!\n\n", nome, alvo.nome, forca);
+            danoTotal = forca;
+            System.out.printf("🚀 %s ataca %s com força %d!\n\n", nome, alvo.nome, danoTotal);
             Main.tempoDeTexto();
-            alvo.receberDano(forca);
         }
+
+        alvo.receberDano(danoTotal);
 
         // chance de usar habilidade dependendo da sorte
         if (Math.random() < this.sorte) {
@@ -138,7 +141,7 @@ public class Astronauta extends Heroi {
         }
     }
 
-    // Iventário
+    // Inventário
     public void pegarItem(Item item) {
         if (Math.random() < 0.4) {
             inventario.add(item);

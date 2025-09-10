@@ -17,6 +17,12 @@ public class ConstrutorDeCenario {
 
             // Cria monstros da fase
             List<Monstro> monstros = new ArrayList<>();
+
+
+            List<Arma> armasSlime = new ArrayList<>();
+            armasSlime.add(new ArmaGosmaX("Arma GosmaX", 5, 1));
+            armasSlime.add(new ArmaEstelar("Arma Estelar", 10 + i, 1));
+
             monstros.add(new AlienSlime(
                     "Slime Mutante Lvl" + i,
                     40 + (i * 10),       // Vida escala
@@ -25,8 +31,13 @@ public class ConstrutorDeCenario {
                     40 + (i * 10),       // Vida máxima
                     false,
                     null,                // sem arma inicial
-                    new ArrayList<>()    // lista de armas que pode largar
+                    armasSlime    // lista de armas que pode largar
             ));
+
+
+            List<Arma> armasParadoxo = new ArrayList<>();
+            armasParadoxo.add(new ArmaVacuosa("Arma Vacuosa", 20 + i * 2, 2));
+            armasParadoxo.add(new ArmaIlusao("Arma Ilusão", 14 + i, 2));
 
             monstros.add(new AlienParadoxo(
                     "Alien Paradoxo Lvl" + i,
@@ -36,11 +47,17 @@ public class ConstrutorDeCenario {
                     50 + (i * 12),
                     false,
                     null,
-                    new ArrayList<>()
+                    armasParadoxo
             ));
 
+            
             // Se o nível for mais alto, adiciona Alien4D
             if (i >= 2) {
+
+                List<Arma> armas4D = new ArrayList<>();
+                armas4D.add(new ArmaLuzNegra("Arma Luz Negra", 25 + i * 3, 3));
+                armas4D.add(new ArmaEstelar("Arma Estelar", 17 + i, 2));
+
                 monstros.add(new Alien4D(
                         "Alien 4D Lvl" + i,
                         60 + (i * 15),
@@ -49,7 +66,7 @@ public class ConstrutorDeCenario {
                         60 + (i * 15),
                         false,
                         null,
-                        new ArrayList<>()
+                        armas4D
                 ));
             }
 

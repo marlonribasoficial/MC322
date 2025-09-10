@@ -23,4 +23,17 @@ public abstract class Arma {
         System.out.println(linha + "\n");
         Main.tempoDeTexto();
     }
+
+    // Calcula o dano do ataque (com arma ou sem)
+    public int atacarComArma(Personagem atacante, Personagem alvo) {
+        if (Math.random() < 0.5) { // 50% de usar arma
+            System.out.printf("💥 %s acerta um ataque crítico com %s!\n\n", atacante.getNome(), this.nome);
+            Main.tempoDeTexto();
+            return atacante.forca + this.dano;
+        } else {
+            System.out.printf("🚀 %s ataca %s com força %d!\n\n", atacante.getNome(), alvo.getNome(), atacante.getForca());
+            Main.tempoDeTexto();
+            return atacante.forca; // apenas a força normal
+        }
+    }
 }

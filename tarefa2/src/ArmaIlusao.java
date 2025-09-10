@@ -1,6 +1,6 @@
-public class ArmaIlusão extends Arma {
+public class ArmaIlusao extends Arma {
 
-    public ArmaIlusão(String nome, int dano, int minNivel) {
+    public ArmaIlusao(String nome, int dano, int minNivel) {
         super(nome, dano, minNivel);
     }
 

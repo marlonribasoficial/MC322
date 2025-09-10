@@ -1,6 +1,6 @@
-public class ArmaGeométrica extends Arma {
+public class ArmaGeometrica extends Arma {
 
-    public ArmaGeométrica(String nome, int dano, int minNivel) {
+    public ArmaGeometrica(String nome, int dano, int minNivel) {
         super(nome, dano, minNivel);
     }
 
