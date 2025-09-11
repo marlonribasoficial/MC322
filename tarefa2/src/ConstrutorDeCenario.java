@@ -30,7 +30,6 @@ public class ConstrutorDeCenario {
                     10 + (i * 3),        // Força escala
                     20 + (i * 5),        // XP concedida
                     40 + (i * 10),       // Vida máxima
-                    false,
                     gosmaX,                // sem arma inicial
                     armasSlime    // lista de armas que pode largar
             ));
@@ -47,7 +46,6 @@ public class ConstrutorDeCenario {
                     12 + (i * 4),
                     25 + (i * 6),
                     50 + (i * 12),
-                    false,
                     ilusao,
                     armasParadoxo
             ));
@@ -68,7 +66,6 @@ public class ConstrutorDeCenario {
                         15 + (i * 5),
                         30 + (i * 7),
                         60 + (i * 15),
-                        false,
                         geometrica,
                         armas4D
                 ));

@@ -9,39 +9,25 @@ Alien Slime:
 
 public class AlienSlime extends Monstro {
     private int pontosDeVidaMaximo;
-    private boolean astronautaContaminado;
 
     public AlienSlime(String nome,
                     int pontosDeVida,
                     int forca,
                     int xpConcedido,
                     int pontosDeVidaMaximo,
-                    boolean astronautaContaminado,
                     Arma arma,
                     List<Arma> listaDeArmasParaLargar) {
         super(nome, pontosDeVida, forca, xpConcedido, arma, listaDeArmasParaLargar);
         this.pontosDeVidaMaximo = pontosDeVidaMaximo;
-        this.astronautaContaminado = astronautaContaminado;
     }
 
     // Getter
+    @Override
     public int getPontosDeVidaMaximo() { return pontosDeVidaMaximo; }
-    public boolean isContaminado() { return astronautaContaminado; }
 
     // Setter
-    public void setContaminado(boolean astronautaContaminado) {
-        this.astronautaContaminado = astronautaContaminado;
-    }
     public void setPontosDeVidaMax(int novaVidaMax) {
         this.pontosDeVidaMaximo = novaVidaMax;
-    }
-
-    @Override
-    public void curar(int quantidade) {
-        this.pontosDeVida += quantidade;
-        if (this.pontosDeVida > pontosDeVidaMaximo) {
-            this.pontosDeVida = pontosDeVidaMaximo;
-        }
     }
 
     @Override
@@ -63,7 +49,7 @@ public class AlienSlime extends Monstro {
             int danoContaminacao = forca / 2;
             System.out.printf("☣️ %s foi contaminado! Perderá %d de vida no próximo turno.\n\n", alvo.getNome(), danoContaminacao);
             Main.tempoDeTexto();
-            this.astronautaContaminado = true;
+            alvo.setContaminado(true);
         }
     }
 

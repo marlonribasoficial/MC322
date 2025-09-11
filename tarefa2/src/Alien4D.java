@@ -9,39 +9,25 @@ Alien 4D:
 
 public class Alien4D extends Monstro {
     private int pontosDeVidaMaximo;
-    private boolean aprisionado;
 
     public Alien4D(String nome,
                         int pontosDeVida,
                         int forca,
                         int xpConcedido,
                         int pontosDeVidaMaximo,
-                        boolean aprisionado,
                         Arma arma,
                         List<Arma> listaDeArmasParaLargar) {
         super(nome, pontosDeVida, forca, xpConcedido, arma, listaDeArmasParaLargar);
         this.pontosDeVidaMaximo = pontosDeVidaMaximo;
-        this.aprisionado = aprisionado;
     }
 
     // Getter
+    @Override
     public int getPontosDeVidaMaximo() { return pontosDeVidaMaximo; }
-    public boolean isAprisionado() { return aprisionado; }
 
     // Setter
-    public void setAprisionado(boolean aprisionado) {
-        this.aprisionado = aprisionado;
-    }
     public void setPontosDeVidaMax(int novaVidaMax) {
         this.pontosDeVidaMaximo = novaVidaMax;
-    }
-
-    @Override
-    public void curar(int quantidade) {
-        this.pontosDeVida += quantidade;
-        if (this.pontosDeVida > pontosDeVidaMaximo) {
-            this.pontosDeVida = pontosDeVidaMaximo;
-        }
     }
 
     @Override
@@ -72,7 +58,7 @@ public class Alien4D extends Monstro {
             Main.tempoDeTexto();
             System.out.printf("[%s perde o próximo turno]\n\n", alvo.getNome());
             Main.tempoDeTexto();
-            this.aprisionado = true;
+            alvo.setAprisionado(true);
         }
     }
 }

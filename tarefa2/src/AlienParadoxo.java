@@ -9,39 +9,25 @@ Alien Paradoxo:
 
 public class AlienParadoxo extends Monstro {
     private int pontosDeVidaMaximo;
-    private boolean refletido;
 
     public AlienParadoxo(String nome,
                         int pontosDeVida,
                         int forca,
                         int xpConcedido,
                         int pontosDeVidaMaximo,
-                        boolean refletido,
                         Arma arma,
                         List<Arma> listaDeArmasParaLargar) {
         super(nome, pontosDeVida, forca, xpConcedido, arma, listaDeArmasParaLargar);
         this.pontosDeVidaMaximo = pontosDeVidaMaximo;
-        this.refletido = refletido;
     }
 
     // Getter
+    @Override
     public int getPontosDeVidaMaximo() { return pontosDeVidaMaximo; }
-    public boolean isRefletido() { return refletido; }
 
     // Setter
-    public void setRefletido(boolean refletido) {
-        this.refletido = refletido;
-    }
     public void setPontosDeVidaMax(int novaVidaMax) {
         this.pontosDeVidaMaximo = novaVidaMax;
-    }
-
-    @Override
-    public void curar(int quantidade) {
-        this.pontosDeVida += quantidade;
-        if (this.pontosDeVida > pontosDeVidaMaximo) {
-            this.pontosDeVida = pontosDeVidaMaximo;
-        }
     }
 
     @Override
@@ -76,7 +62,7 @@ public class AlienParadoxo extends Monstro {
             Main.tempoDeTexto();
             System.out.printf("[O próximo ataque de %s será refletido contra ela mesma]\n\n", alvo.getNome());
             Main.tempoDeTexto();
-            this.refletido = true;
+            alvo.setRefletido(true);
         }
     }
 }

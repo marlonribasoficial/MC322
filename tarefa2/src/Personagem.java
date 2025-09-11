@@ -3,6 +3,9 @@ public abstract class Personagem {
     protected int pontosDeVida;
     protected int forca;
     protected Arma arma;
+    private boolean contaminado = false;
+    private boolean refletido = false;
+    private boolean aprisionado = false;
 
     public Personagem(String nome,
                     int pontosDeVida,
@@ -19,6 +22,20 @@ public abstract class Personagem {
     public int getVida() { return pontosDeVida; }
     public int getForca() { return forca; }
     public Arma getArma() { return arma; }
+    public boolean getContaminado() { return contaminado; }
+    public boolean getRefletido() { return refletido; }
+    public boolean getAprisionado() { return aprisionado; }
+
+    // Setter
+    public void setContaminado(boolean contaminado) {
+        this.contaminado = contaminado;
+    }
+    public void setRefletido(boolean refletido) {
+        this.refletido = refletido;
+    }
+    public void setAprisionado(boolean aprisionado) {
+        this.aprisionado = aprisionado;
+    }
 
     // Reduz os pontos de vida com base no dano recebido
     public void receberDano(int dano) {

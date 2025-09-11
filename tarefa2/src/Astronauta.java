@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 
 public class Astronauta extends Heroi {
-    protected int pontosDeVidaMaximo;
-    protected int trajeEspacial;
-    protected int oxigenio;
-    protected boolean soproUsado;
+    private int pontosDeVidaMaximo;
+    private int trajeEspacial;
+    private int oxigenio;
+    private boolean soproUsado;
+
     ArrayList<Item> inventario = new ArrayList<>();
     private static final int[] EXP_POR_NIVEL = {60, 120, 200, 280, 360};
 
