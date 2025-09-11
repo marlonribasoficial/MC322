@@ -23,8 +23,9 @@ public abstract class Heroi extends Personagem {
     public void equiparArma(Arma novaArma) {
         if (nivelAtual >= novaArma.getMinNivel()) {
             if (this.arma == null || this.arma.getDano() < novaArma.getDano()) {
-            this.arma = novaArma;
-            System.out.printf("🔄 %s equipou %s!\n", this.nome, novaArma.getNome());
+                this.arma = novaArma;
+                System.out.printf("🔄 %s equipou %s!\n", this.nome, novaArma.getNome());
+                novaArma.exibirDescricao();
             }
         } else {
             System.out.printf("❌ %s não tem nível suficiente para usar %s!\n",

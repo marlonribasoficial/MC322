@@ -26,7 +26,7 @@ public class Alien4D extends Monstro {
     public int getPontosDeVidaMaximo() { return pontosDeVidaMaximo; }
 
     // Setter
-    public void setPontosDeVidaMax(int novaVidaMax) {
+    public void setPontosDeVidaMaximo(int novaVidaMax) {
         this.pontosDeVidaMaximo = novaVidaMax;
     }
 
@@ -37,11 +37,11 @@ public class Alien4D extends Monstro {
         // Ataque com arma, se tiver
         danoTotal = arma.atacarComArma(this, alvo);
 
-        // se não houve ataque com arma
+        // Se não houve ataque com arma
         if (danoTotal == this.forca) {
             System.out.printf("🌀 %s atravessa dimensões e ataca %s causando %d de dano!\n\n", 
                                 this.nome, alvo.getNome(), danoTotal);
-            Main.tempoDeTexto();
+            Utilidades.tempoDeTexto();
         }
 
         alvo.receberDano(danoTotal);
@@ -53,11 +53,11 @@ public class Alien4D extends Monstro {
 
     @Override
     public void usarHabilidadeEspecial(Personagem alvo) {
-        if (Math.random() < 0.25) { // 25% de chance
+        if (Math.random() < 0.30) { // 30% de chance
             System.out.printf("🌀 %s aprisiona %s no vácuo dimensional!\n", this.nome, alvo.getNome());
-            Main.tempoDeTexto();
+            Utilidades.tempoDeTexto();
             System.out.printf("[%s perde o próximo turno]\n\n", alvo.getNome());
-            Main.tempoDeTexto();
+            Utilidades.tempoDeTexto();
             alvo.setAprisionado(true);
         }
     }

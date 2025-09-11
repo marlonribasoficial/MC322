@@ -21,8 +21,8 @@ public class ConstrutorDeCenario {
 
             List<Arma> armasSlime = new ArrayList<>();
             armasSlime.add(new ArmaGosmaX("Arma GosmaX", 5, 1));
-            armasSlime.add(new ArmaEstelar("Arma Estelar", 10 + i, 1));
-            Arma gosmaX = new ArmaGosmaX("GosmaX", 12 + i, 0);
+            armasSlime.add(new ArmaEstelar("Arma Estelar", 12 + i, 1));
+            Arma gosmaX = new ArmaGosmaX("GosmaX", 8 + i, 0);
 
             monstros.add(new AlienSlime(
                     "Slime Mutante Lvl" + i,
@@ -30,15 +30,15 @@ public class ConstrutorDeCenario {
                     10 + (i * 3),        // Força escala
                     20 + (i * 5),        // XP concedida
                     40 + (i * 10),       // Vida máxima
-                    gosmaX,                // sem arma inicial
+                    gosmaX,              // Arma inicial 
                     armasSlime    // lista de armas que pode largar
             ));
 
 
             List<Arma> armasParadoxo = new ArrayList<>();
             armasParadoxo.add(new ArmaVacuosa("Arma Vacuosa", 20 + i * 2, 2));
-            armasParadoxo.add(new ArmaIlusao("Arma Ilusão", 14 + i, 2));
-            Arma ilusao = new ArmaIlusao("Arma da Ilusão", 18 + i, 3);
+            armasParadoxo.add(new ArmaIlusao("Arma Ilusão", 16 + i, 2));
+            Arma ilusao = new ArmaIlusao("Arma Ilusão", 13 + i, 0);
 
             monstros.add(new AlienParadoxo(
                     "Alien Paradoxo Lvl" + i,
@@ -56,8 +56,8 @@ public class ConstrutorDeCenario {
 
                 List<Arma> armas4D = new ArrayList<>();
                 armas4D.add(new ArmaLuzNegra("Arma Luz Negra", 25 + i * 3, 3));
-                armas4D.add(new ArmaEstelar("Arma Estelar", 17 + i, 2));
-                Arma geometrica = new ArmaGeometrica("Arma Geométrica", 15 + i, 0);
+                armas4D.add(new ArmaGeometrica("Arma Geométrica", 17 + i, 2));
+                Arma geometrica = new ArmaGeometrica("Arma Geométrica", 12 + i, 0);
 
 
                 monstros.add(new Alien4D(

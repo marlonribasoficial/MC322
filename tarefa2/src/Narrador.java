@@ -74,6 +74,6 @@ public class Narrador {
 
     private static void printComDelay(String texto) {
         System.out.println(texto);
-        Main.tempoDeTexto();
+        Utilidades.tempoDeTexto();
     }
 }

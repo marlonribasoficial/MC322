@@ -6,8 +6,11 @@ public class ArmaEstelar extends Arma {
 
     @Override
     public void exibirDescricao() {
+        String linha = "=====================================================================";
         super.exibirDescricao();
-        System.out.println("| 📝 Descrição: Espada com fragmentos de estrelas cadentes.");
+        System.out.println("| 📝 Descrição: Espada com fragmentos de estrelas cadentes");
+        System.out.println(linha + "\n");
+        Utilidades.tempoDeTexto();
     }
 
     @Override
@@ -19,7 +22,7 @@ public class ArmaEstelar extends Arma {
             danoTotal = atacante.forca + this.getDano();
             System.out.printf("🔫 %s dispara um raio devastador de %s em %s, causando %d de dano!\n\n",
                                 atacante.getNome(), this.getNome(), alvo.getNome(), danoTotal);
-            Main.tempoDeTexto();
+            Utilidades.tempoDeTexto();
             return danoTotal;
         } 
         

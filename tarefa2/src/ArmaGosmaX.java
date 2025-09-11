@@ -6,11 +6,15 @@ public class ArmaGosmaX extends Arma {
 
     @Override
     public void exibirDescricao() {
+        String linha = "=====================================================================";
         super.exibirDescricao();
-        System.out.println("| 📝 Descrição: Esfera de gosma alienígena pegajosa e corrosiva.");
+        System.out.println("| 📝 Descrição: Esfera de gosma alienígena pegajosa e corrosiva");
+        System.out.println(linha + "\n");
+        Utilidades.tempoDeTexto();
     }
 
     @Override
+    // Calcula o dano do ataque (com arma ou sem)
     public int atacarComArma(Personagem atacante, Personagem alvo) {
         int danoTotal;
 
@@ -18,7 +22,7 @@ public class ArmaGosmaX extends Arma {
             danoTotal = atacante.forca + this.getDano();
             System.out.printf("🧪 %s lança uma gosma tóxica com %s em %s, causando %d de dano!\n\n",
                                 atacante.getNome(), this.getNome(), alvo.getNome(), danoTotal);       
-            Main.tempoDeTexto();
+            Utilidades.tempoDeTexto();
             return danoTotal;
         }
         

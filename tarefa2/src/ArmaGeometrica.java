@@ -6,8 +6,11 @@ public class ArmaGeometrica extends Arma {
 
     @Override
     public void exibirDescricao() {
+        String linha = "=================================================================================";
         super.exibirDescricao();
-        System.out.println("| 📝 Descrição: Instrumento que gera padrões geométricos complexos e afiados.");
+        System.out.println("| 📝 Descrição: Instrumento que gera padrões geométricos complexos e afiados");
+        System.out.println(linha + "\n");
+        Utilidades.tempoDeTexto();
     }
 
     @Override
@@ -19,7 +22,7 @@ public class ArmaGeometrica extends Arma {
             danoTotal = atacante.forca + this.getDano();
             System.out.printf("📐 %s invoca formas geométricas afiadas e perfura %s com %s, causando %d de dano!\n\n", 
                                 atacante.getNome(), alvo.getNome(), this.getNome(), danoTotal);         
-            Main.tempoDeTexto();
+            Utilidades.tempoDeTexto();
             return danoTotal;
         }
         

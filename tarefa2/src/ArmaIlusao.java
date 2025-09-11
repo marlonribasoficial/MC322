@@ -6,8 +6,11 @@ public class ArmaIlusao extends Arma {
 
     @Override
     public void exibirDescricao() {
+        String linha = "=====================================================================";
         super.exibirDescricao();
-        System.out.println("| 📝 Descrição: Artefato que cria ilusões e confunde o inimigo.");
+        System.out.println("| 📝 Descrição: Artefato que cria ilusões e confunde o inimigo");
+        System.out.println(linha + "\n");
+        Utilidades.tempoDeTexto();
     }
 
     @Override
@@ -19,7 +22,7 @@ public class ArmaIlusao extends Arma {
             danoTotal = atacante.forca + this.getDano();
             System.out.printf("🌌 %s cria uma ilusão devastadora com %s contra %s, causando %d de dano!\n\n",
                                 atacante.getNome(), this.getNome(), alvo.getNome(), danoTotal);
-            Main.tempoDeTexto();
+            Utilidades.tempoDeTexto();
             return danoTotal;
         }
         

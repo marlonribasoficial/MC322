@@ -6,8 +6,11 @@ public class ArmaVacuosa extends Arma {
 
     @Override
     public void exibirDescricao() {
+        String linha = "=====================================================================";
         super.exibirDescricao();
-        System.out.println("| 📝 Descrição: Dispositivo que manipula o vácuo, distorcendo a gravidade dos inimigos.");
+        System.out.println("| 📝 Descrição: Dispositivo que manipula o vácuo, distorcendo a gravidade dos inimigos");
+        System.out.println(linha + "\n");
+        Utilidades.tempoDeTexto();
     }
 
 
@@ -20,7 +23,7 @@ public class ArmaVacuosa extends Arma {
             danoTotal = atacante.forca + this.getDano();
             System.out.printf("🌌 %s distorce o espaço com %s, sugando %s e causando %d de dano!\n\n",
                                 atacante.getNome(), this.getNome(), alvo.getNome(), danoTotal);
-            Main.tempoDeTexto();
+            Utilidades.tempoDeTexto();
             return danoTotal;
         } 
 

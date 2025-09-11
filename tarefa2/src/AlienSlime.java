@@ -26,7 +26,7 @@ public class AlienSlime extends Monstro {
     public int getPontosDeVidaMaximo() { return pontosDeVidaMaximo; }
 
     // Setter
-    public void setPontosDeVidaMax(int novaVidaMax) {
+    public void setPontosDeVidaMaximo(int novaVidaMax) {
         this.pontosDeVidaMaximo = novaVidaMax;
     }
 
@@ -34,12 +34,13 @@ public class AlienSlime extends Monstro {
     public void atacar(Personagem alvo) {
         int danoTotal;
 
+        // Ataque com arma
         danoTotal = arma.atacarComArma(this, alvo);
         
-        // se não houve ataque com arma
+        // Se não houve ataque com arma
         if (danoTotal == this.forca) {
             System.out.printf("🟢 %s arremessa uma gosma radioativa contra %s!\n\n", this.nome, alvo.getNome());
-            Main.tempoDeTexto();
+            Utilidades.tempoDeTexto();
         }
 
         alvo.receberDano(danoTotal);
@@ -48,7 +49,7 @@ public class AlienSlime extends Monstro {
         if (Math.random() < 0.5) {
             int danoContaminacao = forca / 2;
             System.out.printf("☣️ %s foi contaminado! Perderá %d de vida no próximo turno.\n\n", alvo.getNome(), danoContaminacao);
-            Main.tempoDeTexto();
+            Utilidades.tempoDeTexto();
             alvo.setContaminado(true);
         }
     }
@@ -57,7 +58,7 @@ public class AlienSlime extends Monstro {
     public void usarHabilidadeEspecial(Personagem alvo) {
         if (Math.random() < 0.4) { // 40% de chance de regenerar
             System.out.printf("💀 %s se fragmenta em duas massas e recupera 25%% da sua vida!\n\n", this.nome);
-            Main.tempoDeTexto();
+            Utilidades.tempoDeTexto();
             pontosDeVida += pontosDeVida / 4;
             if (pontosDeVida > pontosDeVidaMaximo) pontosDeVida = pontosDeVidaMaximo;
         }

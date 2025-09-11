@@ -6,8 +6,11 @@ public class ArmaLuzNegra extends Arma {
 
     @Override
     public void exibirDescricao() {
+        String linha = "===============================================================================";
         super.exibirDescricao();
-        System.out.println("| 📝 Descrição: Lâmina que emite luz escura e drena energia do inimigo.");
+        System.out.println("| 📝 Descrição: Lâmina que emite luz escura e drena energia do inimigo");
+        System.out.println(linha + "\n");
+        Utilidades.tempoDeTexto();
     }
 
     @Override
@@ -19,7 +22,7 @@ public class ArmaLuzNegra extends Arma {
             danoTotal = atacante.forca + this.getDano();
             System.out.printf("🌑 %s dispara um feixe sombrio de %s em %s, causando %d de dano!\n\n",
                                 atacante.getNome(), this.getNome(), alvo.getNome(), danoTotal);
-            Main.tempoDeTexto();
+            Utilidades.tempoDeTexto();
             return danoTotal;
         }
         
