@@ -1,4 +1,4 @@
-package Utilidades
+package Utilidades;
 
 public class Utilidades {
 

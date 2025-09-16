@@ -22,20 +22,34 @@ public abstract class Heroi extends Personagem {
     // Getters
     public int getNivel() { return nivelAtual; }
     public int getExp() { return exp; }
-    public int getExpProximoNivel() { return expProximoNivel; }
+    public int getExpProxNivel() { return expProximoNivel; }
     public double getSorte() { return sorte; }
+
+    // Setters
+    public void setNivel(int nivel) {
+        this.nivelAtual = nivel;
+    }
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
+    public void setExpProximoNivel(int expProxNivel) {
+        this.expProximoNivel = expProxNivel;
+    }
+    public void setSorte(double sorte) {
+        this.sorte = sorte;
+    }
 
     // Troca de arma respeitando nível mínimo
     public void equiparArma(Arma novaArma) {
         if (nivelAtual >= novaArma.getMinNivel()) {
-            if (this.arma == null || this.arma.getDano() < novaArma.getDano()) {
-                this.arma = novaArma;
-                System.out.printf("🔄 %s equipou %s!\n", this.nome, novaArma.getNome());
+            if (getArma() == null || getArma().getDano() < novaArma.getDano()) {
+                setArma(novaArma);
+                System.out.printf("🔄 %s equipou %s!\n", getNome(), novaArma.getNome());
                 novaArma.exibirDescricao();
             }
         } else {
             System.out.printf("❌ %s não tem nível suficiente para usar %s!\n",
-                               this.nome, novaArma.getNome());
+                               getNome(), novaArma.getNome());
         }
     }
 

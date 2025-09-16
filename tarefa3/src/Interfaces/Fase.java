@@ -1,5 +1,7 @@
 package Interfaces;
 
+import Heroi.Heroi;
+
 public interface Fase {
     void iniciar(Heroi heroi);
     boolean isConcluida();

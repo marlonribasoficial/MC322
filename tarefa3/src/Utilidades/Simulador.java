@@ -47,7 +47,7 @@ public class Simulador {
 
             // Chance de pegar item
             if (Math.random() < 0.2) astronauta.pegarItem(tubo);
-            if (!astronauta.inventario.isEmpty()) astronauta.usarTuboOxigenio();
+            if (!astronauta.getInventario().isEmpty()) astronauta.usarTuboOxigenio();
 
             turnoAstronauta = !turnoAstronauta; // alterna turno
         }

@@ -1,10 +1,9 @@
 package Monstros;
 
-import java.util.List;
-
 import Armas.Arma;
 import Personagem.Personagem;
 import Utilidades.Utilidades;
+import java.util.List;
 
 /* 
 Alien Paradoxo:
@@ -35,36 +34,46 @@ public class AlienParadoxo extends Monstro {
     public void setPontosDeVidaMaximo(int novaVidaMax) {
         this.pontosDeVidaMaximo = novaVidaMax;
     }
+    
+    @Override
+    public void receberCura(int cura) {
+        int vida = this.getVida() + cura;
+        if (vida > pontosDeVidaMaximo) {
+            setVida(pontosDeVidaMaximo);
+        } else {
+            setVida(vida);
+        }
+    }
 
     @Override
     public void atacar(Personagem alvo) {
         int danoTotal;
 
         // Ataque com arma, se tiver
-        danoTotal = arma.atacarComArma(this, alvo);
+        danoTotal = getArma().atacarComArma(this, alvo);
         
         // Se houve ataque com arma
-        if (danoTotal != this.forca) {
+        if (danoTotal != getForca()) {
             alvo.receberDano(danoTotal);
         }
 
         if (Math.random() < 0.5) { // 50% de chance de atacar
-            danoTotal = this.forca;
-            System.out.printf("⚡ %s desfere um ataque caótico contra %s causando %d de dano!\n\n", this.nome, alvo.getNome(), danoTotal);
+            danoTotal = getForca();
+            System.out.printf("⚡ %s desfere um ataque caótico contra %s causando %d de dano!\n\n", getNome(), alvo.getNome(), danoTotal);
             Utilidades.tempoDeTexto();
             alvo.receberDano(danoTotal);
         } else { // 50% de chance de curar
             int cura = 15;
-            System.out.printf("✨ %s entra em paradoxo e cura %s em %d pontos de vida!\n\n", this.nome, alvo.getNome(), cura);
+            System.out.printf("✨ %s entra em paradoxo e cura %s em %d pontos de vida!\n\n", getNome(), alvo.getNome(), cura);
             Utilidades.tempoDeTexto();
-            alvo.curar(cura);
+            alvo.receberCura(cura);
         }
     }
 
     @Override
     public void usarHabilidadeEspecial(Personagem alvo) {
         if (Math.random() < 0.30) { // 30% de chance
-            System.out.printf("🪞 %s ativa o Espelho Temporal!\n", this.nome);
+            System.out.printf("🪞 %s ativa o Espelho Temporal!\n", getNome());
             Utilidades.tempoDeTexto();
             System.out.printf("[O próximo ataque de %s será refletido contra ela mesma]\n\n", alvo.getNome());
             Utilidades.tempoDeTexto();

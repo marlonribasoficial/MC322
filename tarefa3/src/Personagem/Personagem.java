@@ -3,7 +3,7 @@ package Personagem;
 import Armas.Arma;
 
 public abstract class Personagem {
-    private String nome;
+    private final String nome;
     private int pontosDeVida;
     private int forca;
     private Arma arma;
@@ -33,6 +33,12 @@ public abstract class Personagem {
     // Setters
     public void setVida(int vida) {
         this.pontosDeVida = vida;
+    }
+    public void setForca(int forca) {
+        this.forca = forca;
+    }
+    public void setArma(Arma arma) {
+        this.arma = arma;
     }
     public void setContaminado(boolean contaminado) {
         this.contaminado = contaminado;

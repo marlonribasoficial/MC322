@@ -1,10 +1,9 @@
 package Monstros;
 
-import java.util.List;
-
 import Armas.Arma;
 import Personagem.Personagem;
 import Utilidades.Utilidades;
+import java.util.List;
 
 /* 
 Alien 4D:
@@ -37,22 +36,32 @@ public class Alien4D extends Monstro {
     }
 
     @Override
+    public void receberCura(int cura) {
+        int vida = this.getVida() + cura;
+        if (vida > pontosDeVidaMaximo) {
+            setVida(pontosDeVidaMaximo);
+        } else {
+            setVida(vida);
+        }
+    }
+
+    @Override
     public void atacar(Personagem alvo) {
         int danoTotal;
 
         // Ataque com arma, se tiver
-        danoTotal = arma.atacarComArma(this, alvo);
+        danoTotal = getArma().atacarComArma(this, alvo);
 
         // Se não houve ataque com arma
-        if (danoTotal == this.forca) {
+        if (danoTotal == getForca()) {
             System.out.printf("🌀 %s atravessa dimensões e ataca %s causando %d de dano!\n\n", 
-                                this.nome, alvo.getNome(), danoTotal);
+                                getNome(), alvo.getNome(), danoTotal);
             Utilidades.tempoDeTexto();
         }
 
         alvo.receberDano(danoTotal);
 
-        if (pontosDeVida < 40) {
+        if (getVida() < 40) {
             usarHabilidadeEspecial(alvo);
         }
     }
@@ -60,7 +69,7 @@ public class Alien4D extends Monstro {
     @Override
     public void usarHabilidadeEspecial(Personagem alvo) {
         if (Math.random() < 0.30) { // 30% de chance
-            System.out.printf("🌀 %s aprisiona %s no vácuo dimensional!\n", this.nome, alvo.getNome());
+            System.out.printf("🌀 %s aprisiona %s no vácuo dimensional!\n", getNome(), alvo.getNome());
             Utilidades.tempoDeTexto();
             System.out.printf("[%s perde o próximo turno]\n\n", alvo.getNome());
             Utilidades.tempoDeTexto();

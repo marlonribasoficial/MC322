@@ -1,13 +1,12 @@
 package Monstros;
 
-import java.util.List;
-
 import Armas.Arma;
 import Personagem.Personagem;
 import Utilidades.Utilidades;
+import java.util.List;
 
 public abstract class Monstro extends Personagem {
-    protected int xpConcedido;
+    protected final int xpConcedido;
     protected List<Arma> listaDeArmasParaLargar;
 
     public Monstro(String nome,
@@ -27,21 +26,13 @@ public abstract class Monstro extends Personagem {
     public abstract int getPontosDeVidaMaximo();
 
     @Override
-    public void curar(int quantidade) {
-        this.pontosDeVida += quantidade;
-        if (this.pontosDeVida > getPontosDeVidaMaximo()) {
-            this.pontosDeVida = getPontosDeVidaMaximo();
-        }
-    }
-
-    @Override
     public void exibirStatus() {
         String linha = "========================================";
         System.out.println("\n" + linha);
-        System.out.printf("| 👾 Nome: %-32s\n", this.nome);
-        System.out.printf("| 💖 Pontos de Vida: %-11s %3d\n", Utilidades.gerarBarra(this.pontosDeVida, this.getPontosDeVidaMaximo(), 10), this.pontosDeVida);
-        System.out.printf("| ⚔️ Força: %-28d\n", this.forca);
-        System.out.printf("| ⭐ XP concedida: %-20d\n", this.xpConcedido);
+        System.out.printf("| 👾 Nome: %-32s\n", getNome());
+        System.out.printf("| 💖 Pontos de Vida: %-11s %3d\n", Utilidades.gerarBarra(getVida(), this.getPontosDeVidaMaximo(), 10), getVida());
+        System.out.printf("| ⚔️ Força: %-28d\n", getForca());
+        System.out.printf("| ⭐ XP concedida: %-20d\n", getXpConcedido());
         System.out.println(linha + "\n");
         Utilidades.tempoDeTexto();
     }

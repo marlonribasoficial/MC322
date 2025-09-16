@@ -1,10 +1,9 @@
 package Monstros;
 
-import java.util.List;
-
 import Armas.Arma;
 import Personagem.Personagem;
 import Utilidades.Utilidades;
+import java.util.List;
 
 /* 
 Alien Slime:
@@ -37,15 +36,25 @@ public class AlienSlime extends Monstro {
     }
 
     @Override
+    public void receberCura(int cura) {
+        int vida = this.getVida() + cura;
+        if (vida > pontosDeVidaMaximo) {
+            setVida(pontosDeVidaMaximo);
+        } else {
+            setVida(vida);
+        }
+    }
+
+    @Override
     public void atacar(Personagem alvo) {
         int danoTotal;
 
         // Ataque com arma
-        danoTotal = arma.atacarComArma(this, alvo);
+        danoTotal = getArma().atacarComArma(this, alvo);
         
         // Se não houve ataque com arma
-        if (danoTotal == this.forca) {
-            System.out.printf("🟢 %s arremessa uma gosma radioativa contra %s!\n\n", this.nome, alvo.getNome());
+        if (danoTotal == getForca()) {
+            System.out.printf("🟢 %s arremessa uma gosma radioativa contra %s!\n\n", getNome(), alvo.getNome());
             Utilidades.tempoDeTexto();
         }
 
@@ -53,7 +62,7 @@ public class AlienSlime extends Monstro {
 
         // Chance de contaminação
         if (Math.random() < 0.5) {
-            int danoContaminacao = forca / 2;
+            int danoContaminacao = getForca() / 2;
             System.out.printf("☣️ %s foi contaminado! Perderá %d de vida no próximo turno.\n\n", alvo.getNome(), danoContaminacao);
             Utilidades.tempoDeTexto();
             alvo.setContaminado(true);
@@ -63,10 +72,11 @@ public class AlienSlime extends Monstro {
     @Override
     public void usarHabilidadeEspecial(Personagem alvo) {
         if (Math.random() < 0.4) { // 40% de chance de regenerar
-            System.out.printf("💀 %s se fragmenta em duas massas e recupera 25%% da sua vida!\n\n", this.nome);
+            System.out.printf("💀 %s se fragmenta em duas massas e recupera 25%% da sua vida!\n\n", getNome());
             Utilidades.tempoDeTexto();
-            pontosDeVida += pontosDeVida / 4;
-            if (pontosDeVida > pontosDeVidaMaximo) pontosDeVida = pontosDeVidaMaximo;
+            int vida = getVida() / 4;
+            setVida(vida);
+            if (vida > pontosDeVidaMaximo) setVida(pontosDeVidaMaximo);
         }
     }
 }

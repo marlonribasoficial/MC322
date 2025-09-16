@@ -3,9 +3,9 @@ package Armas;
 import Personagem.Personagem;
 
 public abstract class Arma {
-    private String nome;
-    private int dano;
-    private int minNivel;
+    private final String nome;
+    private final int dano;
+    private final int minNivel;
 
     public Arma(String nome, int dano, int minNivel) {
         this.nome = nome;
