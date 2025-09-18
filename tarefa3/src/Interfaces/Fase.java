@@ -1,10 +1,10 @@
 package Interfaces;
 
 import Heroi.Heroi;
+import Utilidades.TipoCenario;
 
 public interface Fase {
     void iniciar(Heroi heroi);
     boolean isConcluida();
-    void getTipoDeCenario(); // Talvez mude o tipo
-
+    TipoCenario getTipoDeCenario();
 }

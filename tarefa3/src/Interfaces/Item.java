@@ -1,5 +1,5 @@
 package Interfaces;
 
-public interface Itens {
+public interface Item {
     String getNome();
 }

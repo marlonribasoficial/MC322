@@ -1,5 +1,7 @@
 package Interfaces;
 
+import java.util.List;
+
 public interface GeradorDeFases {
-    void gerar(int quantidadeDeFases);
+    List<Fase> gerar(int quantidadeDeFases);
 }

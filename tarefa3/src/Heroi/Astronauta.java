@@ -1,6 +1,10 @@
 package Heroi;
 
+import Acoes.AtaqueFisico;
+import Acoes.SoproCriogenico;
 import Armas.Arma;
+import Interfaces.AcaoDeCombate;
+import Interfaces.Combatente;
 import Personagem.Personagem;
 import Utilidades.Item;
 import Utilidades.Utilidades;
@@ -28,6 +32,16 @@ public class Astronauta extends Heroi {
         this.pontosDeVidaMaximo = pontosDeVidaMaximo;
         this.trajeEspacial = trajeEspacial;
         this.oxigenio = oxigenio;
+
+        // Inicializa lista de ações do herói
+        this.acoes = new ArrayList<>();
+        this.acoes.add(new AtaqueFisico());
+        this.acoes.add(new AtaqueFisico());
+        this.acoes.add(new AtaqueFisico());
+        this.acoes.add(new AtaqueFisico());
+        this.acoes.add((usuario, alvo) -> this.usarHabilidadeEspecial((Personagem) alvo));
+        this.acoes.add((usuario, alvo) -> this.usarHabilidadeEspecial((Personagem) alvo));
+        this.acoes.add(new SoproCriogenico());
     }
 
     // Getters
@@ -36,6 +50,21 @@ public class Astronauta extends Heroi {
     public int getOxigenio() { return oxigenio; }
     public ArrayList<Item> getInventario() { return inventario; }
     public int[] getXpPorNivel() { return EXP_POR_NIVEL; }
+
+    // Setters
+    public void setTrajeEspacial(int valor) {
+        int novo_valor = this.trajeEspacial + valor;
+        if (novo_valor > 100) { this.trajeEspacial = 100; }
+        else if (novo_valor < 0) { this.trajeEspacial = 0; }
+        else { this.trajeEspacial = novo_valor; }
+    }
+
+    public void setOxigenio(int valor) {
+        int novo_valor = this.oxigenio + valor;
+        if (novo_valor > 100) { this.oxigenio = 100; }
+        else if (novo_valor < 0) { this.oxigenio = 0; }
+        else { this.oxigenio = novo_valor; }
+    }
 
     @Override
     public void receberCura(int cura) {
@@ -73,7 +102,7 @@ public class Astronauta extends Heroi {
         } else if (getExp() >= 280 && getNivel() < 4) {
             ganharAtributos(4, 60, 25, 25);
         } else if (getExp() >= 360 && getNivel() < 5) {
-            ganharAtributos(5,70, 30, 30);
+            ganharAtributos(5, 70, 30, 30);
         }
     }
 
@@ -96,48 +125,45 @@ public class Astronauta extends Heroi {
         Utilidades.tempoDeTexto();
     }
 
-    // Ataques e Habilidades
-    @Override
-    public void atacar(Personagem alvo) {
-        int danoTotal;
-
-        // Ataque com arma
-        if (getArma() != null) {
-            danoTotal = getArma().atacarComArma(this, alvo);
-
-            // Se não houve ataque com arma
-            if (danoTotal == getForca()) {
-                System.out.printf("🚀 %s ataca %s com força %d!\n\n", getNome(), alvo.getNome(), danoTotal);
-                Utilidades.tempoDeTexto();
-            }
-
-        } else {
-            danoTotal = getForca();
-            System.out.printf("🚀 %s ataca %s com força %d!\n\n", getNome(), alvo.getNome(), danoTotal);
+    // Outros
+    public void pegarItem(Item item) {
+        if (Math.random() < 0.4) {
+            inventario.add(item);
+            System.out.printf("🎁 %s pegou um %s!\n\n", getNome(), item.getNome());
             Utilidades.tempoDeTexto();
-        }
-
-        alvo.receberDano(danoTotal);
-
-        // Chance de usar habilidade dependendo da sorte
-        if (Math.random() < getSorte()) {
-            usarHabilidadeEspecial(alvo);
-        }
-        // Chance fixa de ativar sopro criogênico
-        else if (Math.random() < 0.2) {
-            soproCriogenico(alvo);
         }
     }
 
-    public void soproCriogenico(Personagem alvo) {
-        if (this.oxigenio >= 40) {
-            System.out.printf("❄️ O QUE FOI ISSO? %s usa o sopro criogênico em %s causando %d de dano!\n\n",
-                    getNome(), alvo.getNome(), getForca() * 3);
-            Utilidades.tempoDeTexto();
-            alvo.receberDano(getForca() * 3);
-            this.oxigenio -= 40;
-            if (this.oxigenio < 0) this.oxigenio = 0;
+    public void usarTuboOxigenio() {
+        for (int i = 0; i < inventario.size(); i++) {
+            if (inventario.get(i).getNome().equals("Tubo de Oxigênio")) {
+                oxigenio += 40;
+                if (oxigenio > 100) oxigenio = 100;
+
+                inventario.remove(i);
+                System.out.printf("💨 %s usou um Tubo de Oxigênio! [Oxigênio agora em %d%%]\n\n",
+                        getNome(), oxigenio);
+                Utilidades.tempoDeTexto();
+                return;
+            }
         }
+        System.out.printf("⚠️ %s não tem nenhum Tubo de Oxigênio para usar!\n\n", getNome());
+        Utilidades.tempoDeTexto();
+    }
+
+    @Override
+    public void exibirStatus() {
+        String linha = "========================================";
+        System.out.println("\n" + linha);
+        System.out.printf("| 🚀 Nome: %-32s\n", getNome());
+        System.out.printf("| 💖 Vida: %-11s %3d\n", Utilidades.gerarBarra(getVida(), pontosDeVidaMaximo, 10), getVida());
+        System.out.printf("| ⚔️ Força: %-28d\n", getForca());
+        System.out.printf("| 🆙 Nível: %-29d\n", getNivel());
+        System.out.printf("| ⭐ Experiência: %-24d\n", getExp());
+        System.out.printf("| 🫁 Oxigênio: %-18s %3d%%\n", Utilidades.gerarBarra(this.oxigenio, 100, 10), this.oxigenio);
+        System.out.printf("| 🛰️ Traje Espacial: %-13s %3d%%\n", Utilidades.gerarBarra(this.trajeEspacial, 100, 10), this.trajeEspacial);
+        System.out.println(linha + "\n");
+        Utilidades.tempoDeTexto();
     }
 
     @Override
@@ -158,44 +184,9 @@ public class Astronauta extends Heroi {
         }
     }
 
-    // Inventário
-    public void pegarItem(Item item) {
-        if (Math.random() < 0.4) {
-            inventario.add(item);
-            System.out.printf("🎁 %s pegou um %s!\n\n", getNome(), item.getNome());
-            Utilidades.tempoDeTexto();
-        }
-    }
-
-    public void usarTuboOxigenio() {
-        for (int i = 0; i < inventario.size(); i++) {
-            if (inventario.get(i).getNome().equals("Tubo de Oxigênio")) {
-                oxigenio += 40;
-                if (oxigenio > 100) oxigenio = 100;
-
-                inventario.remove(i);
-                System.out.printf("💨 %s usou um Tubo de Oxigênio! [Oxigênio agora em %d%%]\n\n", getNome(), oxigenio);
-                Utilidades.tempoDeTexto();
-                return;
-            }
-        }
-        System.out.printf("⚠️ %s não tem nenhum Tubo de Oxigênio para usar!\n\n", getNome());
-        Utilidades.tempoDeTexto();
-    }
-
-    // Status
     @Override
-    public void exibirStatus() {
-        String linha = "========================================";
-        System.out.println("\n" + linha);
-        System.out.printf("| 🚀 Nome: %-32s\n", getNome());
-        System.out.printf("| 💖 Pontos de Vida: %-11s %3d\n", Utilidades.gerarBarra(getVida(), pontosDeVidaMaximo, 10), getVida());
-        System.out.printf("| ⚔️ Força: %-28d\n", getForca());
-        System.out.printf("| 🆙 Nível: %-29d\n", getNivel());
-        System.out.printf("| ⭐ Experiência: %-24d\n", getExp());
-        System.out.printf("| 🫁 Oxigênio: %-18s %3d%%\n", Utilidades.gerarBarra(this.oxigenio, 100, 10), this.oxigenio);
-        System.out.printf("| 🛰️ Traje Espacial: %-13s %3d%%\n", Utilidades.gerarBarra(this.trajeEspacial, 100, 10), this.trajeEspacial);
-        System.out.println(linha + "\n");
-        Utilidades.tempoDeTexto();
+    public AcaoDeCombate escolherAcao(Combatente alvo) {
+        if (acoes == null || acoes.isEmpty()) return null;
+        return acoes.get((int)(Math.random() * acoes.size()));
     }
 }

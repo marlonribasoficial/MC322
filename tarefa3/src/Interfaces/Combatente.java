@@ -5,5 +5,5 @@ public interface Combatente {
     boolean estaVivo();
     void receberDano(int dano);
     void receberCura(int cura);
-    void escolherAcao(Combatente alvo);
+    AcaoDeCombate escolherAcao(Combatente alvo);
 }

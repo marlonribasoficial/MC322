@@ -1,5 +1,6 @@
 package Interfaces;
 
 public interface Evento {
-    // a definir
+    boolean verificarGatilho();
+    void executar();
 }
