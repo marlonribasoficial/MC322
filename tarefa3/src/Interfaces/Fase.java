@@ -1,7 +1,7 @@
 package Interfaces;
 
-import Heroi.Heroi;
-import Utilidades.TipoCenario;
+import Entidades.Heroi.Heroi;
+import Motor.TipoCenario;
 
 public interface Fase {
     void iniciar(Heroi heroi);
