@@ -1,7 +1,6 @@
 package Itens;
 
 import Interfaces.Item;
-import Util.Utilidades;
 
 public abstract class Arma implements Item {
     private String nome;

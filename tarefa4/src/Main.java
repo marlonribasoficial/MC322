@@ -3,23 +3,49 @@ import Entidades.Monstros.Monstro;
 import Interfaces.*;
 import Itens.Arma;
 import Motor.*;
+import Util.InputManager;
+import Util.Menu;
 import java.util.List;
 import java.util.Random;
+
 
 public class Main {
 
     public static void main(String[] args) {
-        // Preparação
-        Astronauta astronauta = criarHeroina();
-        GeradorDeFases gerador = new ConstrutorDeCenarioFixo();
-        List<Fase> fases = gerador.gerar(3);
-        
-        // Ínicio
-        Narrador.introducao(astronauta);
-        rodarJogo(astronauta, fases);
 
-        // Conclusão
-        exibirConclusao(astronauta);
+        int opcaoMenu = 0;
+        while (opcaoMenu != 4) {
+            opcaoMenu = Menu.mostrarMenuPrincipal();
+
+            switch (opcaoMenu) {
+                case 1:
+
+                    // Preparação
+                    int dificuldade = Menu.escolherDificuldade(); // usar no rodarJogo
+                    Astronauta astronauta = criarHeroina();
+                    GeradorDeFases gerador = new ConstrutorDeCenarioFixo();
+                    List<Fase> fases = gerador.gerar(3);
+                    
+                    // Início
+                    Narrador.introducao(astronauta);
+                    rodarJogo(astronauta, fases);
+
+                    // Conclusão
+                    exibirConclusao(astronauta);
+                    break;
+                    
+                case 2:
+                    break;
+
+                case 3:
+                    break;
+
+                case 4:
+                    System.out.println("Saindo do jogo\ne voltando ao planeta Terra...");
+                    InputManager.fecharScanner(); // fecha o scanner antes de sair
+            }
+
+        }
     }
 
     // Instancia a astronauta
@@ -120,6 +146,30 @@ public class Main {
                 } else {
                     astronauta.adicionarItemAoInventario(loot);
                 }
+            }
+        }
+
+        boolean continuar = true;
+        while (continuar) {
+            int escolha = Menu.mostrarMenuPosTurno();
+            switch (escolha) {
+                case 1:
+                    // interagir com o loot
+                    break;
+                case 2:
+                    astronauta.exibirStatus();
+                    break;
+                case 3:
+                    boolean confirmar = InputManager.lerSimNao("Tem certeza que deseja desistir da missão?");
+                    if (confirmar) {
+                        System.out.println("Você desistiu da missão...");
+                        astronauta.setVida(0); // game over
+                        continuar = false; // sai do menu de ações
+                    }
+                    break;
+            }
+            if (continuar) {
+                continuar = InputManager.lerSimNao("Deseja voltar ao menu de ações?");
             }
         }
     }
