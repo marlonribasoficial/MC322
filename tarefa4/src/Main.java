@@ -163,7 +163,7 @@ public class Main {
                     boolean confirmar = InputManager.lerSimNao("Tem certeza que deseja desistir da missão?");
                     if (confirmar) {
                         System.out.println("Você desistiu da missão...");
-                        astronauta.setVida(0); // game over
+                        astronauta.setPontosDeVida(0); // game over
                         continuar = false; // sai do menu de ações
                     }
                     break;
