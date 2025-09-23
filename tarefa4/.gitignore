@@ -1,0 +1,15 @@
+# Pasta de compilação
+/bin/
+
+# Arquivos compilados
+*.class
+
+# Configurações do VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db
