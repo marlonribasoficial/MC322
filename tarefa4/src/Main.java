@@ -35,13 +35,15 @@ public class Main {
                     break;
                     
                 case 2:
+                    Menu.mostrarClasseHeroi();
                     break;
 
                 case 3:
+                    Menu.mostrarClassesMonstros();
                     break;
 
                 case 4:
-                    System.out.println("Saindo do jogo\ne voltando ao planeta Terra...");
+                    Menu.mostrarSaida();
                     InputManager.fecharScanner(); // fecha o scanner antes de sair
             }
 
@@ -82,17 +84,19 @@ public class Main {
 
         FaseDeCombate faseDeCombate = (FaseDeCombate) fase;
         for (Monstro monstro : faseDeCombate.getMonstros()) {
-            boolean heroiSobreviveu = iniciarCombate(astronauta, monstro);
+            if (!astronauta.isDesistente()) {
+                boolean heroiSobreviveu = iniciarCombate(astronauta, monstro);
 
-            if (heroiSobreviveu) {
-                processarPosCombate(astronauta, monstro);
-            } else {
-                return; // Sai da fase se a astronauta morrer
+                if (heroiSobreviveu) {
+                    processarPosCombate(astronauta, monstro);
+                } else {
+                    return; // Sai da fase se a astronauta morrer
+                }
             }
         }
         
         // Exibe o status no final
-        if (fase.isConcluida()) {
+        if (fase.isConcluida() && !astronauta.isDesistente()) {
             System.out.println("Fase concluída! Status da heroína:");
             astronauta.exibirStatus();
         }
@@ -137,46 +141,90 @@ public class Main {
         Narrador.narrarVitoria(astronauta, monstro);
         astronauta.ganharExperiencia(monstro.getXpConcedido());
 
+        Item loot = null;
         if (monstro instanceof Lootavel) {
             Random random = new Random();
             if (random.nextDouble() < astronauta.getSorte() + 0.2) {
-                Item loot = ((Lootavel) monstro).droparLoot();
-                if (loot instanceof Arma) {
-                    astronauta.equiparArma((Arma) loot);
-                } else {
-                    astronauta.adicionarItemAoInventario(loot);
-                }
+                loot = ((Lootavel) monstro).droparLoot();
+                System.out.println("💎 Você encontrou um loot: " + loot.getNome() + "💎");
+                System.out.println();
             }
         }
 
-        boolean continuar = true;
-        while (continuar) {
+        boolean menuPosCombate = true;
+        while (menuPosCombate) {
+            boolean continuar = false;
             int escolha = Menu.mostrarMenuPosTurno();
             switch (escolha) {
+
+                // Continuar (avisa caso haja loot não visualizado)
                 case 1:
-                    // interagir com o loot
+                    if (loot != null) {
+                        continuar = InputManager.lerSimNao("⚠️ Ei! Você ainda tem um loot não analisado. Deseja continuar mesmo assim?");
+                        if (continuar) {
+                            menuPosCombate = false; 
+                        } else {
+                            System.out.println("🔍 Volte e analise seu loot antes de continuar!\n");
+                            continuar = true; // vai direto pro menu pós combate
+                        }
+                    }
+                    else {
+                        menuPosCombate = false;
+                    }
                     break;
+
+                // Interagir com o loot
                 case 2:
+                    if (loot != null) {
+                        if (loot instanceof Arma) {
+                            boolean equipar = InputManager.lerSimNao("Você encontrou a arma " + loot.getNome() + ". Que tal abrir o painel de análise de armas antes de decidir equipá-la?");
+                            if (equipar) {
+                                astronauta.equiparArma((Arma) loot);
+                                loot = null; // já usou
+                            }
+                        } else {
+                            boolean guardar = InputManager.lerSimNao(
+                                "Você encontrou o item " + loot.getNome() + ". Deseja guardar no inventário?");
+                            if (guardar) {
+                                astronauta.adicionarItemAoInventario(loot);
+                                loot = null; // já guardou
+                            }
+                        }
+                    } else {
+                        System.out.println("Você não possui loot para interagir no momento.\n");
+                    }
+                    break;
+
+                // Ver informações do personagem
+                case 3:
                     astronauta.exibirStatus();
                     break;
-                case 3:
+
+                // Desistir do jogo
+                case 4:
                     boolean confirmar = InputManager.lerSimNao("Tem certeza que deseja desistir da missão?");
                     if (confirmar) {
-                        System.out.println("Você desistiu da missão...");
-                        astronauta.setPontosDeVida(0); // game over
-                        continuar = false; // sai do menu de ações
+                        astronauta.setDesistiu(true); 
+                        astronauta.setPontosDeVida(0);
+                        menuPosCombate = false; // sai do menu de ações
                     }
                     break;
             }
-            if (continuar) {
-                continuar = InputManager.lerSimNao("Deseja voltar ao menu de ações?");
+
+            if (menuPosCombate) {
+                if (!continuar && loot == null) { // não pergunta somente quando o jogador precisa visualizar algum loot
+                    menuPosCombate = InputManager.lerSimNao("Deseja voltar ao menu de ações?");
+                }
             }
+
         }
     }
 
     // Exibe a conclusão
     private static void exibirConclusao(Astronauta astronauta) {
-        if (astronauta.estaVivo()) {
+        if (astronauta.isDesistente()) {
+            Narrador.narrarDesistencia(astronauta);
+        } else if (astronauta.estaVivo()) {
             Narrador.narrarVitoriaFinal(astronauta);
         } else {
             Narrador.narrarDerrota(astronauta);

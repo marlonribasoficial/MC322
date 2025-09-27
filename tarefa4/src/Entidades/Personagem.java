@@ -13,6 +13,7 @@ public abstract class Personagem implements Combatente {
     private boolean contaminado = false;
     private boolean refletido = false;
     private boolean aprisionado = false;
+    private boolean desistiu = false;
 
     public Personagem(String nome, int pontosDeVida, int forca, Arma arma) {
         this.nome = nome;
@@ -46,6 +47,7 @@ public abstract class Personagem implements Combatente {
     public boolean isContaminado() { return contaminado; }
     public boolean isRefletido() { return refletido; }
     public boolean isAprisionado() { return aprisionado; }
+    public boolean isDesistente() { return desistiu; }
 
     // Setters
     public void setArma(Arma arma) { this.arma = arma; }
@@ -53,6 +55,7 @@ public abstract class Personagem implements Combatente {
     public void setContaminado(boolean contaminado) { this.contaminado = contaminado; }
     public void setRefletido(boolean refletido) { this.refletido = refletido; }
     public void setAprisionado(boolean aprisionado) { this.aprisionado = aprisionado; }
+    public void setDesistiu(boolean desistiu) { this.desistiu = desistiu; }
     
     // Métodos Abstratos
     public abstract void exibirStatus();

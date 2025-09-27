@@ -13,7 +13,7 @@ public class ArmaEstelar extends Arma {
         String linha = "=====================================================================";
         super.exibirDescricao();
         System.out.println("| 📝 Descrição: Espada com fragmentos de estrelas cadentes");
-        System.out.println(linha + "\n");
+        System.out.println(linha);
         Utilidades.tempoDeTexto();
     }
 }  

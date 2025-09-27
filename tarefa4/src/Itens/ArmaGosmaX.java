@@ -13,7 +13,7 @@ public class ArmaGosmaX extends Arma {
         String linha = "=====================================================================";
         super.exibirDescricao();
         System.out.println("| 📝 Descrição: Esfera de gosma alienígena pegajosa e corrosiva");
-        System.out.println(linha + "\n");
+        System.out.println(linha);
         Utilidades.tempoDeTexto();
     }
 }

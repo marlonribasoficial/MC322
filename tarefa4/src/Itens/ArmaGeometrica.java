@@ -10,10 +10,10 @@ public class ArmaGeometrica extends Arma {
 
     @Override
     public void exibirDescricao() {
-        String linha = "=================================================================================";
+        String linha = "=====================================================================";
         super.exibirDescricao();
-        System.out.println("| 📝 Descrição: Instrumento que gera padrões geométricos complexos e afiados");
-        System.out.println(linha + "\n");
+        System.out.println("| 📝 Descrição: Instrumento que gera padrões geométricos \ncomplexos e afiados");
+        System.out.println(linha);
         Utilidades.tempoDeTexto();
     }
 }

@@ -40,7 +40,9 @@ public class Narrador {
 
     public static void narrarChegada(Monstro monstro) {
         System.out.println(" ");
+        System.out.println("----------------------------------------------------------------------");
         printComDelay("\n⚠️ Surge " + monstro.getNome() + ", vindo das profundezas do espaço!\n");
+        System.out.println("----------------------------------------------------------------------");
         monstro.exibirStatus();
     }
 
@@ -111,6 +113,14 @@ public class Narrador {
         System.out.println("A galáxia desconhecida agora está segura graças à coragem da nossa heroína.\n");
         System.out.println(" ");
         astronauta.exibirStatus();
+    }
+
+    public static void narrarDesistencia(Astronauta astronauta) {
+        System.out.println("----------------------------------------------------------------------------------");
+        System.out.println("\n🌌 " + astronauta.getNome() + " encerrou a missão.");
+        System.out.println("\nA tripulação retorna à Terra em segurança...");
+        System.out.println("Mas a galáxia misteriosa continua aguardando por um novo explorador...\n");
+        System.out.println("----------------------------------------------------------------------------------");
     }
 
     private static void printComDelay(String texto) {

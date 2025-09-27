@@ -21,7 +21,7 @@ public abstract class Arma implements Item {
 
     public void exibirDescricao() {
         String linha = "=====================================================================";
-        System.out.println("\n" + linha);
+        System.out.println(linha);
         System.out.printf("| 🗡️ Arma: %-32s\n", this.nome);
         System.out.printf("| ⚔️ Dano: %-32d\n", this.dano);
         System.out.printf("| 🔰 Nível mínimo: %-32d\n", this.minNivel);

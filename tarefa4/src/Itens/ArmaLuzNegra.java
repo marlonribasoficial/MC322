@@ -10,10 +10,10 @@ public class ArmaLuzNegra extends Arma {
 
     @Override
     public void exibirDescricao() {
-        String linha = "===============================================================================";
+        String linha = "=====================================================================";
         super.exibirDescricao();
-        System.out.println("| 📝 Descrição: Lâmina que emite luz escura e drena energia do inimigo");
-        System.out.println(linha + "\n");
+        System.out.println("| 📝 Descrição: Lâmina que emite luz escura e drena energia \ndo inimigo");
+        System.out.println(linha);
         Utilidades.tempoDeTexto();
     }
 }

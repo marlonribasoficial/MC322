@@ -23,6 +23,7 @@ public class InputManager {
                     valor = Integer.parseInt(entrada);  // converte para inteiro
                     if (valor >= min && valor <= max) { // verifica se está dentro do intervalo
                         valido = true;
+                        System.out.println();
                     } else {
                         System.out.println("Fora do intervalo!");
                     }
@@ -49,6 +50,8 @@ public class InputManager {
                 entrada = scanner.nextLine().trim();
                 if (entrada.isEmpty()) {
                     System.out.println("Entrada vazia.");
+                } else {
+                    System.out.println();
                 }
             } catch (NoSuchElementException e) {
                 throw new RuntimeException("Entrada não disponível.", e);
@@ -65,8 +68,10 @@ public class InputManager {
             try {
                 entrada = scanner.nextLine().toLowerCase().trim();
                 if (entrada.equals("s")) {
+                    System.out.println();
                     return true;
                 } else if (entrada.equals("n")) {
+                    System.out.println();
                     return false;
                 } else {
                     System.out.println("Digite apenas 's' ou 'n'.");
@@ -82,6 +87,7 @@ public class InputManager {
         System.out.println(mensagem);
         try {
             scanner.nextLine();
+            System.out.println();
         } catch (NoSuchElementException e) {
             throw new RuntimeException("Entrada não disponível.", e);
         }

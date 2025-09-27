@@ -44,8 +44,6 @@ public abstract class Heroi extends Personagem {
     // Lógica da Experiência
     public void ganharExperiencia(int xpGanho) {
         this.exp += xpGanho;
-        System.out.printf("⭐ %s ganhou %d pontos de experiência!\n", getNome(), xpGanho);
-        Utilidades.tempoDeTexto();
         verificarSubidaDeNivel();
     }
 
@@ -80,16 +78,24 @@ public abstract class Heroi extends Personagem {
     protected abstract void subirDeNivel();
 
     public void equiparArma(Arma novaArma) {
+
+        // Painel visual que apresenta a arma encontrada e arma atual (se houver)
+        Utilidades.mostrarPainel(this, novaArma); 
+
         if (nivel >= novaArma.getMinNivel()) {
             if (this.getArma() == null || this.getArma().getDano() < novaArma.getDano()) {
                 this.setArma(novaArma);
-                System.out.printf("🔄 %s equipou %s!\n", this.getNome(), novaArma.getNome());
-                novaArma.exibirDescricao();
+                System.out.printf("\n🔄 %s equipou %s!\n\n", this.getNome(), novaArma.getNome());
+
+            } else if (this.getArma().getDano() == novaArma.getDano()) {
+                System.out.printf("\n🪐 %s analisa %s, mas percebe que seu poder é igual ao da arma em uso. Continua com a atual.\n\n", this.getNome(), novaArma.getNome());
+                
             } else {
-                 System.out.printf("⚖️ %s decide não equipar %s pois sua arma atual é mais forte.\n", this.getNome(), novaArma.getNome());
+                 System.out.printf("\n⚖️ %s decide não equipar %s pois sua arma atual é mais forte.\n\n", this.getNome(), novaArma.getNome());
             }
+            
         } else {
-            System.out.printf("❌ %s não tem nível suficiente para usar %s!\n",
+            System.out.printf("\n❌ %s não tem nível suficiente para usar %s!\n\n",
                                this.getNome(), novaArma.getNome());
         }
     }

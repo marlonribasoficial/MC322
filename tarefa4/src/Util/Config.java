@@ -1,6 +1,6 @@
 package Util;
 
 public class Config {
-    public static final long VELOCIDADE_TEXTO = 1000;
+    public static final long VELOCIDADE_TEXTO = 500;
 }
 

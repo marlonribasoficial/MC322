@@ -39,7 +39,7 @@ public class Astronauta extends Heroi {
     @Override
     protected void subirDeNivel() {
         receberCura(30);
-        System.out.println("Atributos fortalecidos!");
+        System.out.println("[Atributos fortalecidos]\n");
         Utilidades.tempoDeTexto();
     }
     
