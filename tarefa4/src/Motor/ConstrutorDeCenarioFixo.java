@@ -27,19 +27,19 @@ public class ConstrutorDeCenarioFixo implements GeradorDeFases {
             // Monstro 1: Slime
             List<Item> lootSlime = new ArrayList<>();
             if (dificuldade.equals(dificuldade.DIFICIL)) {
-                lootSlime.add(new ArmaEstelar("Fragmento Estelar", (int)((15 + i) * mod), 2));
+                lootSlime.add(new ArmaEstelar("Fragmento Estelar", (int)((15 + i) * mod), 1));
                 lootSlime.add(new ItemGenerico("Tubo de Oxigênio"));
             }
-            lootSlime.add(new ArmaGosmaX("GosmaX", (int)((10 + i) * mod), 1));
-            lootSlime.add(new ArmaEstelar("Fragmento Estelar", (int)((15 + i) * mod), 2));
+            lootSlime.add(new ArmaGosmaX("GosmaX", (int)((10 + i) * mod), 0));
+            lootSlime.add(new ArmaEstelar("Fragmento Estelar", (int)((15 + i) * mod), 1));
             lootSlime.add(new ItemGenerico("Tubo de Oxigênio"));
             
             monstros.add(new AlienSlime(
                     "Slime Mutante Lvl" + i,
-                    (int)((50 + (i * 15)) * mod),
+                    (int)((60 + (i * 15)) * mod),
                     (int)((12 + (i * 5)) * mod),
                     (int)((20 + (i * 5)) * mod),
-                    (int)((50 + (i * 15)) * mod),
+                    (int)((60 + (i * 15)) * mod),
                     new ArmaGosmaX("Gosma Corrosiva", 8 + i, 0),
                     lootSlime));
 
@@ -49,14 +49,14 @@ public class ConstrutorDeCenarioFixo implements GeradorDeFases {
                 lootParadoxo.add(new ArmaVacuosa("Distorcedor a Vácuo", (int)((20 + i) * mod), 2));
             }
             lootParadoxo.add(new ArmaVacuosa("Distorcedor a Vácuo", (int)((20 + i) * mod), 2));
-            lootParadoxo.add(new ArmaIlusao("Projetor de Ilusões", (int)((18 + i) * mod), 2));
+            lootParadoxo.add(new ArmaIlusao("Projetor de Ilusões", (int)((18 + i) * mod), 1));
 
             monstros.add(new AlienParadoxo(
                     "Alien Paradoxo Lvl" + i,
-                    (int)((60 + (i * 20)) * mod),
+                    (int)((70 + (i * 20)) * mod),
                     (int)((15 + (i * 6)) * mod),
                     (int)((25 + (i * 6)) * mod),
-                    (int)((60 + (i * 20)) * mod),
+                    (int)((70 + (i * 20)) * mod),
                     new ArmaIlusao("Orbe da Confusão", 11 + i, 0),
                     lootParadoxo));
 
@@ -68,15 +68,15 @@ public class ConstrutorDeCenarioFixo implements GeradorDeFases {
                     loot4D.add(new ItemGenerico("Tubo de Oxigênio"));
                 }
                 loot4D.add(new ArmaLuzNegra("Lâmina de Antimatéria", (int)((25 + i) * mod), 3));
-                loot4D.add(new ArmaGeometrica("Cubo Hipergeométrico", (int)((22 + i) * mod), 3));
+                loot4D.add(new ArmaGeometrica("Cubo Hipergeométrico", (int)((22 + i) * mod), 2));
                 loot4D.add(new ItemGenerico("Tubo de Oxigênio"));
 
                 monstros.add(new Alien4D(
                         "Alien 4D Lvl" + i,
-                        (int)((75 + (i * 15)) * mod),
+                        (int)((80 + (i * 15)) * mod),
                         (int)((18 + (i * 7)) * mod),
                         (int)((30 + (i * 7)) * mod),
-                        (int)((75 + (i * 15)) * mod),
+                        (int)((80 + (i * 15)) * mod),
                         new ArmaGeometrica("Tesserato Afiado", 14 + i, 0),
                         loot4D));
             }

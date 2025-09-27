@@ -38,7 +38,22 @@ public class Astronauta extends Heroi {
 
     @Override
     protected void subirDeNivel() {
-        receberCura(30);
+        receberCura(40);
+
+        int novoOxigenio = getOxigenio() + 20;
+        if (novoOxigenio >= 100) {
+            setOxigenio(100);
+        } else {
+            setOxigenio(novoOxigenio);
+        }
+
+        int novoTraje = getTrajeEspacial() + 20;
+        if (novoTraje >= 100) {
+            setTrajeEspacial(100);
+        } else {
+            setTrajeEspacial(novoTraje);
+        }
+
         System.out.println("[Atributos fortalecidos]\n");
         Utilidades.tempoDeTexto();
     }
@@ -68,7 +83,7 @@ public class Astronauta extends Heroi {
             return getAcoes().get(3); // AcaoUsarItem
         }
         
-        if (this.oxigenio >= 40 && random.nextDouble() < getSorte()) {
+        if (this.oxigenio >= 40 && random.nextDouble() < getSorte() * 0.4) {
             return getAcoes().get(2); // HabilidadeSoproCriogenico
         }
         

@@ -29,6 +29,7 @@ public class Narrador {
         printComDelay("Ao emergirem, a tripulação se depara com um buraco negro supermassivo, cuja gravidade é capaz de dilacerar qualquer nave em instantes.\n");
         printComDelay("Mas não estão sozinhos: seres alienígenas de forças inimagináveis começam a surgir, distorcendo o espaço e o tempo ao redor.\n");
         printComDelay(astronauta.getNome() + " precisará de toda sua coragem e habilidades para derrotá-los e escapar da ameaça do buraco negro.\n");
+        astronauta.exibirStatus();
     }
 
     public static void imprimirTituloFase(FaseDeCombate f) {

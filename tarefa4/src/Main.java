@@ -80,7 +80,6 @@ public class Main {
     // Executa uma fase
     private static void executarFase(Astronauta astronauta, Fase fase, Dificuldade dificuldade) {
         fase.iniciar(astronauta);
-        astronauta.exibirStatus();
 
         FaseDeCombate faseDeCombate = (FaseDeCombate) fase;
         for (Monstro monstro : faseDeCombate.getMonstros()) {
