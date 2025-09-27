@@ -26,8 +26,12 @@ public class ConstrutorDeCenarioFixo implements GeradorDeFases {
 
             // Monstro 1: Slime
             List<Item> lootSlime = new ArrayList<>();
-            lootSlime.add(new ArmaGosmaX("GosmaX", 10 + i, 1));
-            lootSlime.add(new ArmaEstelar("Fragmento Estelar", 15 + i, 2));
+            if (dificuldade.equals(dificuldade.DIFICIL)) {
+                lootSlime.add(new ArmaEstelar("Fragmento Estelar", (int)((15 + i) * mod), 2));
+                lootSlime.add(new ItemGenerico("Tubo de Oxigênio"));
+            }
+            lootSlime.add(new ArmaGosmaX("GosmaX", (int)((10 + i) * mod), 1));
+            lootSlime.add(new ArmaEstelar("Fragmento Estelar", (int)((15 + i) * mod), 2));
             lootSlime.add(new ItemGenerico("Tubo de Oxigênio"));
             
             monstros.add(new AlienSlime(
@@ -41,8 +45,11 @@ public class ConstrutorDeCenarioFixo implements GeradorDeFases {
 
             // Monstro 2: Paradoxo
             List<Item> lootParadoxo = new ArrayList<>();
-            lootParadoxo.add(new ArmaVacuosa("Distorcedor a Vácuo", 20 + i, 2));
-            lootParadoxo.add(new ArmaIlusao("Projetor de Ilusões", 18 + i, 2));
+            if (dificuldade.equals(dificuldade.DIFICIL)) {
+                lootParadoxo.add(new ArmaVacuosa("Distorcedor a Vácuo", (int)((20 + i) * mod), 2));
+            }
+            lootParadoxo.add(new ArmaVacuosa("Distorcedor a Vácuo", (int)((20 + i) * mod), 2));
+            lootParadoxo.add(new ArmaIlusao("Projetor de Ilusões", (int)((18 + i) * mod), 2));
 
             monstros.add(new AlienParadoxo(
                     "Alien Paradoxo Lvl" + i,
@@ -56,8 +63,12 @@ public class ConstrutorDeCenarioFixo implements GeradorDeFases {
             // Monstro 3: 4D
             if (i >= 2) {
                 List<Item> loot4D = new ArrayList<>();
-                loot4D.add(new ArmaLuzNegra("Lâmina de Antimatéria", 25 + i * 2, 3));
-                loot4D.add(new ArmaGeometrica("Cubo Hipergeométrico", 22 + i * 2, 3));
+                if (dificuldade.equals(dificuldade.DIFICIL)) {
+                    loot4D.add(new ArmaLuzNegra("Lâmina de Antimatéria", (int)((25 + i) * mod), 3));
+                    loot4D.add(new ItemGenerico("Tubo de Oxigênio"));
+                }
+                loot4D.add(new ArmaLuzNegra("Lâmina de Antimatéria", (int)((25 + i) * mod), 3));
+                loot4D.add(new ArmaGeometrica("Cubo Hipergeométrico", (int)((22 + i) * mod), 3));
                 loot4D.add(new ItemGenerico("Tubo de Oxigênio"));
 
                 monstros.add(new Alien4D(
