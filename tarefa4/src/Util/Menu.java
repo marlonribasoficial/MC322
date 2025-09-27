@@ -1,5 +1,7 @@
 package Util;
 
+import Motor.Dificuldade;
+
 public class Menu {
 
     public static int mostrarMenuPrincipal() {
@@ -16,8 +18,8 @@ public class Menu {
             Digite sua opção""", 1, 4);
     }
 
-    public static int escolherDificuldade() {
-        return InputManager.lerInteiro("""
+    public static Dificuldade escolherDificuldade() {
+        int resultado = InputManager.lerInteiro("""
             ==============================================
             ESCOLHA A DIFICULDADE
             ==============================================
@@ -26,6 +28,17 @@ public class Menu {
             [3] Difícil
             ==============================================
             Digite sua opção""", 1, 3);
+        
+        switch (resultado) {
+            case 1:
+                return Dificuldade.FACIL;
+            case 2:
+                return Dificuldade.NORMAL;
+            case 3:
+                return Dificuldade.DIFICIL;
+            default:
+                return Dificuldade.NORMAL;
+        }
     }
 
     public static int mostrarMenuPosTurno() {

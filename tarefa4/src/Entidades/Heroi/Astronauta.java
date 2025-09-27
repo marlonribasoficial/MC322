@@ -72,7 +72,7 @@ public class Astronauta extends Heroi {
             return getAcoes().get(2); // HabilidadeSoproCriogenico
         }
         
-        if (this.getPontosDeVida() < this.pontosDeVidaMaximo / 2 && this.trajeEspacial >= 40 && random.nextDouble() < 0.5) {
+        if (this.getPontosDeVida() < this.pontosDeVidaMaximo / 2 && this.trajeEspacial >= 40 && random.nextDouble() < getSorte()) {
              return getAcoes().get(1); // HabilidadeDefesaTraje
         }
 

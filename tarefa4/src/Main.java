@@ -21,14 +21,14 @@ public class Main {
                 case 1:
 
                     // Preparação
-                    int dificuldade = Menu.escolherDificuldade(); // usar no rodarJogo
+                    Dificuldade dificuldade = Menu.escolherDificuldade(); // usar no rodarJogo
                     Astronauta astronauta = criarHeroina();
                     GeradorDeFases gerador = new ConstrutorDeCenarioFixo();
-                    List<Fase> fases = gerador.gerar(3);
+                    List<Fase> fases = gerador.gerar(3, dificuldade);
                     
                     // Início
                     Narrador.introducao(astronauta);
-                    rodarJogo(astronauta, fases);
+                    rodarJogo(astronauta, fases, dificuldade);
 
                     // Conclusão
                     exibirConclusao(astronauta);
@@ -66,9 +66,9 @@ public class Main {
     }
 
     // Loop principal do jogo
-    private static void rodarJogo(Astronauta astronauta, List<Fase> fases) {
+    private static void rodarJogo(Astronauta astronauta, List<Fase> fases, Dificuldade dificuldade) {
         for (Fase faseAtual : fases) {
-            executarFase(astronauta, faseAtual);
+            executarFase(astronauta, faseAtual, dificuldade);
             
             // Se a astronauta morreu, o jogo acaba
             if (!astronauta.estaVivo()) {
@@ -78,7 +78,7 @@ public class Main {
     }
 
     // Executa uma fase
-    private static void executarFase(Astronauta astronauta, Fase fase) {
+    private static void executarFase(Astronauta astronauta, Fase fase, Dificuldade dificuldade) {
         fase.iniciar(astronauta);
         astronauta.exibirStatus();
 
@@ -88,7 +88,7 @@ public class Main {
                 boolean heroiSobreviveu = iniciarCombate(astronauta, monstro);
 
                 if (heroiSobreviveu) {
-                    processarPosCombate(astronauta, monstro);
+                    processarPosCombate(astronauta, monstro, dificuldade);
                 } else {
                     return; // Sai da fase se a astronauta morrer
                 }
@@ -137,9 +137,10 @@ public class Main {
     }
     
     // Lógica do pós combate
-    private static void processarPosCombate(Astronauta astronauta, Monstro monstro) {
+    private static void processarPosCombate(Astronauta astronauta, Monstro monstro, Dificuldade dificuldade) {
         Narrador.narrarVitoria(astronauta, monstro);
-        astronauta.ganharExperiencia(monstro.getXpConcedido());
+        int xpGanho = (int) (monstro.getXpConcedido() * dificuldade.getModificador());
+        astronauta.ganharExperiencia(xpGanho);
 
         Item loot = null;
         if (monstro instanceof Lootavel) {

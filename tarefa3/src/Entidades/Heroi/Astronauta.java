@@ -63,16 +63,17 @@ public class Astronauta extends Heroi {
     @Override
     public AcaoDeCombate escolherAcao(Combatente alvo) {
         Random random = new Random();
-        
+
+        // Colocar else if
         if (this.oxigenio < 50 && inventario.stream().anyMatch(item -> item.getNome().equals("Tubo de Oxigênio"))) {
             return getAcoes().get(3); // AcaoUsarItem
         }
         
-        if (this.oxigenio >= 40 && random.nextDouble() < getSorte()) {
+        else if (this.oxigenio >= 40 && random.nextDouble() < getSorte()) {
             return getAcoes().get(2); // HabilidadeSoproCriogenico
         }
         
-        if (this.getPontosDeVida() < this.pontosDeVidaMaximo / 2 && this.trajeEspacial >= 40 && random.nextDouble() < 0.5) {
+        else if (this.getPontosDeVida() < this.pontosDeVidaMaximo / 2 && this.trajeEspacial >= 40 && random.nextDouble() < 0.5) {
              return getAcoes().get(1); // HabilidadeDefesaTraje
         }
 
