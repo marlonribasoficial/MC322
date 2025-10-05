@@ -2,6 +2,9 @@ package Itens;
 
 import Util.Utilidades;
 
+/**
+ * Arma que manipula o vácuo, distorcendo a gravidade dos inimigos.
+ */
 public class ArmaVacuosa extends Arma {
 
     public ArmaVacuosa(String nome, int dano, int minNivel) {

@@ -2,6 +2,9 @@ package Itens;
 
 import Util.Utilidades;
 
+/**
+ * Arma que emite luz escura e drena energia do inimigo.
+ */
 public class ArmaLuzNegra extends Arma {
 
     public ArmaLuzNegra(String nome, int dano, int minNivel) {

@@ -2,6 +2,9 @@ package Itens;
 
 import Interfaces.Item;
 
+/**
+ * Item simples do jogo.
+ */
 public class ItemGenerico implements Item {
     private String nome;
 

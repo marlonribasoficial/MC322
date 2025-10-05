@@ -2,6 +2,9 @@ package Itens;
 
 import Util.Utilidades;
 
+/**
+ * Arma que gera padrões geométricos complexos e afiados.
+ */
 public class ArmaGeometrica extends Arma {
 
     public ArmaGeometrica(String nome, int dano, int minNivel) {

@@ -2,6 +2,9 @@ package Itens;
 
 import Util.Utilidades;
 
+/**
+ * Arma alienígena feita de gosma pegajosa e corrosiva.
+ */
 public class ArmaGosmaX extends Arma {
 
     public ArmaGosmaX(String nome, int dano, int minNivel) {

@@ -2,6 +2,9 @@ package Itens;
 
 import Util.Utilidades;
 
+/**
+ * Arma que cria ilusões para confundir o inimigo.
+ */
 public class ArmaIlusao extends Arma {
 
     public ArmaIlusao(String nome, int dano, int minNivel) {
