@@ -5,7 +5,6 @@ import Entidades.Monstros.Monstro;
 import Interfaces.Fase;
 import java.util.List;
 
-
 /**
  * Representa uma fase de combate contendo um nível,
  * um cenário e uma lista de monstros a serem enfrentados.

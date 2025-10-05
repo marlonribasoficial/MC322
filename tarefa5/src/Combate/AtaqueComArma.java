@@ -5,6 +5,11 @@ import Interfaces.*;
 import Itens.Arma;
 import Util.Utilidades;
 
+/**
+ * Representa um ataque realizado com a arma equipada pelo personagem.
+ * O dano total é calculado pela soma da força do personagem com o dano da arma.
+ * Caso o personagem não tenha arma, é realizado um ataque físico simples.
+ */
 public class AtaqueComArma implements AcaoDeCombate {
     @Override
     public void executar(Combatente usuario, Combatente alvo) {

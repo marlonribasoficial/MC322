@@ -7,6 +7,10 @@ import Util.Utilidades;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe abstrata que representa um herói do jogo.
+ * Controla experiência, nível, sorte e lista de ações.
+ */
 public abstract class Heroi extends Personagem {
     private int nivel;
     private int exp;
@@ -16,6 +20,9 @@ public abstract class Heroi extends Personagem {
 
     private static final int[] EXP_POR_NIVEL = {0, 60, 120, 200, 280, 360};
 
+    /**
+     * Construtor que inicializa atributos principais do herói.
+     */
     public Heroi(String nome,
                 int pontosDeVida,
                 int forca,
@@ -41,12 +48,20 @@ public abstract class Heroi extends Personagem {
     protected void setNivel(int nivel) { this.nivel = nivel; }
     protected void setExp(int exp) { this.exp = exp; }
     
-    // Lógica da Experiência
+    /**
+     * Adiciona experiência ao herói e verifica se ele sobe de nível.
+     *
+     * @param xpGanho quantidade de experiência obtida
+     */
     public void ganharExperiencia(int xpGanho) {
         this.exp += xpGanho;
         verificarSubidaDeNivel();
     }
 
+    /**
+     * Verifica e executa a lógica de subida de nível
+     * quando o herói acumula experiência suficiente.
+     */
     private void verificarSubidaDeNivel() {
         // Continua checando até que o herói não tenha mais XP para subir de nível
         while (nivel < EXP_POR_NIVEL.length - 1 && this.exp >= this.expProximoNivel) {
@@ -58,6 +73,9 @@ public abstract class Heroi extends Personagem {
         }
     }
 
+    /**
+     * Atualiza o XP necessário para o próximo nível.
+     */
     private void atualizarExpProximoNivel() {
         if (nivel < EXP_POR_NIVEL.length - 1) {
             this.expProximoNivel = EXP_POR_NIVEL[this.nivel + 1];
@@ -66,6 +84,9 @@ public abstract class Heroi extends Personagem {
         }
     }
 
+    /**
+     * Exibe no console uma mensagem de "level up".
+     */
     private void printLevelUp(int nivelAntigo, int nivelNovo) {
         String linha = "==================================================";
         System.out.println("\n" + linha);
@@ -75,8 +96,18 @@ public abstract class Heroi extends Personagem {
         Utilidades.tempoDeTexto();
     }
 
+    /**
+     * Método abstrato que deve ser implementado
+     * para definir como o herói evolui ao subir de nível.
+     */
     protected abstract void subirDeNivel();
 
+    /**
+     * Permite ao herói equipar uma nova arma,
+     * respeitando restrições de nível e poder da arma atual.
+     *
+     * @param novaArma arma encontrada ou adquirida
+     */
     public void equiparArma(Arma novaArma) {
 
         // Painel visual que apresenta a arma encontrada e arma atual (se houver)

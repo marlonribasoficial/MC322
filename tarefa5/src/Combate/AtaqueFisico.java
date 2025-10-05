@@ -4,6 +4,9 @@ import Entidades.Personagem;
 import Interfaces.*;
 import Util.Utilidades;
 
+/**
+ * Representa um ataque físico direto, baseado apenas na força do personagem.
+ */
 public class AtaqueFisico implements AcaoDeCombate {
     @Override
     public void executar(Combatente usuario, Combatente alvo) {

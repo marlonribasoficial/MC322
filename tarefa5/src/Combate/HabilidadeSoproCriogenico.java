@@ -4,6 +4,10 @@ import Entidades.Heroi.*;
 import Interfaces.*;
 import Util.Utilidades;
 
+/**
+ * Astronauta usa oxigênio para lançar um sopro criogênico,
+ * causando dano dobrado da força. Se faltar oxigênio, realiza um ataque físico.
+ */
 public class HabilidadeSoproCriogenico implements AcaoDeCombate {
     @Override
     public void executar(Combatente usuario, Combatente alvo) {

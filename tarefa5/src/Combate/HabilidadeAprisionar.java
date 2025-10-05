@@ -5,6 +5,10 @@ import Interfaces.*;
 import Util.Utilidades;
 import java.util.Random;
 
+/**
+ * Habilidade que aprisiona o alvo, impedindo-o de agir no próximo turno.
+ * Chance de 30% de sucesso.
+ */
 public class HabilidadeAprisionar implements AcaoDeCombate {
     @Override
     public void executar(Combatente usuario, Combatente alvo) {

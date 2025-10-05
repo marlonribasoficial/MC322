@@ -6,6 +6,9 @@ import Interfaces.Item;
 import Itens.Arma;
 import java.util.List;
 
+/**
+ * Alienígena do paradoxo, usa ataques paradoxais e espelho temporal.
+ */
 public class AlienParadoxo extends Monstro {
     public AlienParadoxo(String nome,
                         int pontosDeVida,

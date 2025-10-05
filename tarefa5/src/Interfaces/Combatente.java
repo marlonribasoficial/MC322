@@ -5,7 +5,6 @@ package Interfaces;
  */
 public interface Combatente {
 
-
     /**
      * @return O nome do combatente.
      */

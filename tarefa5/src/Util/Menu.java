@@ -2,8 +2,13 @@ package Util;
 
 import Motor.Dificuldade;
 
+/**
+ * Classe para exibir menus e capturar escolhas do usuário.
+ * Inclui menus principais, de pós-turno, escolha de dificuldade e informações de classes.
+ */
 public class Menu {
 
+    /** Mostra o menu principal e retorna a opção escolhida. */
     public static int mostrarMenuPrincipal() {
         return InputManager.lerInteiro("""
             \n\n
@@ -18,6 +23,7 @@ public class Menu {
             Digite sua opção""", 1, 4);
     }
 
+    /** Permite ao usuário escolher a dificuldade do jogo. */
     public static Dificuldade escolherDificuldade() {
         int resultado = InputManager.lerInteiro("""
             ==============================================
@@ -41,6 +47,7 @@ public class Menu {
         }
     }
 
+    /** Menu exibido após cada turno do jogo. */
     public static int mostrarMenuPosTurno() {
         return InputManager.lerInteiro("""
             ==============================================
@@ -54,6 +61,7 @@ public class Menu {
             Digite sua opção""", 1, 4);
     }
 
+    /** Exibe informações da classe de herói Astronauta. */
     public static void mostrarClasseHeroi() {
         String linha = "==============================================================";
 
@@ -70,6 +78,7 @@ public class Menu {
         InputManager.esperarEnter("Pressione ENTER para voltar ao menu principal");
     }
 
+    /** Exibe informações das classes de monstros. */
     public static void mostrarClassesMonstros() {
         String linha = "==============================================================";
 
@@ -99,6 +108,7 @@ public class Menu {
         InputManager.esperarEnter("Pressione ENTER para voltar ao menu principal");
     }
 
+    /** Mensagem de saída do jogo. */
     public static void mostrarSaida() {
         String linha = "----------------------------------------------------------------------";
 

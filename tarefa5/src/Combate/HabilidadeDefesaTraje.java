@@ -4,6 +4,10 @@ import Entidades.Heroi.Astronauta;
 import Interfaces.*;
 import Util.Utilidades;
 
+/**
+ * Habilidade especial do Astronauta que consome energia do traje
+ * para curar parte da vida.
+ */
 public class HabilidadeDefesaTraje implements AcaoDeCombate {
     @Override
     public void executar(Combatente usuario, Combatente alvo) {

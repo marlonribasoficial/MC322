@@ -3,6 +3,10 @@ package Entidades;
 import Interfaces.Combatente;
 import Itens.Arma;
 
+/**
+ * Classe base abstrata para qualquer personagem (heróis ou monstros).
+ * Implementa a interface Combatente.
+ */
 public abstract class Personagem implements Combatente {
     private String nome;
     private int pontosDeVida;
@@ -29,12 +33,18 @@ public abstract class Personagem implements Combatente {
     @Override
     public boolean estaVivo() { return this.pontosDeVida > 0; }
 
+    /**
+     * Aplica dano ao personagem. Caso a vida chegue a zero, ele é considerado derrotado.
+     */
     @Override
     public void receberDano(int dano) {
         this.pontosDeVida -= dano;
         if (this.pontosDeVida < 0) this.pontosDeVida = 0;
     }
 
+    /**
+     * Aplica cura ao personagem, aumentando seus pontos de vida.
+     */
     @Override
     public void receberCura(int cura) {
         this.pontosDeVida += cura;
@@ -58,5 +68,8 @@ public abstract class Personagem implements Combatente {
     public void setDesistiu(boolean desistiu) { this.desistiu = desistiu; }
     
     // Métodos Abstratos
+    /**
+     * Exibe os status do personagem no console (implementação depende da subclasse).
+     */
     public abstract void exibirStatus();
 }

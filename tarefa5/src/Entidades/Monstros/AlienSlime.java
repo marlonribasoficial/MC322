@@ -6,6 +6,9 @@ import Interfaces.Item;
 import Itens.Arma;
 import java.util.List;
 
+/**
+ * Alienígena slime, capaz de contaminar e se regenerar fragmentando-se.
+ */
 public class AlienSlime extends Monstro {
     public AlienSlime(String nome,
                     int pontosDeVida,

@@ -4,6 +4,10 @@ import Entidades.Personagem;
 import Interfaces.*;
 import Util.Utilidades;
 
+/**
+ * Representa um ataque místico em que o usuário atravessa dimensões para golpear o inimigo.
+ * Causa dano equivalente à força do personagem.
+ */
 public class AtaqueDimensional implements AcaoDeCombate {
     @Override
     public void executar(Combatente usuario, Combatente alvo) {

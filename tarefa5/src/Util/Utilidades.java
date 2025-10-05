@@ -3,8 +3,13 @@ package Util;
 import Entidades.Heroi.Heroi;
 import Itens.Arma;
 
+/**
+ * Métodos utilitários diversos para o jogo.
+ * Inclui geração de barras de status, exibição de painel de armas e pausas no texto.
+ */
 public class Utilidades {
 
+    /** Pausa o fluxo de execução por VELOCIDADE_TEXTO milissegundos. */
     public static void tempoDeTexto() {
         try {
             Thread.sleep(Config.VELOCIDADE_TEXTO);
@@ -13,6 +18,13 @@ public class Utilidades {
         }
     }
 
+    /**
+     * Gera uma barra visual representando valor/maximo.
+     * 
+     * @param valor valor atual
+     * @param maximo valor máximo
+     * @param tamanho tamanho da barra
+     */
     public static String gerarBarra(int valor, int maximo, int tamanho) {
         int preenchidos = (int) ((double) valor / maximo * tamanho);
         StringBuilder barra = new StringBuilder();
@@ -22,6 +34,9 @@ public class Utilidades {
         return barra.toString();
     }
 
+    /**
+     * Mostra painel comparando a nova arma encontrada com a arma atual do herói.
+     */
     public static void mostrarPainel(Heroi heroi, Arma novaArma) {
         String linha = "=====================================================================";
 

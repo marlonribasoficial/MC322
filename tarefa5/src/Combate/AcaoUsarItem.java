@@ -5,6 +5,11 @@ import Interfaces.*;
 import Util.Utilidades;
 import java.util.List;
 
+/**
+ * Ação de combate que permite ao {@link Astronauta} usar um item de cura.
+ * Neste caso, o item é um "Tubo de Oxigênio", que restaura até 40% de oxigênio,
+ * sem ultrapassar o limite máximo de 100%.
+ */
 public class AcaoUsarItem implements AcaoDeCombate {
 
     private final String nomeDoItem = "Tubo de Oxigênio";

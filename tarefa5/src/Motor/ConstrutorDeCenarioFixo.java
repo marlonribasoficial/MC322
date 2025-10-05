@@ -38,7 +38,7 @@ public class ConstrutorDeCenarioFixo implements GeradorDeFases {
 
             // Monstro 1: Slime
             List<Item> lootSlime = new ArrayList<>();
-            if (dificuldade.equals(dificuldade.DIFICIL)) {
+            if (dificuldade.equals(Dificuldade.DIFICIL)) {
                 lootSlime.add(new ArmaEstelar("Fragmento Estelar", (int)((15 + i) * mod), 1));
                 lootSlime.add(new ItemGenerico("Tubo de Oxigênio"));
             }
@@ -57,7 +57,7 @@ public class ConstrutorDeCenarioFixo implements GeradorDeFases {
 
             // Monstro 2: Paradoxo
             List<Item> lootParadoxo = new ArrayList<>();
-            if (dificuldade.equals(dificuldade.DIFICIL)) {
+            if (dificuldade.equals(Dificuldade.DIFICIL)) {
                 lootParadoxo.add(new ArmaVacuosa("Distorcedor a Vácuo", (int)((20 + i) * mod), 2));
             }
             lootParadoxo.add(new ArmaVacuosa("Distorcedor a Vácuo", (int)((20 + i) * mod), 2));
@@ -75,7 +75,7 @@ public class ConstrutorDeCenarioFixo implements GeradorDeFases {
             // Monstro 3: 4D
             if (i >= 2) {
                 List<Item> loot4D = new ArrayList<>();
-                if (dificuldade.equals(dificuldade.DIFICIL)) {
+                if (dificuldade.equals(Dificuldade.DIFICIL)) {
                     loot4D.add(new ArmaLuzNegra("Lâmina de Antimatéria", (int)((25 + i) * mod), 3));
                     loot4D.add(new ItemGenerico("Tubo de Oxigênio"));
                 }

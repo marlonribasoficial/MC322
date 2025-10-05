@@ -5,6 +5,10 @@ import Interfaces.*;
 import Util.Utilidades;
 import java.util.Random;
 
+/**
+ * Representa um ataque especial que lança uma gosma radioativa contra o alvo.
+ * Além do dano inicial, há 40% de chance do inimigo ficar contaminado.
+ */
 public class AtaqueContaminante implements AcaoDeCombate {
     @Override
     public void executar(Combatente usuario, Combatente alvo) {

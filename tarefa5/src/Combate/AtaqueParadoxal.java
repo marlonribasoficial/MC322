@@ -5,6 +5,10 @@ import Interfaces.*;
 import Util.Utilidades;
 import java.util.Random;
 
+/**
+ * Representa um ataque imprevisível causado por um paradoxo temporal.
+ * Possui 50% de chance de causar dano ao inimigo e 50% de chance de curá-lo.
+ */
 public class AtaqueParadoxal implements AcaoDeCombate {
     @Override
     public void executar(Combatente usuario, Combatente alvo) {

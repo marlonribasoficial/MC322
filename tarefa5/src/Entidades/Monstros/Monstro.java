@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Classe abstrata que representa um monstro genérico.
+ * Possui XP concedido ao ser derrotado, tabela de loot e lista de ações.
+ */
 public abstract class Monstro extends Personagem implements Lootavel {
     private int xpConcedido;
     private List<Item> tabelaDeLoot;
@@ -33,6 +37,12 @@ public abstract class Monstro extends Personagem implements Lootavel {
     protected List<AcaoDeCombate> getAcoes() { return acoes; }
     public int getVidaMax() { return pontosDeVidaMaximo; }
 
+    /**
+     * Escolhe aleatoriamente uma ação de combate entre as disponíveis.
+     *
+     * @param alvo combatente alvo da ação
+     * @return ação escolhida
+     */
     @Override
     public AcaoDeCombate escolherAcao(Combatente alvo) {
         Random random = new Random();
@@ -40,6 +50,11 @@ public abstract class Monstro extends Personagem implements Lootavel {
         return acoes.get(index);
     }
 
+    /**
+     * Escolhe aleatoriamente um item da tabela de loot.
+     *
+     * @return item dropado ou null se não houver loot
+     */
     @Override
     public Item droparLoot() {
         if (tabelaDeLoot == null || tabelaDeLoot.isEmpty()) {
@@ -49,7 +64,10 @@ public abstract class Monstro extends Personagem implements Lootavel {
         int index = random.nextInt(tabelaDeLoot.size());
         return tabelaDeLoot.get(index);
     }
-    
+
+    /**
+     * Cura o monstro sem ultrapassar a vida máxima.
+     */
     @Override
     public void receberCura(int cura) {
         super.receberCura(cura);
@@ -58,6 +76,9 @@ public abstract class Monstro extends Personagem implements Lootavel {
         }
     }
 
+    /**
+     * Exibe no console os status do monstro (nome, vida, força, XP).
+     */
     @Override
     public void exibirStatus() {
         String linha = "========================================";

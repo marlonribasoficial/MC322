@@ -6,6 +6,9 @@ import Interfaces.Item;
 import Itens.Arma;
 import java.util.List;
 
+/**
+ * Alienígena 4D com ataques dimensionais e habilidade de aprisionar.
+ */
 public class Alien4D extends Monstro {
     public Alien4D(String nome,
                     int pontosDeVida,

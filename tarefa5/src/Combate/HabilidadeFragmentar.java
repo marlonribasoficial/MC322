@@ -4,6 +4,9 @@ import Entidades.Monstros.Monstro;
 import Interfaces.*;
 import Util.Utilidades;
 
+/**
+ * Monstro se divide e recupera 25% da vida atual.
+ */
 public class HabilidadeFragmentar implements AcaoDeCombate {
     @Override
     public void executar(Combatente usuario, Combatente alvo) {

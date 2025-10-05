@@ -3,11 +3,17 @@ package Util;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * Gerencia entradas do usuário no console.
+ * Oferece métodos para ler inteiros, strings, respostas sim/não e esperar ENTER.
+ */
 public class InputManager {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    // Lê um número inteiro dentro de um intervalo
+    /**
+     * Lê um inteiro dentro de um intervalo definido.
+     */
     public static int lerInteiro(String mensagem, int min, int max) {
         int valor = 0;
         boolean valido = false;
@@ -41,7 +47,9 @@ public class InputManager {
         return valor;
     }
 
-    // Lê uma string
+    /**
+     * Lê uma string não vazia.
+     */
     public static String lerString(String mensagem) {
         String entrada = "";
         while (entrada.isEmpty()) {
@@ -60,7 +68,9 @@ public class InputManager {
         return entrada;
     }
 
-    // Lê um "s" ou "n"
+    /**
+     * Lê uma resposta do tipo sim ("s") ou não ("n").
+     */
     public static boolean lerSimNao(String mensagem) {
         while (true) {
             System.out.print(mensagem + " (s/n): ");
@@ -82,7 +92,9 @@ public class InputManager {
         }
     }
 
-    // Espera o usuário apertar Enter
+    /**
+     * Aguarda o usuário pressionar Enter.
+     */
     public static void esperarEnter(String mensagem) {
         System.out.println(mensagem);
         try {
@@ -93,7 +105,9 @@ public class InputManager {
         }
     }
 
-    // Fecha o Scanner
+    /**
+     * Fecha o Scanner utilizado.
+     */
     public static void fecharScanner() {
         scanner.close();
     }

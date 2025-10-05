@@ -8,12 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Classe que representa o herói Astronauta.
+ * Possui atributos exclusivos como traje espacial e oxigênio,
+ * além de um inventário de itens.
+ */
 public class Astronauta extends Heroi {
     private int pontosDeVidaMaximo;
     private int trajeEspacial;
     private int oxigenio;
     private List<Item> inventario = new ArrayList<>();
 
+    /**
+     * Construtor que inicializa o astronauta com atributos básicos,
+     * recursos (vida, traje, oxigênio) e ações de combate.
+     */
     public Astronauta(String nome,
                     int pontosDeVida,
                     int forca,
@@ -36,6 +45,10 @@ public class Astronauta extends Heroi {
         getAcoes().add(new AcaoUsarItem());
     }
 
+    /**
+     * Sobe de nível, restaurando atributos e fortalecendo
+     * traje e oxigênio.
+     */
     @Override
     protected void subirDeNivel() {
         receberCura(40);
@@ -75,6 +88,13 @@ public class Astronauta extends Heroi {
         }
     }
 
+    /**
+     * Permite ao Astronauta escolher a ação de combate mais adequada
+     * considerando vida, sorte, oxigênio e inventário.
+     *
+     * @param alvo inimigo ou alvo da ação
+     * @return ação escolhida
+     */
     @Override
     public AcaoDeCombate escolherAcao(Combatente alvo) {
         Random random = new Random();
@@ -98,6 +118,11 @@ public class Astronauta extends Heroi {
         return getAcoes().get(0);
     }
     
+    /**
+     * Cura o Astronauta sem ultrapassar o limite de vida máxima.
+     *
+     * @param cura quantidade de vida a recuperar
+     */
     @Override
     public void receberCura(int cura) {
         super.receberCura(cura);
@@ -106,6 +131,10 @@ public class Astronauta extends Heroi {
         }
     }
 
+    /**
+     * Exibe os status atuais do Astronauta no console
+     * (vida, nível, oxigênio, traje etc.).
+     */
     @Override
     public void exibirStatus() {
         String linha = "========================================";
