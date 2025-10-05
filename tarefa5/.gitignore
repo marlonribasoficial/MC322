@@ -4,6 +4,9 @@
 # Arquivos compilados
 *.class
 
+# Bibliotecas / Dependências
+/lib/
+
 # Configurações do VS Code
 .vscode/
 
