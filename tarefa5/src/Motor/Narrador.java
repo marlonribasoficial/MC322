@@ -4,6 +4,11 @@ import Entidades.Heroi.Astronauta;
 import Entidades.Monstros.Monstro;
 import Util.Utilidades;
 
+/**
+ * Classe responsável por narrar os eventos do jogo,
+ * como introdução, chegada de inimigos, vitórias, derrotas e conclusão das fases.
+ * Utiliza delays e prints estilizados para criar imersão no jogo.
+ */
 public class Narrador {
 
     public static void introducao(Astronauta astronauta) {
@@ -124,6 +129,11 @@ public class Narrador {
         System.out.println("----------------------------------------------------------------------------------");
     }
 
+    /**
+     * Método auxiliar para imprimir texto com delay para criar efeito de narrativa.
+     *
+     * @param texto Texto a ser exibido
+     */
     private static void printComDelay(String texto) {
         System.out.println(texto);
         Utilidades.tempoDeTexto();

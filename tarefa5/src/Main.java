@@ -21,7 +21,7 @@ public class Main {
                 case 1:
 
                     // Preparação
-                    Dificuldade dificuldade = Menu.escolherDificuldade(); // usar no rodarJogo
+                    Dificuldade dificuldade = Menu.escolherDificuldade();
                     Astronauta astronauta = criarHeroina();
                     GeradorDeFases gerador = new ConstrutorDeCenarioFixo();
                     List<Fase> fases = gerador.gerar(3, dificuldade);
@@ -50,7 +50,11 @@ public class Main {
         }
     }
 
-    // Instancia a astronauta
+    /**
+     * Cria a heroína jogável com atributos iniciais.
+     *
+     * @return um objeto Astronauta já inicializado
+     */
     private static Astronauta criarHeroina() {
         return new Astronauta(
                 "Capitã Fernanda",
@@ -65,7 +69,13 @@ public class Main {
                 0.3);
     }
 
-    // Loop principal do jogo
+    /**
+     * Executa o loop principal do jogo, percorrendo todas as fases.
+     *
+     * @param astronauta herói controlado pelo jogador
+     * @param fases lista de fases a serem jogadas
+     * @param dificuldade nível de dificuldade escolhido
+     */
     private static void rodarJogo(Astronauta astronauta, List<Fase> fases, Dificuldade dificuldade) {
         for (Fase faseAtual : fases) {
             executarFase(astronauta, faseAtual, dificuldade);
@@ -77,7 +87,13 @@ public class Main {
         }
     }
 
-    // Executa uma fase
+    /**
+     * Executa uma fase, incluindo a lógica de combates e conclusão.
+     *
+     * @param astronauta herói controlado pelo jogador
+     * @param fase fase atual
+     * @param dificuldade dificuldade do jogo
+     */
     private static void executarFase(Astronauta astronauta, Fase fase, Dificuldade dificuldade) {
         fase.iniciar(astronauta);
 
@@ -101,7 +117,14 @@ public class Main {
         }
     }
 
-    // Loop do combate
+    /**
+     * Inicia um combate entre a heroína e um monstro.
+     *
+     * @param astronauta Herói controlado pelo jogador.
+     * @param monstro Inimigo da fase que será enfrentado.
+     * @return {@code true} se a heroína sobreviveu ao combate, 
+     * {@code false} caso tenha sido derrotada.
+     */
     private static boolean iniciarCombate(Astronauta astronauta, Monstro monstro) {
         Narrador.narrarChegada(monstro);
 
@@ -113,7 +136,12 @@ public class Main {
         return astronauta.estaVivo();
     }
 
-    // Turno da astronauta
+    /**
+     * Executa o turno do herói, permitindo a escolha de ações.
+     *
+     * @param astronauta herói controlado pelo jogador
+     * @param monstro inimigo atual
+     */
     private static void executarTurnoHeroi(Astronauta astronauta, Monstro monstro) {
         if (astronauta.isAprisionado()) {
             System.out.printf("🌀 %s está aprisionado e perde o turno!\n\n", astronauta.getNome());
@@ -129,13 +157,24 @@ public class Main {
         }
     }
 
-    // Turno dos aliens
+    /**
+     * Executa o turno do monstro, escolhendo e aplicando sua ação.
+     *
+     * @param astronauta herói alvo do ataque
+     * @param monstro inimigo que ataca
+     */
     private static void executarTurnoMonstro(Astronauta astronauta, Monstro monstro) {
         AcaoDeCombate acaoMonstro = monstro.escolherAcao(astronauta);
         acaoMonstro.executar(monstro, astronauta);
     }
     
-    // Lógica do pós combate
+    /**
+     * Processa os eventos após o combate: XP, loot e desistência.
+     *
+     * @param astronauta herói controlado pelo jogador
+     * @param monstro inimigo derrotado
+     * @param dificuldade nível de dificuldade que altera recompensas
+     */
     private static void processarPosCombate(Astronauta astronauta, Monstro monstro, Dificuldade dificuldade) {
         Narrador.narrarVitoria(astronauta, monstro);
         int xpGanho = (int) (monstro.getXpConcedido() * dificuldade.getModificador());
@@ -220,7 +259,11 @@ public class Main {
         }
     }
 
-    // Exibe a conclusão
+    /**
+     * Exibe a conclusão do jogo, variando entre vitória, derrota ou desistência.
+     *
+     * @param astronauta herói controlado pelo jogador
+     */
     private static void exibirConclusao(Astronauta astronauta) {
         if (astronauta.isDesistente()) {
             Narrador.narrarDesistencia(astronauta);

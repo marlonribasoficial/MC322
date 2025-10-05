@@ -3,6 +3,10 @@ package Motor;
 import Entidades.Heroi.Heroi;
 import Util.Utilidades;
 
+/**
+ * Enumeração dos tipos de cenários do jogo.
+ * Cada cenário possui uma descrição e um efeito específico aplicado ao herói.
+ */
 public enum TipoCenario {
     LUA_SOMBRIA("Lua Sombria") {
         @Override
@@ -28,13 +32,28 @@ public enum TipoCenario {
 
     private String descricao;
 
+    /**
+     * Construtor do cenário.
+     *
+     * @param descricao Descrição textual do cenário
+     */
     TipoCenario(String descricao) {
         this.descricao = descricao;
     }
 
+    /**
+     * Retorna a descrição do cenário.
+     *
+     * @return {@code String} descrição do cenário
+     */
     public String getDescricao() {
         return descricao;
     }
-
+    
+    /**
+     * Aplica os efeitos específicos do cenário ao herói.
+     *
+     * @param heroi Herói que sofrerá os efeitos do cenário
+     */
     public abstract void aplicarEfeitos(Heroi heroi);
 }

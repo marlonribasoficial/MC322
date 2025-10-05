@@ -7,6 +7,10 @@ import Itens.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Gera fases com monstros e loot fixos, garantindo consistência 
+ * entre diferentes execuções.
+ */
 public class ConstrutorDeCenarioFixo implements GeradorDeFases {
 
     private static final TipoCenario[] CENARIOS = {
@@ -15,6 +19,14 @@ public class ConstrutorDeCenarioFixo implements GeradorDeFases {
             TipoCenario.BURACO_NEGRO
     };
 
+    /**
+     * Cria uma lista de fases com base na quantidade e dificuldade.
+     * Cada fase contém monstros específicos e itens dropáveis.
+     *
+     * @param quantidadeDeFases Quantidade de fases a serem geradas.
+     * @param dificuldade Nível de dificuldade que altera atributos e loot dos monstros.
+     * @return Lista de fases geradas para o jogo.
+     */
     @Override
     public List<Fase> gerar(int quantidadeDeFases, Dificuldade dificuldade) {
         List<Fase> fases = new ArrayList<>();
