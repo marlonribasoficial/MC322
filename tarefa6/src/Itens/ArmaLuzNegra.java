@@ -7,6 +7,10 @@ import Util.Utilidades;
  */
 public class ArmaLuzNegra extends Arma {
 
+    public ArmaLuzNegra() {
+        super();
+    }
+
     public ArmaLuzNegra(String nome, int dano, int minNivel) {
         super(nome, dano, minNivel);
     }

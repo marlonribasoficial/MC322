@@ -7,6 +7,10 @@ import Util.Utilidades;
  */
 public class ArmaVacuosa extends Arma {
 
+    public ArmaVacuosa() {
+        super();
+    }
+
     public ArmaVacuosa(String nome, int dano, int minNivel) {
         super(nome, dano, minNivel);
     }

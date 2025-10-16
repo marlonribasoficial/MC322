@@ -4,12 +4,20 @@ import Combate.AtaqueParadoxal;
 import Combate.HabilidadeEspelhoTemporal;
 import Interfaces.Item;
 import Itens.Arma;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 import java.util.List;
 
 /**
  * Alienígena do paradoxo, usa ataques paradoxais e espelho temporal.
  */
+@XmlRootElement
 public class AlienParadoxo extends Monstro {
+
+    public AlienParadoxo() { 
+        super();
+    }
+
     public AlienParadoxo(String nome,
                         int pontosDeVida,
                         int forca,

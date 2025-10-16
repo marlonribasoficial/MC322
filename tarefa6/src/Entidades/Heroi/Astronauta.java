@@ -4,6 +4,11 @@ import Combate.*;
 import Interfaces.*;
 import Itens.*;
 import Util.Utilidades;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElements;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,11 +18,42 @@ import java.util.Random;
  * Possui atributos exclusivos como traje espacial e oxigênio,
  * além de um inventário de itens.
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Astronauta extends Heroi {
+
+    @XmlElement
     private int pontosDeVidaMaximo;
+
+    @XmlElement
     private int trajeEspacial;
+
+    @XmlElement
     private int oxigenio;
+
+    @XmlElement
+    private int faseAtual;
+
+    @XmlElement
+    private int monstroAtual;
+
+    @XmlElements({
+        @XmlElement(name="armaGosmaX", type=ArmaGosmaX.class),
+        @XmlElement(name="armaEstelar", type=ArmaEstelar.class),
+        @XmlElement(name="armaLuzNegra", type=ArmaLuzNegra.class),
+        @XmlElement(name="armaVacuosa", type=ArmaVacuosa.class),
+        @XmlElement(name="armaGeometrica", type=ArmaGeometrica.class),
+        @XmlElement(name="armaIlusao", type=ArmaIlusao.class),
+        @XmlElement(name="itemGenerico", type=ItemGenerico.class)
+    })
     private List<Item> inventario = new ArrayList<>();
+
+    public Astronauta() {
+        super();
+        getAcoes().add(new AtaqueFisico());
+        getAcoes().add(new HabilidadeDefesaTraje());
+        getAcoes().add(new HabilidadeSoproCriogenico());
+        getAcoes().add(new AcaoUsarItem());
+    }
 
     /**
      * Construtor que inicializa o astronauta com atributos básicos,
@@ -76,6 +112,9 @@ public class Astronauta extends Heroi {
     public int getOxigenio() { return oxigenio; }
     public int getTrajeEspacial() { return trajeEspacial; }
     public List<Item> getInventario() { return this.inventario; }
+    public int getFaseAtual() { return faseAtual; }
+    public int getMonstroAtual() { return monstroAtual; }
+
 
     // Setters
     public void setOxigenio(int oxigenio) { this.oxigenio = oxigenio; }
@@ -87,6 +126,8 @@ public class Astronauta extends Heroi {
             Utilidades.tempoDeTexto();
         }
     }
+    public void setFaseAtual(int faseAtual) { this.faseAtual = faseAtual; }
+    public void setMonstroAtual(int monstroAtual) { this.monstroAtual = monstroAtual; }
 
     /**
      * Permite ao Astronauta escolher a ação de combate mais adequada

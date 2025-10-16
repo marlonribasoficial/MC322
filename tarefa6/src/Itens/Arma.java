@@ -1,15 +1,26 @@
 package Itens;
 
 import Interfaces.Item;
+import jakarta.xml.bind.annotation.XmlElement;
 
 /**
  * Classe abstrata que representa uma arma no jogo.
  * Toda arma tem um nome, um dano e um nível mínimo para ser utilizada.
  */
 public abstract class Arma implements Item {
+
+    @XmlElement
     private String nome;
+
+    @XmlElement
     private int dano;
+
+    @XmlElement
     private int minNivel;
+
+    public Arma() {
+        super();    
+    }
 
     /**
      * Construtor da classe Arma.

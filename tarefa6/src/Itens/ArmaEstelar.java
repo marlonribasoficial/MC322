@@ -6,6 +6,10 @@ import Util.Utilidades;
  * Arma especial feita de fragmentos de estrelas cadentes.
  */
 public class ArmaEstelar extends Arma {
+    
+    public ArmaEstelar() {
+        super();
+    }
 
     public ArmaEstelar(String nome, int dano, int minNivel) {
         super(nome, dano, minNivel);

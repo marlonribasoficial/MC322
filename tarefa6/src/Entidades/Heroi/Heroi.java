@@ -4,6 +4,11 @@ import Entidades.Personagem;
 import Interfaces.AcaoDeCombate;
 import Itens.Arma;
 import Util.Utilidades;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlTransient;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,14 +16,28 @@ import java.util.List;
  * Classe abstrata que representa um herói do jogo.
  * Controla experiência, nível, sorte e lista de ações.
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public abstract class Heroi extends Personagem {
+
+    @XmlElement
     private int nivel;
+
+    @XmlElement
     private int exp;
+
+    @XmlElement
     private int expProximoNivel;
+
     private double sorte;
-    private List<AcaoDeCombate> acoes;
+
+    @XmlTransient
+    private List<AcaoDeCombate> acoes = new ArrayList<>();
 
     private static final int[] EXP_POR_NIVEL = {0, 60, 120, 200, 280, 360};
+
+    public Heroi() {
+        super();
+    }
 
     /**
      * Construtor que inicializa atributos principais do herói.

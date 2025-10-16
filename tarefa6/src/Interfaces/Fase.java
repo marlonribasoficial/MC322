@@ -24,4 +24,9 @@ public interface Fase {
      * @return O tipo de cenário da fase.
      */
     TipoCenario getTipoDeCenario();
+
+    /**
+     * @return O inteiro relacionado ao nível da fase.
+     */
+    int getNivel();
 }

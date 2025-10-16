@@ -7,6 +7,10 @@ import Util.Utilidades;
  */
 public class ArmaGeometrica extends Arma {
 
+    public ArmaGeometrica() {
+        super();
+    }
+
     public ArmaGeometrica(String nome, int dano, int minNivel) {
         super(nome, dano, minNivel);
     }

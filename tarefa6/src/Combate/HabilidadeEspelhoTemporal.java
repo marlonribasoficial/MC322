@@ -16,7 +16,7 @@ public class HabilidadeEspelhoTemporal implements AcaoDeCombate {
             Personagem pAlvo = (Personagem) alvo;
             System.out.printf("🪞 %s ativa o Espelho Temporal!\n", usuario.getNome());
             Utilidades.tempoDeTexto();
-            System.out.printf("[O próximo ataque de %s será refletido contra ele mesmo!]\n\n", pAlvo.getNome());
+            System.out.printf("[O próximo ataque de %s será refletido contra ela mesma!]\n\n", pAlvo.getNome());
             pAlvo.setRefletido(true);
             Utilidades.tempoDeTexto();
         }

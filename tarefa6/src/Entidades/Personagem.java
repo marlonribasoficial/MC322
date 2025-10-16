@@ -2,15 +2,27 @@ package Entidades;
 
 import Interfaces.Combatente;
 import Itens.Arma;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
 
 /**
  * Classe base abstrata para qualquer personagem (heróis ou monstros).
  * Implementa a interface Combatente.
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public abstract class Personagem implements Combatente {
+
+    @XmlElement
     private String nome;
+
+    @XmlElement
     private int pontosDeVida;
+
+    @XmlElement
     private int forca;
+
+    @XmlElement
     private Arma arma;
 
     // Status
@@ -18,6 +30,8 @@ public abstract class Personagem implements Combatente {
     private boolean refletido = false;
     private boolean aprisionado = false;
     private boolean desistiu = false;
+
+    public Personagem() {}
 
     public Personagem(String nome, int pontosDeVida, int forca, Arma arma) {
         this.nome = nome;

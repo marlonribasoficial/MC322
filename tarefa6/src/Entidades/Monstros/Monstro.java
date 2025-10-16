@@ -3,20 +3,61 @@ package Entidades.Monstros;
 import Entidades.Personagem;
 import Interfaces.*;
 import Itens.Arma;
+import Itens.ArmaEstelar;
+import Itens.ArmaGeometrica;
+import Itens.ArmaGosmaX;
+import Itens.ArmaIlusao;
+import Itens.ArmaLuzNegra;
+import Itens.ArmaVacuosa;
+import Itens.ItemGenerico;
 import Util.Utilidades;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElements;
+import jakarta.xml.bind.annotation.XmlTransient;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import Combate.AtaqueContaminante;
+import Combate.AtaqueDimensional;
+import Combate.AtaqueParadoxal;
+import Combate.HabilidadeAprisionar;
+import Combate.HabilidadeEspelhoTemporal;
+import Combate.HabilidadeFragmentar;
 
 /**
  * Classe abstrata que representa um monstro genérico.
  * Possui XP concedido ao ser derrotado, tabela de loot e lista de ações.
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public abstract class Monstro extends Personagem implements Lootavel {
+
+    @XmlElement
     private int xpConcedido;
-    private List<Item> tabelaDeLoot;
-    private List<AcaoDeCombate> acoes;
+
+    @XmlTransient 
+    private List<AcaoDeCombate> acoes = new ArrayList<>();
+
+    @XmlElement
     private int pontosDeVidaMaximo;
+
+    @XmlElements({
+        @XmlElement(name="armaEstelar", type=ArmaEstelar.class),
+        @XmlElement(name="armaGosmaX", type=ArmaGosmaX.class),
+        @XmlElement(name="armaLuzNegra", type=ArmaLuzNegra.class),
+        @XmlElement(name="armaGeometrica", type=ArmaGeometrica.class),
+        @XmlElement(name="armaIlusao", type=ArmaIlusao.class),
+        @XmlElement(name="armaVacuosa", type=ArmaVacuosa.class),
+    })
+    private List<Item> tabelaDeLoot;
+
+    public Monstro() { 
+        super();
+        inicializarAcoes(); 
+    }
 
     public Monstro(String nome,
                 int pontosDeVida,
@@ -29,13 +70,55 @@ public abstract class Monstro extends Personagem implements Lootavel {
         this.xpConcedido = xpConcedido;
         this.pontosDeVidaMaximo = pontosDeVidaMaximo;
         this.tabelaDeLoot = tabelaDeLoot;
-        this.acoes = new ArrayList<>();
+        inicializarAcoes();
     }
 
     // Getters
     public int getXpConcedido() { return xpConcedido; }
     protected List<AcaoDeCombate> getAcoes() { return acoes; }
     public int getVidaMax() { return pontosDeVidaMaximo; }
+
+    /** 
+     * Inicializa a lista de ações do monstro.
+     */
+    public void inicializarAcoes() {
+        if (acoes == null) {
+            acoes = new ArrayList<>();
+        }
+
+        if (this instanceof Alien4D) {
+            acoes.add(new AtaqueDimensional());
+            acoes.add(new HabilidadeAprisionar());
+        } else if (this instanceof AlienParadoxo) {
+            acoes.add(new AtaqueParadoxal());
+            acoes.add(new HabilidadeEspelhoTemporal());
+        } else if (this instanceof AlienSlime) {
+            acoes.add(new AtaqueContaminante());
+            acoes.add(new HabilidadeFragmentar());
+        }
+    }
+
+    /** 
+     * Inicializa o loot do monstro.
+     */
+    public void inicializarLoot() { // é preciso usar modificador
+        if (tabelaDeLoot == null) {
+            tabelaDeLoot = new ArrayList<>();
+        }
+
+        if (this instanceof Alien4D) {
+            tabelaDeLoot.add(new ArmaGosmaX("GosmaX", 10, 0));
+            tabelaDeLoot.add(new ArmaEstelar("Fragmento Estelar", 15, 1));
+            tabelaDeLoot.add(new ItemGenerico("Tubo de Oxigênio"));
+
+        } else if (this instanceof AlienParadoxo) {
+            tabelaDeLoot.add(new ArmaVacuosa("Distorcedor a Vácuo", 20, 2));
+            tabelaDeLoot.add(new ArmaIlusao("Projetor de Ilusões", 18, 1));
+        } else if (this instanceof AlienSlime) {
+            tabelaDeLoot.add(new ArmaGosmaX());
+            tabelaDeLoot.add(new ArmaEstelar());
+        }
+    }
 
     /**
      * Escolhe aleatoriamente uma ação de combate entre as disponíveis.

@@ -7,6 +7,10 @@ import Util.Utilidades;
  */
 public class ArmaIlusao extends Arma {
 
+    public ArmaIlusao() {
+        super();
+    }
+
     public ArmaIlusao(String nome, int dano, int minNivel) {
         super(nome, dano, minNivel);
     }

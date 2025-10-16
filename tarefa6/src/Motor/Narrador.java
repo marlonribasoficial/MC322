@@ -130,6 +130,21 @@ public class Narrador {
     }
 
     /**
+     * Exibe a conclusão do jogo, variando entre vitória, derrota ou desistência.
+     *
+     * @param astronauta herói controlado pelo jogador
+     */
+    public static void exibirConclusao(Astronauta astronauta) {
+        if (astronauta.isDesistente()) {
+            Narrador.narrarDesistencia(astronauta);
+        } else if (astronauta.estaVivo()) {
+            Narrador.narrarVitoriaFinal(astronauta);
+        } else {
+            Narrador.narrarDerrota(astronauta);
+        }
+    }
+
+    /**
      * Método auxiliar para imprimir texto com delay para criar efeito de narrativa.
      *
      * @param texto Texto a ser exibido

@@ -16,11 +16,12 @@ public class Menu {
                             MISSÃO ALPHA
             ==============================================
             [1] Iniciar Novo Jogo
-            [2] Ver Informações das Classes de Heróis
-            [3] Ver Informações das Classes de Monstros
-            [4] Sair do Jogo
+            [2] Carregar Jogo
+            [3] Ver Informações das Classes de Heróis
+            [4] Ver Informações das Classes de Monstros
+            [5] Sair do Jogo
             ==============================================
-            Digite sua opção""", 1, 4);
+            Digite sua opção""", 1, 5);
     }
 
     /** Permite ao usuário escolher a dificuldade do jogo. */
@@ -56,9 +57,10 @@ public class Menu {
             [1] Continuar
             [2] Interagir com o Loot
             [3] Ver Informações do Personagem
-            [4] Desistir do Jogo
+            [4] Salvar jogo
+            [5] Desistir do Jogo
             ==============================================
-            Digite sua opção""", 1, 4);
+            Digite sua opção""", 1, 5);
     }
 
     /** Exibe informações da classe de herói Astronauta. */

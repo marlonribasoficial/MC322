@@ -4,12 +4,20 @@ import Combate.AtaqueDimensional;
 import Combate.HabilidadeAprisionar;
 import Interfaces.Item;
 import Itens.Arma;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 import java.util.List;
 
 /**
  * Alienígena 4D com ataques dimensionais e habilidade de aprisionar.
  */
+@XmlRootElement
 public class Alien4D extends Monstro {
+
+    public Alien4D() { 
+        super();
+    }
+
     public Alien4D(String nome,
                     int pontosDeVida,
                     int forca,

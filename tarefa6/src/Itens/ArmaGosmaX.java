@@ -7,6 +7,10 @@ import Util.Utilidades;
  */
 public class ArmaGosmaX extends Arma {
 
+    public ArmaGosmaX() {
+        super();
+    }
+
     public ArmaGosmaX(String nome, int dano, int minNivel) {
         super(nome, dano, minNivel);
     }
