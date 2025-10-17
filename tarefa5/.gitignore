@@ -1,0 +1,24 @@
+# Pasta de compilação
+/bin/
+
+# Arquivos compilados
+*.class
+
+# Bibliotecas / Dependências
+/lib/
+
+# Configurações do VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
