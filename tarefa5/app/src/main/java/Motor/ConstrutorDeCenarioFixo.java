@@ -1,12 +1,10 @@
 package Motor;
 
-
 import Interfaces.*;
 import Itens.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import Combatentes.Monstros.*;
 import Entidades.Monstros.Alien4D;
 import Entidades.Monstros.AlienParadoxo;
 import Entidades.Monstros.AlienSlime;

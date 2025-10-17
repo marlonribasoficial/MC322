@@ -18,17 +18,14 @@ public class HeroiTest {
 
     @BeforeEach
     void setUp() {
-        // Cria um herói com todos os parâmetros necessários
         heroi = new Astronauta("Astronauta de Teste", 100, 15, 1, 0, 100, 100, 100, null, 0.5);
-
-        // Cria um monstro concreto para o teste
         List<Item> lootTable = new ArrayList<>();
         monstro = new AlienSlime("Slime de Teste", 50, 5, 10, 50, null, lootTable);
     }
 
     @Test
     public void testReceberDano() {
-        int vidaInicial = heroi.getPontosDeVida(); // Nome correto do método
+        int vidaInicial = heroi.getPontosDeVida();
         int dano = 10;
         heroi.receberDano(dano);
         assertEquals(vidaInicial - dano, heroi.getPontosDeVida());
@@ -36,12 +33,9 @@ public class HeroiTest {
 
     @Test
     public void testAtacarMonstro() {
-        int vidaInicialMonstro = monstro.getPontosDeVida(); // Nome correto
-
-        // Lógica de ataque correta
+        int vidaInicialMonstro = monstro.getPontosDeVida();
         AcaoDeCombate acaoEscolhida = heroi.escolherAcao(monstro);
         acaoEscolhida.executar(heroi, monstro);
-
         assertTrue(monstro.getPontosDeVida() < vidaInicialMonstro, "A vida do monstro deveria diminuir após o ataque.");
     }
 

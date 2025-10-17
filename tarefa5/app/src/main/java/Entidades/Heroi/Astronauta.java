@@ -12,7 +12,6 @@ import Combate.AtaqueComArma;
 import Combate.AtaqueFisico;
 import Combate.HabilidadeDefesaTraje;
 import Combate.HabilidadeSoproCriogenico;
-import Entidades.*;
 
 /**
  * Classe que representa o herói Astronauta.
