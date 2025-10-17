@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"App"},{"l":"Combate"},{"l":"Entidades"},{"l":"Interfaces"},{"l":"Itens"},{"l":"Motor"},{"l":"Util"}];updateSearchResults();
