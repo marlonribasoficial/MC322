@@ -9,8 +9,8 @@ import java.util.Scanner;
  */
 public class InputManager {
 
-    private static final Scanner scanner = new Scanner(System.in);
-
+    private static Scanner scanner = new Scanner(System.in);
+    
     /**
      * Lê um inteiro dentro de um intervalo definido.
      */
@@ -110,5 +110,9 @@ public class InputManager {
      */
     public static void fecharScanner() {
         scanner.close();
+    }
+
+    public static void resetScannerForTesting() {
+        scanner = new Scanner(System.in);
     }
 }
