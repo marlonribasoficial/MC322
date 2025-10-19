@@ -10,6 +10,7 @@ import Itens.ArmaIlusao;
 import Itens.ArmaLuzNegra;
 import Itens.ArmaVacuosa;
 import Itens.ItemGenerico;
+import Util.ItemCreator;
 import Util.Utilidades;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -38,87 +39,37 @@ public abstract class Monstro extends Personagem implements Lootavel {
     @XmlElement
     private int xpConcedido;
 
-    @XmlTransient 
-    private List<AcaoDeCombate> acoes = new ArrayList<>();
+    @XmlTransient
+    private List<AcaoDeCombate> acoes;
 
     @XmlElement
     private int pontosDeVidaMaximo;
 
-    @XmlElements({
-        @XmlElement(name="armaEstelar", type=ArmaEstelar.class),
-        @XmlElement(name="armaGosmaX", type=ArmaGosmaX.class),
-        @XmlElement(name="armaLuzNegra", type=ArmaLuzNegra.class),
-        @XmlElement(name="armaGeometrica", type=ArmaGeometrica.class),
-        @XmlElement(name="armaIlusao", type=ArmaIlusao.class),
-        @XmlElement(name="armaVacuosa", type=ArmaVacuosa.class),
-    })
-    private List<Item> tabelaDeLoot;
+    @XmlTransient // Não precisa ser salvo, será definido pelo ConstrutorDeCenarioFixo
+    private List<String> tabelaDeLoot;
 
-    public Monstro() { 
+    public Monstro() {
         super();
-        inicializarAcoes(); 
     }
 
     public Monstro(String nome,
-                int pontosDeVida,
-                int forca,
-                int xpConcedido,
-                int pontosDeVidaMaximo,
-                Arma arma,
-                List<Item> tabelaDeLoot) {
+                   int pontosDeVida,
+                   int forca,
+                   int xpConcedido,
+                   int pontosDeVidaMaximo,
+                   Arma arma,
+                   List<String> tabelaDeLoot,
+                   List<AcaoDeCombate> acoes) {
         super(nome, pontosDeVida, forca, arma);
         this.xpConcedido = xpConcedido;
         this.pontosDeVidaMaximo = pontosDeVidaMaximo;
         this.tabelaDeLoot = tabelaDeLoot;
-        inicializarAcoes();
+        this.acoes = acoes;
     }
 
     // Getters
     public int getXpConcedido() { return xpConcedido; }
-    protected List<AcaoDeCombate> getAcoes() { return acoes; }
     public int getVidaMax() { return pontosDeVidaMaximo; }
-
-    /** 
-     * Inicializa a lista de ações do monstro.
-     */
-    public void inicializarAcoes() {
-        if (acoes == null) {
-            acoes = new ArrayList<>();
-        }
-
-        if (this instanceof Alien4D) {
-            acoes.add(new AtaqueDimensional());
-            acoes.add(new HabilidadeAprisionar());
-        } else if (this instanceof AlienParadoxo) {
-            acoes.add(new AtaqueParadoxal());
-            acoes.add(new HabilidadeEspelhoTemporal());
-        } else if (this instanceof AlienSlime) {
-            acoes.add(new AtaqueContaminante());
-            acoes.add(new HabilidadeFragmentar());
-        }
-    }
-
-    /** 
-     * Inicializa o loot do monstro.
-     */
-    public void inicializarLoot() { // é preciso usar modificador
-        if (tabelaDeLoot == null) {
-            tabelaDeLoot = new ArrayList<>();
-        }
-
-        if (this instanceof Alien4D) {
-            tabelaDeLoot.add(new ArmaGosmaX("GosmaX", 10, 0));
-            tabelaDeLoot.add(new ArmaEstelar("Fragmento Estelar", 15, 1));
-            tabelaDeLoot.add(new ItemGenerico("Tubo de Oxigênio"));
-
-        } else if (this instanceof AlienParadoxo) {
-            tabelaDeLoot.add(new ArmaVacuosa("Distorcedor a Vácuo", 20, 2));
-            tabelaDeLoot.add(new ArmaIlusao("Projetor de Ilusões", 18, 1));
-        } else if (this instanceof AlienSlime) {
-            tabelaDeLoot.add(new ArmaGosmaX());
-            tabelaDeLoot.add(new ArmaEstelar());
-        }
-    }
 
     /**
      * Escolhe aleatoriamente uma ação de combate entre as disponíveis.
@@ -128,9 +79,9 @@ public abstract class Monstro extends Personagem implements Lootavel {
      */
     @Override
     public AcaoDeCombate escolherAcao(Combatente alvo) {
+        if (acoes == null || acoes.isEmpty()) { return null; }
         Random random = new Random();
-        int index = random.nextInt(acoes.size());
-        return acoes.get(index);
+        return acoes.get(random.nextInt(acoes.size()));
     }
 
     /**
@@ -139,13 +90,13 @@ public abstract class Monstro extends Personagem implements Lootavel {
      * @return item dropado ou null se não houver loot
      */
     @Override
-    public Item droparLoot() {
+    public Item droparLoot(int nivelFase, double modDificuldade) {
         if (tabelaDeLoot == null || tabelaDeLoot.isEmpty()) {
             return null;
         }
         Random random = new Random();
-        int index = random.nextInt(tabelaDeLoot.size());
-        return tabelaDeLoot.get(index);
+        String nomeItemParaDropar = tabelaDeLoot.get(random.nextInt(tabelaDeLoot.size()));
+        return ItemCreator.criarItem(nomeItemParaDropar, nivelFase, modDificuldade);
     }
 
     /**
