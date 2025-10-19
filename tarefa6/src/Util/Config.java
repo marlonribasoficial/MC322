@@ -5,6 +5,6 @@ package Util;
  */
 public class Config {
     /** Velocidade de exibição de textos em milissegundos. */
-    public static final long VELOCIDADE_TEXTO = 10;
+    public static final long VELOCIDADE_TEXTO = 1500;
 }
 

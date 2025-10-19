@@ -69,13 +69,6 @@ public class Batalha {
         // gera as fases
         GeradorDeFases gerador = new ConstrutorDeCenarioFixo();
         this.fases = gerador.gerar(3, dificuldade);
-        System.out.println("DEBUG: fases geradas (iniciarNovoJogo) — size=" + (fases == null ? 0 : fases.size()));
-        if (fases != null) {
-            for (int idx = 0; idx < fases.size(); idx++) {
-                Fase f = fases.get(idx);
-                System.out.printf("  gen[%d] nivel=%d identity=%s%n", idx, f.getNivel(), System.identityHashCode(f));
-            }
-        }
 
         // inicializa fase atual como null
         this.faseAtual = null;
@@ -120,6 +113,7 @@ public class Batalha {
                 Monstro monstro = monstros.get(i);
                 monstro.setPontosDeVida(monstro.getVidaMax());
                 monstro.inicializarAcoes();
+                monstro.inicializarLoot(this.faseAtual.getNivel(), this.dificuldade.getModificador());
 
                 boolean heroiSobreviveu = iniciarCombate(astronauta, monstro);
                 if (heroiSobreviveu) {

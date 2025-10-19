@@ -101,22 +101,38 @@ public abstract class Monstro extends Personagem implements Lootavel {
     /** 
      * Inicializa o loot do monstro.
      */
-    public void inicializarLoot() { // é preciso usar modificador
+    public void inicializarLoot(int i, double mod) {
         if (tabelaDeLoot == null) {
             tabelaDeLoot = new ArrayList<>();
         }
 
         if (this instanceof Alien4D) {
-            tabelaDeLoot.add(new ArmaGosmaX("GosmaX", 10, 0));
-            tabelaDeLoot.add(new ArmaEstelar("Fragmento Estelar", 15, 1));
+            tabelaDeLoot.add(new ArmaLuzNegra("Lâmina de Antimatéria", (int)((25 + i) * mod), 3));
+            tabelaDeLoot.add(new ArmaGeometrica("Cubo Hipergeométrico", (int)((22 + i) * mod), 2));
             tabelaDeLoot.add(new ItemGenerico("Tubo de Oxigênio"));
 
+            if (mod == 1.2) {
+                tabelaDeLoot.add(new ArmaLuzNegra("Lâmina de Antimatéria", (int)((25 + i) * mod), 3));
+                tabelaDeLoot.add(new ItemGenerico("Tubo de Oxigênio"));                   
+            }
+
         } else if (this instanceof AlienParadoxo) {
-            tabelaDeLoot.add(new ArmaVacuosa("Distorcedor a Vácuo", 20, 2));
-            tabelaDeLoot.add(new ArmaIlusao("Projetor de Ilusões", 18, 1));
+            tabelaDeLoot.add(new ArmaVacuosa("Distorcedor a Vácuo", (int)((20 + i) * mod), 2));
+            tabelaDeLoot.add(new ArmaIlusao("Projetor de Ilusões", (int)((18 + i) * mod), 1));
+
+            if (mod == 1.2) {
+                tabelaDeLoot.add(new ArmaVacuosa("Distorcedor a Vácuo", (int)((20 + i) * mod), 2));
+            }
+
         } else if (this instanceof AlienSlime) {
-            tabelaDeLoot.add(new ArmaGosmaX());
-            tabelaDeLoot.add(new ArmaEstelar());
+            tabelaDeLoot.add(new ArmaGosmaX("GosmaX", (int)((10 + i) * mod), 0));
+            tabelaDeLoot.add(new ArmaEstelar("Fragmento Estelar", (int)((15 + i) * mod), 1));
+            tabelaDeLoot.add(new ItemGenerico("Tubo de Oxigênio"));
+
+            if (mod == 1.2) {
+                tabelaDeLoot.add(new ArmaEstelar("Fragmento Estelar", (int)((15 + i) * mod), 1));
+                tabelaDeLoot.add(new ItemGenerico("Tubo de Oxigênio"));
+            }
         }
     }
 
