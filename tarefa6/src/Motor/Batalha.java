@@ -113,7 +113,7 @@ public class Batalha {
                 Monstro monstro = monstros.get(i);
                 monstro.setPontosDeVida(monstro.getVidaMax());
                 monstro.inicializarAcoes();
-                monstro.inicializarLoot(this.faseAtual.getNivel(), this.dificuldade.getModificador());
+                monstro.inicializarLoot(this.dificuldade.getModificador());
 
                 boolean heroiSobreviveu = iniciarCombate(astronauta, monstro);
                 if (heroiSobreviveu) {
@@ -207,9 +207,12 @@ public class Batalha {
         if (monstro instanceof Lootavel) {
             Random random = new Random();
             if (random.nextDouble() < astronauta.getSorte() + 0.2) {
-                loot = ((Lootavel) monstro).droparLoot();
-                System.out.println("💎 Você encontrou um loot: " + loot.getNome() + "💎");
-                System.out.println();
+                loot = ((Lootavel) monstro).droparLoot(faseAtual.getNivel(), dificuldade.getModificador());
+
+                if (loot != null) { // Checa se o loot não é nulo antes de imprimir
+                    System.out.println("💎 Você encontrou um loot: " + loot.getNome() + "💎");
+                    System.out.println();
+                }
             }
         }
 

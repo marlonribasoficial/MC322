@@ -1,7 +1,8 @@
 package Combate;
 
 import Entidades.Personagem;
-import Interfaces.*;
+import Interfaces.AcaoDeCombate;
+import Interfaces.Combatente;
 import Itens.Arma;
 import Util.Utilidades;
 

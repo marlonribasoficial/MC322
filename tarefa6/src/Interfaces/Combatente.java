@@ -37,4 +37,9 @@ public interface Combatente {
      * @return A ação escolhida.
      */
     AcaoDeCombate escolherAcao(Combatente alvo);
+
+    /**
+     * @return A força base do combatente, usada para calcular dano.
+     */
+    int getForca();
 }

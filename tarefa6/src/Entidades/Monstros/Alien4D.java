@@ -1,8 +1,6 @@
 package Entidades.Monstros;
 
-import Combate.AtaqueDimensional;
-import Combate.HabilidadeAprisionar;
-import Interfaces.Item;
+import Interfaces.AcaoDeCombate;
 import Itens.Arma;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
@@ -24,9 +22,8 @@ public class Alien4D extends Monstro {
                     int xpConcedido,
                     int pontosDeVidaMaximo,
                     Arma arma,
-                    List<Item> listaDeArmasParaLargar) {
-        super(nome, pontosDeVida, forca, xpConcedido, pontosDeVidaMaximo, arma, listaDeArmasParaLargar);
-        getAcoes().add(new AtaqueDimensional());
-        getAcoes().add(new HabilidadeAprisionar());
+                    List<String> listaDeLoot,
+                    List<AcaoDeCombate> acoes) {
+        super(nome, pontosDeVida, forca, xpConcedido, pontosDeVidaMaximo, arma, listaDeLoot, acoes);
     }
 }
