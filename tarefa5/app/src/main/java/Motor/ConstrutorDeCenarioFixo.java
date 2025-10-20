@@ -1,11 +1,14 @@
 package Motor;
 
-
-import Entidades.Monstros.*;
 import Interfaces.*;
 import Itens.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import Entidades.Monstros.Alien4D;
+import Entidades.Monstros.AlienParadoxo;
+import Entidades.Monstros.AlienSlime;
+import Entidades.Monstros.Monstro;
 
 /**
  * Gera fases com monstros e loot fixos, garantindo consistência 

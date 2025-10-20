@@ -1,6 +1,6 @@
 package Combate;
 
-import Entidades.Heroi.*;
+import Entidades.Heroi.Astronauta;
 import Interfaces.*;
 import Util.Utilidades;
 

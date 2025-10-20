@@ -1,12 +1,17 @@
 package Entidades.Heroi;
 
-import Combate.*;
 import Interfaces.*;
 import Itens.*;
 import Util.Utilidades;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import Combate.AcaoUsarItem;
+import Combate.AtaqueComArma;
+import Combate.AtaqueFisico;
+import Combate.HabilidadeDefesaTraje;
+import Combate.HabilidadeSoproCriogenico;
 
 /**
  * Classe que representa o herói Astronauta.
